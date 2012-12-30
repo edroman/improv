@@ -1,3 +1,0 @@
-@interface ImprovViewController : UIViewController
-
-@end

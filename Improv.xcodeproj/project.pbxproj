@@ -16,7 +16,6 @@
 		27915D69168FF31600DB32E2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27915D68168FF31600DB32E2 /* Default@2x.png */; };
 		27915D6B168FF31600DB32E2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27915D6A168FF31600DB32E2 /* Default-568h@2x.png */; };
 		27915D7E168FF3BB00DB32E2 /* ImprovAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 27915D7B168FF3BB00DB32E2 /* ImprovAppDelegate.m */; };
-		27915D7F168FF3BB00DB32E2 /* ImprovViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27915D7D168FF3BB00DB32E2 /* ImprovViewController.m */; };
 		27915D91168FF7A700DB32E2 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27915D87168FF5E500DB32E2 /* Parse.framework */; };
 		27915D97168FF91400DB32E2 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27915D96168FF91400DB32E2 /* AdSupport.framework */; };
 		27915D99168FF91B00DB32E2 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27915D98168FF91B00DB32E2 /* Social.framework */; };
@@ -32,6 +31,7 @@
 		27915DB5168FFBC100DB32E2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27915DB4168FFBC100DB32E2 /* SystemConfiguration.framework */; };
 		27915DB7168FFBC700DB32E2 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27915DB6168FFBC700DB32E2 /* CFNetwork.framework */; };
 		27915DB9168FFC9D00DB32E2 /* Improv.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27915DB8168FFC9D00DB32E2 /* Improv.storyboard */; };
+		27915DBC16909A1E00DB32E2 /* LobbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27915DBB16909A1E00DB32E2 /* LobbyViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,8 +48,6 @@
 		27915D6A168FF31600DB32E2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		27915D7A168FF3BB00DB32E2 /* ImprovAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImprovAppDelegate.h; sourceTree = "<group>"; };
 		27915D7B168FF3BB00DB32E2 /* ImprovAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImprovAppDelegate.m; sourceTree = "<group>"; };
-		27915D7C168FF3BB00DB32E2 /* ImprovViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImprovViewController.h; sourceTree = "<group>"; };
-		27915D7D168FF3BB00DB32E2 /* ImprovViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImprovViewController.m; sourceTree = "<group>"; };
 		27915D87168FF5E500DB32E2 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		27915D96168FF91400DB32E2 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		27915D98168FF91B00DB32E2 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -65,6 +63,8 @@
 		27915DB4168FFBC100DB32E2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		27915DB6168FFBC700DB32E2 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		27915DB8168FFC9D00DB32E2 /* Improv.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Improv.storyboard; sourceTree = "<group>"; };
+		27915DBA16909A1E00DB32E2 /* LobbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LobbyViewController.h; sourceTree = "<group>"; };
+		27915DBB16909A1E00DB32E2 /* LobbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LobbyViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,10 +140,10 @@
 			isa = PBXGroup;
 			children = (
 				27915DB8168FFC9D00DB32E2 /* Improv.storyboard */,
+				27915DBA16909A1E00DB32E2 /* LobbyViewController.h */,
+				27915DBB16909A1E00DB32E2 /* LobbyViewController.m */,
 				27915D7A168FF3BB00DB32E2 /* ImprovAppDelegate.h */,
 				27915D7B168FF3BB00DB32E2 /* ImprovAppDelegate.m */,
-				27915D7C168FF3BB00DB32E2 /* ImprovViewController.h */,
-				27915D7D168FF3BB00DB32E2 /* ImprovViewController.m */,
 				27915D5B168FF31600DB32E2 /* Supporting Files */,
 			);
 			path = Improv;
@@ -231,7 +231,7 @@
 			files = (
 				27915D61168FF31600DB32E2 /* main.m in Sources */,
 				27915D7E168FF3BB00DB32E2 /* ImprovAppDelegate.m in Sources */,
-				27915D7F168FF3BB00DB32E2 /* ImprovViewController.m in Sources */,
+				27915DBC16909A1E00DB32E2 /* LobbyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

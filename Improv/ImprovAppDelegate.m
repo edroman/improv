@@ -1,6 +1,5 @@
 #import <Parse/Parse.h>
 #import "ImprovAppDelegate.h"
-#import "ImprovViewController.h"
 
 @implementation ImprovAppDelegate
 
@@ -105,9 +104,9 @@
 
 - (void)subscribeFinished:(NSNumber *)result error:(NSError *)error {
     if ([result boolValue]) {
-        NSLog(@"ParseStarterProject successfully subscribed to push notifications on the broadcast channel.");
+        NSLog(@"Improv successfully subscribed to push notifications on the broadcast channel.");
     } else {
-        NSLog(@"ParseStarterProject failed to subscribe to push notifications on the broadcast channel.");
+        NSLog(@"Improv failed to subscribe to push notifications on the broadcast channel.");
     }
 }
 

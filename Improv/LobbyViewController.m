@@ -11,6 +11,7 @@
 
 @interface LobbyViewController ()
 
+// Holds the games retrieved from Parse
 @property (nonatomic, strong) NSMutableArray *games;
 
 @end
@@ -41,11 +42,17 @@
 
     [query includeKey:@"creator"];
     [query includeKey:@"invitee"];
-    [query whereKey:@"creator" equalTo:[PFUser objectWithoutDataWithClassName:@"User" objectId:@"VzjZ5NaC3c"]];
+    [query whereKey:@"creator" equalTo:[PFUser currentUser]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
             NSLog(@"Successfully retrieved %d results.", objects.count);
+            
+            // Store results
+            _games = objects;
+
+            // reload table data, forcing a new numberOfRowsInSection()
+            [self.tableView reloadData];
         } else {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
@@ -63,7 +70,6 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
@@ -72,7 +78,7 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 1;
+    return _games.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -90,7 +96,9 @@
     PFObject *game = _games[indexPath.row];
     
     UILabel *playerLabel = (UILabel *)[cell viewWithTag:100];
-    playerLabel.text = @"Game with Caroline Cao";                   // TODO
+    PFUser *obj = [game objectForKey:@"creator"];
+    NSString *str = [obj objectForKey:@"name"];
+    playerLabel.text = [NSString stringWithFormat:@"%@%@", @"Game with ", str];
     UILabel *storyLabel = (UILabel *)[cell viewWithTag:101];
     storyLabel.text = @"It was a dark and stormy night...";         // TODO
 

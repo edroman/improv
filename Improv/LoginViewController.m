@@ -44,9 +44,14 @@
             }
         } else if (user.isNew) {
             NSLog(@"User with facebook signed up and logged in!");
+            // Create Parse User
+            
+            // Load Lobby
             [self performSegueWithIdentifier:@"LoginToLobbySegue" sender:sender];
         } else {
             NSLog(@"User with facebook logged in!");
+            
+            // Load Lobby
             [self performSegueWithIdentifier:@"LoginToLobbySegue" sender:sender];
         }
     }];

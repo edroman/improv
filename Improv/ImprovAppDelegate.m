@@ -17,32 +17,6 @@
     // Setup Facebook App ID.  Also done in Project Settings.
     [PFFacebookUtils initializeWithApplicationId:@"250634021702621"];
 
-    [PFUser enableAutomaticUser];
-    
-    PFACL *defaultACL = [PFACL ACL];
-
-    // If you would like all objects to be private by default, remove this line.
-    [defaultACL setPublicReadAccess:YES];
-    
-    [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
-
-    NSArray *permissions = 0;
-    [PFFacebookUtils logInWithPermissions:permissions block:^(PFUser *user, NSError *error) {
-        if (!user) {
-            NSLog(@"Uh oh. The user cancelled the Facebook login.");
-        } else if (user.isNew) {
-            NSLog(@"User signed up and logged in through Facebook!");
-        } else {
-            NSLog(@"User logged in through Facebook!");
-        }
-    }];
-
-    
-    
-    // Ed commented this out since it makes it so we don't use the storyboard
-    // self.window.rootViewController = self.viewController;
-    // [self.window makeKeyAndVisible];
-    
     [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|
                                                     UIRemoteNotificationTypeAlert|
                                                     UIRemoteNotificationTypeSound];

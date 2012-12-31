@@ -32,6 +32,11 @@
 		27915DB7168FFBC700DB32E2 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27915DB6168FFBC700DB32E2 /* CFNetwork.framework */; };
 		27915DB9168FFC9D00DB32E2 /* Improv.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27915DB8168FFC9D00DB32E2 /* Improv.storyboard */; };
 		27915DBC16909A1E00DB32E2 /* LobbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27915DBB16909A1E00DB32E2 /* LobbyViewController.m */; };
+		27DD8E7A169145B50036E189 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DD8E79169145B50036E189 /* LoginViewController.m */; };
+		27DD8E7F169146EF0036E189 /* login-button-small-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 27DD8E7B169146EF0036E189 /* login-button-small-pressed.png */; };
+		27DD8E80169146EF0036E189 /* login-button-small-pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27DD8E7C169146EF0036E189 /* login-button-small-pressed@2x.png */; };
+		27DD8E81169146EF0036E189 /* login-button-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 27DD8E7D169146EF0036E189 /* login-button-small.png */; };
+		27DD8E82169146EF0036E189 /* login-button-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27DD8E7E169146EF0036E189 /* login-button-small@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +70,12 @@
 		27915DB8168FFC9D00DB32E2 /* Improv.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Improv.storyboard; sourceTree = "<group>"; };
 		27915DBA16909A1E00DB32E2 /* LobbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LobbyViewController.h; sourceTree = "<group>"; };
 		27915DBB16909A1E00DB32E2 /* LobbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LobbyViewController.m; sourceTree = "<group>"; };
+		27DD8E78169145B50036E189 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		27DD8E79169145B50036E189 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		27DD8E7B169146EF0036E189 /* login-button-small-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small-pressed.png"; sourceTree = "<group>"; };
+		27DD8E7C169146EF0036E189 /* login-button-small-pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small-pressed@2x.png"; sourceTree = "<group>"; };
+		27DD8E7D169146EF0036E189 /* login-button-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small.png"; sourceTree = "<group>"; };
+		27DD8E7E169146EF0036E189 /* login-button-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +153,8 @@
 				27915DB8168FFC9D00DB32E2 /* Improv.storyboard */,
 				27915DBA16909A1E00DB32E2 /* LobbyViewController.h */,
 				27915DBB16909A1E00DB32E2 /* LobbyViewController.m */,
+				27DD8E78169145B50036E189 /* LoginViewController.h */,
+				27DD8E79169145B50036E189 /* LoginViewController.m */,
 				27915D7A168FF3BB00DB32E2 /* ImprovAppDelegate.h */,
 				27915D7B168FF3BB00DB32E2 /* ImprovAppDelegate.m */,
 				27915D5B168FF31600DB32E2 /* Supporting Files */,
@@ -152,6 +165,10 @@
 		27915D5B168FF31600DB32E2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				27DD8E7B169146EF0036E189 /* login-button-small-pressed.png */,
+				27DD8E7C169146EF0036E189 /* login-button-small-pressed@2x.png */,
+				27DD8E7D169146EF0036E189 /* login-button-small.png */,
+				27DD8E7E169146EF0036E189 /* login-button-small@2x.png */,
 				27915D5C168FF31600DB32E2 /* Improv-Info.plist */,
 				27915D5D168FF31600DB32E2 /* InfoPlist.strings */,
 				27915D60168FF31600DB32E2 /* main.m */,
@@ -219,6 +236,10 @@
 				27915D69168FF31600DB32E2 /* Default@2x.png in Resources */,
 				27915D6B168FF31600DB32E2 /* Default-568h@2x.png in Resources */,
 				27915DB9168FFC9D00DB32E2 /* Improv.storyboard in Resources */,
+				27DD8E7F169146EF0036E189 /* login-button-small-pressed.png in Resources */,
+				27DD8E80169146EF0036E189 /* login-button-small-pressed@2x.png in Resources */,
+				27DD8E81169146EF0036E189 /* login-button-small.png in Resources */,
+				27DD8E82169146EF0036E189 /* login-button-small@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,6 +253,7 @@
 				27915D61168FF31600DB32E2 /* main.m in Sources */,
 				27915D7E168FF3BB00DB32E2 /* ImprovAppDelegate.m in Sources */,
 				27915DBC16909A1E00DB32E2 /* LobbyViewController.m in Sources */,
+				27DD8E7A169145B50036E189 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

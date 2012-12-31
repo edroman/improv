@@ -7,11 +7,15 @@
 #pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+    ///////////////////////////////////////
+    // Parse Initialization
+    ///////////////////////////////////////
+    
     [Parse setApplicationId:@"WTbIj7pY3jJC3cnqxF2cidV164TOWxgTtbGfjGnF" clientKey:@"EjV6lQXjI0S35MYcaoPPkhgRXCaYvU1J9B59lvAa"];
 
-    // If you are using Facebook, uncomment and fill in with your Facebook App Id:
-    // [PFFacebookUtils initializeWithApplicationId:@"your_facebook_app_id"];
-    // ****************************************************************************
+    // Setup Facebook App ID.  Also done in Project Settings.
+    [PFFacebookUtils initializeWithApplicationId:@"250634021702621"];
 
     [PFUser enableAutomaticUser];
     
@@ -21,8 +25,19 @@
     [defaultACL setPublicReadAccess:YES];
     
     [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
+
+    NSArray *permissions = 0;
+    [PFFacebookUtils logInWithPermissions:permissions block:^(PFUser *user, NSError *error) {
+        if (!user) {
+            NSLog(@"Uh oh. The user cancelled the Facebook login.");
+        } else if (user.isNew) {
+            NSLog(@"User signed up and logged in through Facebook!");
+        } else {
+            NSLog(@"User logged in through Facebook!");
+        }
+    }];
+
     
-    // Override point for customization after application launch.
     
     // Ed commented this out since it makes it so we don't use the storyboard
     // self.window.rootViewController = self.viewController;
@@ -34,18 +49,16 @@
     return YES;
 }
 
-/*
- 
-///////////////////////////////////////////////////////////
-// Uncomment this method if you are using Facebook
-///////////////////////////////////////////////////////////
- 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
-    sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+// For Facebook-Parse integration
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
     return [PFFacebookUtils handleOpenURL:url];
-} 
- 
-*/
+}
+
+// For Facebook-Parse integration
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [PFFacebookUtils handleOpenURL:url];
+}
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
     [PFPush storeDeviceToken:newDeviceToken];

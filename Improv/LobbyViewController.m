@@ -11,6 +11,8 @@
 
 @interface LobbyViewController ()
 
+@property (nonatomic, strong) NSMutableArray *games;
+
 @end
 
 @implementation LobbyViewController
@@ -33,6 +35,22 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
+    // TODO: Load all games
+    PFQuery *query = [PFQuery queryWithClassName:@"Game"];
+
+    [query includeKey:@"creator"];
+    [query includeKey:@"invitee"];
+    [query whereKey:@"creator" equalTo:[PFUser objectWithoutDataWithClassName:@"User" objectId:@"VzjZ5NaC3c"]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %d results.", objects.count);
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,34 +80,33 @@
     // This string should correspond to the string set in the storyboard Table View Cell prototype
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    // Configure the cell...
-#warning must finish implementing
+
+/*
     PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
     [testObject setObject:@"bar" forKey:@"foo"];
     [testObject save];
+*/
+    // Set cell text
+    PFObject *game = _games[indexPath.row];
     
-    PFQuery *query = [PFQuery queryWithClassName:@"TestObject"];
-    // [query whereKey:@"playerName" equalTo:@"Dan Stemkoski"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            // The find succeeded.
-            NSLog(@"Successfully retrieved %d results.", objects.count);
-            
-            // Set cell text
-            cell.textLabel.text = [objects[0] objectForKey:@"foo"];
+    UILabel *playerLabel = (UILabel *)[cell viewWithTag:100];
+    playerLabel.text = @"Game with Caroline Cao";                   // TODO
+    UILabel *storyLabel = (UILabel *)[cell viewWithTag:101];
+    storyLabel.text = @"It was a dark and stormy night...";         // TODO
 
-            UILabel *playerLabel = (UILabel *)[cell viewWithTag:100];
-            playerLabel.text = @"Game with Caroline Cao";
-            UILabel *storyLabel = (UILabel *)[cell viewWithTag:101];
-            storyLabel.text = @"It was a dark and stormy night...";
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
-    
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Swipable DELETE button for games
+	if (editingStyle == UITableViewCellEditingStyleDelete)
+	{
+        
+        // TODO: remove game via Parse
+		[self.games removeObjectAtIndex:indexPath.row];
+		[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+	}
 }
 
 /*

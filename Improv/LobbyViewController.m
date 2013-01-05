@@ -37,7 +37,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
-    // TODO: Load all games
+    // Load all games
     PFQuery *query = [PFQuery queryWithClassName:@"Game"];
 
     [query includeKey:@"creator"];
@@ -76,7 +76,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return _games.count;
 }
@@ -87,11 +86,6 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
-/*
-    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
-    [testObject setObject:@"bar" forKey:@"foo"];
-    [testObject save];
-*/
     // Set cell text
     PFObject *game = _games[indexPath.row];
     
@@ -110,11 +104,15 @@
     // Swipable DELETE button for games
 	if (editingStyle == UITableViewCellEditingStyleDelete)
 	{
+        // Remove game via Parse
+        [_games[indexPath.row] deleteInBackground];
         
-        // TODO: remove game via Parse
+        // Remove game from array
 		[self.games removeObjectAtIndex:indexPath.row];
+        
+        // Remove game from UI
 		[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-	}
+    }
 }
 
 /*

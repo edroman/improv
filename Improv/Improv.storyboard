@@ -83,16 +83,16 @@
         <scene sceneID="OXD-Nu-GyX">
             <objects>
                 <tableViewController id="SNw-85-AYE" customClass="LobbyViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="77" sectionHeaderHeight="22" sectionFooterHeight="22" id="5Ch-Kt-DGq">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="150" sectionHeaderHeight="10" sectionFooterHeight="10" id="5Ch-Kt-DGq">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="77" id="LS5-2t-Q24">
-                                <rect key="frame" x="0.0" y="22" width="320" height="77"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="150" id="LS5-2t-Q24">
+                                <rect key="frame" x="0.0" y="46" width="320" height="152"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
+                                    <rect key="frame" x="10" y="1" width="300" height="149"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="left" text="Your game with XYZ" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cEV-Ph-OUO">
@@ -129,14 +129,14 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="rp9-up-eMF" firstAttribute="leading" secondItem="6tM-Bt-M7T" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Kjr-Io-sjt"/>
-                                    <constraint firstAttribute="trailing" secondItem="rp9-up-eMF" secondAttribute="trailing" constant="7" id="W7g-iq-Tad"/>
-                                    <constraint firstItem="cEV-Ph-OUO" firstAttribute="leading" secondItem="LS5-2t-Q24" secondAttribute="leading" constant="20" type="default" id="Y4a-6F-frb"/>
-                                    <constraint firstItem="cEV-Ph-OUO" firstAttribute="top" secondItem="LS5-2t-Q24" secondAttribute="top" constant="6" id="dDV-KY-Fxe"/>
+                                    <constraint firstItem="95c-sr-eLv" firstAttribute="top" secondItem="cEV-Ph-OUO" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="54d-ry-P21"/>
+                                    <constraint firstAttribute="trailing" secondItem="rp9-up-eMF" secondAttribute="trailing" constant="93" id="6Jt-Un-EyC"/>
+                                    <constraint firstItem="95c-sr-eLv" firstAttribute="leading" secondItem="cEV-Ph-OUO" secondAttribute="leading" type="default" id="9no-sJ-qgp"/>
+                                    <constraint firstAttribute="bottom" secondItem="6tM-Bt-M7T" secondAttribute="bottom" constant="8" id="Hmd-EM-zp0"/>
+                                    <constraint firstItem="6tM-Bt-M7T" firstAttribute="leading" secondItem="LS5-2t-Q24" secondAttribute="leading" constant="89" id="TBH-UK-14t"/>
+                                    <constraint firstItem="cEV-Ph-OUO" firstAttribute="leading" secondItem="LS5-2t-Q24" secondAttribute="leading" constant="23" id="jBz-2I-6Ly"/>
                                     <constraint firstItem="rp9-up-eMF" firstAttribute="baseline" secondItem="6tM-Bt-M7T" secondAttribute="baseline" type="default" id="kYf-qG-LkN"/>
-                                    <constraint firstItem="95c-sr-eLv" firstAttribute="top" secondItem="cEV-Ph-OUO" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="rIa-Tq-7ML"/>
-                                    <constraint firstItem="95c-sr-eLv" firstAttribute="leading" secondItem="LS5-2t-Q24" secondAttribute="leading" constant="20" type="default" id="ulY-MF-WXX"/>
-                                    <constraint firstItem="6tM-Bt-M7T" firstAttribute="top" secondItem="LS5-2t-Q24" secondAttribute="top" constant="16" id="z4F-Yh-RJT"/>
+                                    <constraint firstItem="cEV-Ph-OUO" firstAttribute="top" secondItem="LS5-2t-Q24" secondAttribute="top" constant="8" id="sWe-Mw-gkw"/>
                                 </constraints>
                             </tableViewCell>
                         </prototypes>

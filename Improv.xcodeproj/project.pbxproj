@@ -38,6 +38,7 @@
 		27DD8E81169146EF0036E189 /* login-button-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 27DD8E7D169146EF0036E189 /* login-button-small.png */; };
 		27DD8E82169146EF0036E189 /* login-button-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27DD8E7E169146EF0036E189 /* login-button-small@2x.png */; };
 		A409DE6A169C9F5400C32B2D /* StoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A409DE69169C9F5400C32B2D /* StoryTableViewController.m */; };
+		A409DE6E169CE00000C32B2D /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A409DE6D169CE00000C32B2D /* MainMenuViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,8 @@
 		27DD8E7E169146EF0036E189 /* login-button-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small@2x.png"; sourceTree = "<group>"; };
 		A409DE68169C9F5400C32B2D /* StoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryTableViewController.h; sourceTree = "<group>"; };
 		A409DE69169C9F5400C32B2D /* StoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryTableViewController.m; sourceTree = "<group>"; };
+		A409DE6C169CE00000C32B2D /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
+		A409DE6D169CE00000C32B2D /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +157,8 @@
 			isa = PBXGroup;
 			children = (
 				27915DB8168FFC9D00DB32E2 /* Improv.storyboard */,
+				A409DE6C169CE00000C32B2D /* MainMenuViewController.h */,
+				A409DE6D169CE00000C32B2D /* MainMenuViewController.m */,
 				A409DE68169C9F5400C32B2D /* StoryTableViewController.h */,
 				A409DE69169C9F5400C32B2D /* StoryTableViewController.m */,
 				27915DBA16909A1E00DB32E2 /* LobbyViewController.h */,
@@ -260,6 +265,7 @@
 				27915DBC16909A1E00DB32E2 /* LobbyViewController.m in Sources */,
 				27DD8E7A169145B50036E189 /* LoginViewController.m in Sources */,
 				A409DE6A169C9F5400C32B2D /* StoryTableViewController.m in Sources */,
+				A409DE6E169CE00000C32B2D /* MainMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

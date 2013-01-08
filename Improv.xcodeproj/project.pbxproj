@@ -39,6 +39,7 @@
 		27DD8E82169146EF0036E189 /* login-button-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27DD8E7E169146EF0036E189 /* login-button-small@2x.png */; };
 		A409DE6A169C9F5400C32B2D /* StoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A409DE69169C9F5400C32B2D /* StoryTableViewController.m */; };
 		A409DE6E169CE00000C32B2D /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A409DE6D169CE00000C32B2D /* MainMenuViewController.m */; };
+		A479D3B1169CE60100E14D39 /* LeaderboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A479D3B0169CE60100E14D39 /* LeaderboardViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,8 @@
 		A409DE69169C9F5400C32B2D /* StoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryTableViewController.m; sourceTree = "<group>"; };
 		A409DE6C169CE00000C32B2D /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
 		A409DE6D169CE00000C32B2D /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
+		A479D3AF169CE60100E14D39 /* LeaderboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaderboardViewController.h; sourceTree = "<group>"; };
+		A479D3B0169CE60100E14D39 /* LeaderboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaderboardViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +160,8 @@
 			isa = PBXGroup;
 			children = (
 				27915DB8168FFC9D00DB32E2 /* Improv.storyboard */,
+				A479D3AF169CE60100E14D39 /* LeaderboardViewController.h */,
+				A479D3B0169CE60100E14D39 /* LeaderboardViewController.m */,
 				A409DE6C169CE00000C32B2D /* MainMenuViewController.h */,
 				A409DE6D169CE00000C32B2D /* MainMenuViewController.m */,
 				A409DE68169C9F5400C32B2D /* StoryTableViewController.h */,
@@ -266,6 +271,7 @@
 				27DD8E7A169145B50036E189 /* LoginViewController.m in Sources */,
 				A409DE6A169C9F5400C32B2D /* StoryTableViewController.m in Sources */,
 				A409DE6E169CE00000C32B2D /* MainMenuViewController.m in Sources */,
+				A479D3B1169CE60100E14D39 /* LeaderboardViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

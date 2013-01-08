@@ -145,11 +145,12 @@
                             <outlet property="delegate" destination="SNw-85-AYE" id="Lfo-0X-kM0"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="wwn-Xc-yFd"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j31-Lq-5oQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="373" y="-480"/>
+            <point key="canvasLocation" x="431" y="-475"/>
         </scene>
     </scenes>
     <resources>

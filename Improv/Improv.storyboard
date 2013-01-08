@@ -72,19 +72,35 @@
                     </view>
                     <navigationItem key="navigationItem" id="SbZ-Hd-c1A"/>
                     <connections>
-                        <segue destination="SNw-85-AYE" kind="push" identifier="LoginToLobbySegue" id="kMq-x1-F0Q"/>
+                        <segue destination="j43-0E-PFo" kind="push" identifier="LoginToLobbySegue" id="3Kq-Ow-azm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tbu-LY-1zk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-86" y="-475"/>
+            <point key="canvasLocation" x="-38" y="-303"/>
         </scene>
         <!--Lobby View Controller-->
+        <scene sceneID="JRt-fb-rxa">
+            <objects>
+                <viewController storyboardIdentifier="LobbyViewController" id="j43-0E-PFo" customClass="LobbyViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AiS-Sw-BJM">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="SyR-uF-vDh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IKu-Ep-sBy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="316" y="-1207"/>
+        </scene>
+        <!--Story Table View Controller-->
         <scene sceneID="OXD-Nu-GyX">
             <objects>
-                <tableViewController id="SNw-85-AYE" customClass="LobbyViewController" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j31-Lq-5oQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController storyboardIdentifier="StoryTableViewController" id="SNw-85-AYE" customClass="StoryTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="150" sectionHeaderHeight="10" sectionFooterHeight="10" id="5Ch-Kt-DGq">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
@@ -148,30 +164,14 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="wwn-Xc-yFd"/>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="j31-Lq-5oQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="431" y="-475"/>
+            <point key="canvasLocation" x="897" y="-727"/>
         </scene>
     </scenes>
     <resources>
         <image name="login-button-small-pressed.png" width="151" height="43"/>
         <image name="login-button-small.png" width="151" height="43"/>
     </resources>
-    <classes>
-        <class className="LobbyViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LobbyViewController.h"/>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="loginButtonTouchHandler:"/>
-                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

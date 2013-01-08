@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LobbyViewController : UITableViewController
+@interface LobbyViewController : UIViewController
 
 @end

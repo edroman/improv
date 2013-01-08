@@ -37,6 +37,7 @@
 		27DD8E80169146EF0036E189 /* login-button-small-pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27DD8E7C169146EF0036E189 /* login-button-small-pressed@2x.png */; };
 		27DD8E81169146EF0036E189 /* login-button-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 27DD8E7D169146EF0036E189 /* login-button-small.png */; };
 		27DD8E82169146EF0036E189 /* login-button-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27DD8E7E169146EF0036E189 /* login-button-small@2x.png */; };
+		A409DE6A169C9F5400C32B2D /* StoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A409DE69169C9F5400C32B2D /* StoryTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,8 @@
 		27DD8E7C169146EF0036E189 /* login-button-small-pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small-pressed@2x.png"; sourceTree = "<group>"; };
 		27DD8E7D169146EF0036E189 /* login-button-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small.png"; sourceTree = "<group>"; };
 		27DD8E7E169146EF0036E189 /* login-button-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small@2x.png"; sourceTree = "<group>"; };
+		A409DE68169C9F5400C32B2D /* StoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryTableViewController.h; sourceTree = "<group>"; };
+		A409DE69169C9F5400C32B2D /* StoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +154,8 @@
 			isa = PBXGroup;
 			children = (
 				27915DB8168FFC9D00DB32E2 /* Improv.storyboard */,
+				A409DE68169C9F5400C32B2D /* StoryTableViewController.h */,
+				A409DE69169C9F5400C32B2D /* StoryTableViewController.m */,
 				27915DBA16909A1E00DB32E2 /* LobbyViewController.h */,
 				27915DBB16909A1E00DB32E2 /* LobbyViewController.m */,
 				27DD8E78169145B50036E189 /* LoginViewController.h */,
@@ -254,6 +259,7 @@
 				27915D7E168FF3BB00DB32E2 /* ImprovAppDelegate.m in Sources */,
 				27915DBC16909A1E00DB32E2 /* LobbyViewController.m in Sources */,
 				27DD8E7A169145B50036E189 /* LoginViewController.m in Sources */,
+				A409DE6A169C9F5400C32B2D /* StoryTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@
 //
 
 #import "StoryTableViewController.h"
+#import "ViewStoryViewController.h"
 #import <Parse/Parse.h>
 
 @interface StoryTableViewController ()
@@ -71,6 +72,21 @@
 			NSLog(@"Error: %@ %@", error, [error userInfo]);
 		}
 	}];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	if ([[segue identifier] isEqualToString:@"StoryTableToViewStorySegue"]) {
+		ViewStoryViewController *nextVC = (ViewStoryViewController *)[segue destinationViewController];
+		
+		UITableViewCell *clickedCell = (UITableViewCell *)[[sender superview] superview];
+		NSIndexPath *path = [self.tableView indexPathForCell:clickedCell];
+		int index = path.row;
+
+		// Determine if we're referencing finished or unfinished game data
+		NSMutableArray *games = (path.section == 0 ? _unfinishedGames : _finishedGames);
+
+		nextVC.game = games[index];
+	}
 }
 
 - (void)didReceiveMemoryWarning

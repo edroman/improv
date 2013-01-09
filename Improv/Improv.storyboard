@@ -186,6 +186,9 @@
                                             <state key="highlighted">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <segue destination="AGI-US-LMg" kind="push" identifier="LeaderboardToViewStorySegue" id="kdA-vF-CqP"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -286,35 +289,106 @@
             </objects>
             <point key="canvasLocation" x="905" y="-15"/>
         </scene>
+        <!--View Story View Controller-->
+        <scene sceneID="7up-vU-O8V">
+            <objects>
+                <viewController storyboardIdentifier="ViewStoryViewController" id="AGI-US-LMg" customClass="ViewStoryViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="z5P-OA-L55">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" text="Once upon a time..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eWA-5S-qkF">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="left" text="A story by XYZ and ABC" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V8d-71-ZLh">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="23" id="Ctw-Ml-e7l"/>
+                                    <constraint firstAttribute="width" constant="196" id="DUK-GP-qqH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Like this story?  Share it so it gets more votes!  The highest-voted stories each week win a prize!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="275" translatesAutoresizingMaskIntoConstraints="NO" id="aIq-3l-tqF">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="74" id="M3o-d5-CZP"/>
+                                    <constraint firstAttribute="width" constant="275" id="ap3-Za-wHu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fl5-r3-W1o">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Facebook Share">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ree-n7-vb8">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Tweet">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ml-Kl-Gdf">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Vote for this story!">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="102" contentMode="left" text="5 Votes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8RW-rH-TDu">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="71" id="mPQ-Mm-ysA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Ree-n7-vb8" secondAttribute="bottom" constant="11" id="Eyj-W2-XzP"/>
+                            <constraint firstItem="V8d-71-ZLh" firstAttribute="top" secondItem="z5P-OA-L55" secondAttribute="top" constant="52" id="GJ7-6l-l4g"/>
+                            <constraint firstAttribute="bottom" secondItem="4ml-Kl-Gdf" secondAttribute="bottom" constant="114" id="J5x-fh-Ymc"/>
+                            <constraint firstItem="eWA-5S-qkF" firstAttribute="top" secondItem="z5P-OA-L55" secondAttribute="top" constant="107" id="JON-u8-JBT"/>
+                            <constraint firstItem="Ree-n7-vb8" firstAttribute="baseline" secondItem="fl5-r3-W1o" secondAttribute="baseline" type="default" id="RLX-SL-MRw"/>
+                            <constraint firstItem="Ree-n7-vb8" firstAttribute="centerX" secondItem="4ml-Kl-Gdf" secondAttribute="centerX" type="default" id="SAY-zr-fd7"/>
+                            <constraint firstItem="fl5-r3-W1o" firstAttribute="centerX" secondItem="aIq-3l-tqF" secondAttribute="centerX" type="default" id="aFS-de-fi0"/>
+                            <constraint firstItem="V8d-71-ZLh" firstAttribute="leading" secondItem="z5P-OA-L55" secondAttribute="leading" constant="64" id="b00-Uf-nf1"/>
+                            <constraint firstItem="fl5-r3-W1o" firstAttribute="centerX" secondItem="z5P-OA-L55" secondAttribute="centerX" type="default" id="b6Z-Yn-qES"/>
+                            <constraint firstAttribute="bottom" secondItem="8RW-rH-TDu" secondAttribute="bottom" constant="243" id="jBA-hh-kNb"/>
+                            <constraint firstItem="8RW-rH-TDu" firstAttribute="centerX" secondItem="V8d-71-ZLh" secondAttribute="centerX" type="default" id="mL2-i3-Cr9"/>
+                            <constraint firstItem="Ree-n7-vb8" firstAttribute="top" secondItem="fl5-r3-W1o" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="mn5-5n-K6B"/>
+                            <constraint firstItem="8RW-rH-TDu" firstAttribute="centerX" secondItem="4ml-Kl-Gdf" secondAttribute="centerX" type="default" id="rFy-AU-CZ5"/>
+                            <constraint firstItem="aIq-3l-tqF" firstAttribute="top" secondItem="8RW-rH-TDu" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="vhB-vd-TgV"/>
+                            <constraint firstItem="aIq-3l-tqF" firstAttribute="centerX" secondItem="eWA-5S-qkF" secondAttribute="centerX" type="default" id="xkX-St-fnj"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="0rY-pN-iRf"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bj6-GD-ufI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1978" y="-691"/>
+        </scene>
     </scenes>
     <resources>
         <image name="login-button-small-pressed.png" width="151" height="43"/>
         <image name="login-button-small.png" width="151" height="43"/>
     </resources>
-    <classes>
-        <class className="LeaderboardViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeaderboardViewController.h"/>
-        </class>
-        <class className="LobbyViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LobbyViewController.h"/>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="loginButtonTouchHandler:"/>
-                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
-            </relationships>
-        </class>
-        <class className="MainMenuViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuViewController.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="StoryTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StoryTableViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

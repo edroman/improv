@@ -42,10 +42,11 @@
 	
 	// Load all games
 	PFQuery *query = [PFQuery queryWithClassName:@"Game"];
-	
+
+	query.limit = 10;
+	[query orderByDescending:@"votes"];
 	[query includeKey:@"creator"];
 	[query includeKey:@"invitee"];
-	[query whereKey:@"creator" equalTo:[PFUser currentUser]];
 	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
 		if (!error) {
 			// The find succeeded.
@@ -99,9 +100,14 @@
 	NSString *str = [obj objectForKey:@"name"];
 	PFUser *obj2 = [game objectForKey:@"invitee"];
 	NSString *str2 = [obj2 objectForKey:@"name"];
-	playerLabel.text = [NSString stringWithFormat:@"%@%@%@%@", @"By ", str, @" and ", str2];
+	playerLabel.text = [NSString stringWithFormat:@"By %@ and %@", str, str2];
+
 	UILabel *storyLabel = (UILabel *)[cell viewWithTag:101];
 	storyLabel.text = @"It was a dark and stormy night...";		 // TODO
+	
+	UILabel *voteLabel = (UILabel *)[cell viewWithTag:102];
+	NSString *votes = [game objectForKey:@"votes"];
+	voteLabel.text = [NSString stringWithFormat:@"%@ votes", votes];
 	
 	return cell;
 }

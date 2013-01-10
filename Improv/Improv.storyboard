@@ -332,6 +332,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="facebookPostToWall:" destination="AGI-US-LMg" eventType="touchUpInside" id="ZeI-Gi-iVd"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ree-n7-vb8">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -392,33 +395,6 @@
         <image name="login-button-small-pressed.png" width="151" height="43"/>
         <image name="login-button-small.png" width="151" height="43"/>
     </resources>
-    <classes>
-        <class className="LeaderboardViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeaderboardViewController.h"/>
-        </class>
-        <class className="LobbyViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LobbyViewController.h"/>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="loginButtonTouchHandler:"/>
-                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
-            </relationships>
-        </class>
-        <class className="MainMenuViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuViewController.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="StoryTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StoryTableViewController.h"/>
-        </class>
-        <class className="ViewStoryViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewStoryViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

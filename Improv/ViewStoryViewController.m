@@ -108,7 +108,7 @@
 			
 			NSLog(@"The facebook session was invalidated");
 			
-			// TODO: Logout, using soemething like [self logoutButtonTouchHandler:nil];
+			// TODO: Logout, using something like [self logoutButtonTouchHandler:nil];
 		} else {
 			NSLog(@"Some other error: %@", error);
 		}
@@ -126,15 +126,16 @@
 	PF_FBRequest *request = [PF_FBRequest requestForGraphPath:requestPath];
 	[request startWithCompletionHandler:^(PF_FBRequestConnection *connection, id result, NSError *error) {
 		if (!error) {
+			/*
 			NSDictionary *userData = (NSDictionary *)result; // The result is a dictionary
-			
+
 			NSString *facebookId = userData[@"id"];
 			NSString *name = userData[@"name"];
 			NSString *location = userData[@"location"][@"name"];
 			NSString *gender = userData[@"gender"];
 			NSString *birthday = userData[@"birthday"];
 			NSString *relationship = userData[@"relationship_status"];
-			
+			*/
 			// Now add the data to the UI elements
 			// ...
 		}

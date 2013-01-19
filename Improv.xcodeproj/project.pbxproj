@@ -43,6 +43,7 @@
 		A40E943C16A0F5F600AB7C9B /* NewStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A40E943B16A0F5F600AB7C9B /* NewStoryViewController.m */; };
 		A479D3B1169CE60100E14D39 /* LeaderboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A479D3B0169CE60100E14D39 /* LeaderboardViewController.m */; };
 		A4F3C52316A5044600367AC6 /* NewStoryFBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F3C52216A5044600367AC6 /* NewStoryFBViewController.m */; };
+		A4F3C52F16AB58AC00367AC6 /* PlayStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F3C52E16AB58AC00367AC6 /* PlayStoryViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,8 @@
 		A479D3B0169CE60100E14D39 /* LeaderboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaderboardViewController.m; sourceTree = "<group>"; };
 		A4F3C52116A5044600367AC6 /* NewStoryFBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewStoryFBViewController.h; sourceTree = "<group>"; };
 		A4F3C52216A5044600367AC6 /* NewStoryFBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewStoryFBViewController.m; sourceTree = "<group>"; };
+		A4F3C52D16AB58AC00367AC6 /* PlayStoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayStoryViewController.h; sourceTree = "<group>"; };
+		A4F3C52E16AB58AC00367AC6 /* PlayStoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayStoryViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +172,8 @@
 			isa = PBXGroup;
 			children = (
 				27915DB8168FFC9D00DB32E2 /* Improv.storyboard */,
+				A4F3C52D16AB58AC00367AC6 /* PlayStoryViewController.h */,
+				A4F3C52E16AB58AC00367AC6 /* PlayStoryViewController.m */,
 				A4F3C52116A5044600367AC6 /* NewStoryFBViewController.h */,
 				A4F3C52216A5044600367AC6 /* NewStoryFBViewController.m */,
 				A40E943A16A0F5F600AB7C9B /* NewStoryViewController.h */,
@@ -290,6 +295,7 @@
 				A40E9438169D11A200AB7C9B /* ViewStoryViewController.m in Sources */,
 				A40E943C16A0F5F600AB7C9B /* NewStoryViewController.m in Sources */,
 				A4F3C52316A5044600367AC6 /* NewStoryFBViewController.m in Sources */,
+				A4F3C52F16AB58AC00367AC6 /* PlayStoryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

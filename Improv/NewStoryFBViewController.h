@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
-@interface NewStoryFBViewController : UITableViewController
+@interface NewStoryFBViewController : UIViewController<PF_FBFriendPickerDelegate>
 
 @end

@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PlayStoryViewController : UIViewController<UITextFieldDelegate>
+@interface PlayStoryViewController : UIViewController<UIScrollViewDelegate, UITextFieldDelegate>
+//@interface PlayStoryViewController : UIViewController<UITextFieldDelegate>
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField;
+-(BOOL)textFieldShouldReturn:(UITextField *)textField;
+//- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField;
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField;
 
 @end

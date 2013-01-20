@@ -15,6 +15,17 @@
 
 @implementation PlayStoryViewController
 
+#define SCROLLVIEW_HEIGHT 460
+#define SCROLLVIEW_WIDTH  320
+
+#define SCROLLVIEW_CONTENT_HEIGHT 720
+#define SCROLLVIEW_CONTENT_WIDTH  320
+
+BOOL           keyboardVisible;
+CGPoint        offset;
+UIScrollView  *scrollview;
+
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -69,6 +80,64 @@
 	// Assign the UITextFieldDelegate
 	UITextField *textField = (UITextField *)[self.view viewWithTag:103];
 	textField.delegate = self;
+	[textField setReturnKeyType:UIReturnKeyDone];
+
+	// For keyboard scrolling:
+	// Assign UIScrollView delegate
+
+	((UIScrollView*) self.view).delegate = self;
+	[[NSNotificationCenter defaultCenter] addObserver:self
+														  selector:@selector (keyboardDidShow:)
+																name: UIKeyboardDidShowNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+														  selector:@selector (keyboardDidHide:)
+																name: UIKeyboardDidHideNotification object:nil];
+}
+
+-(void) keyboardDidShow: (NSNotification *)notif
+{
+	// If keyboard is visible, return
+	if (keyboardVisible)
+	{
+		NSLog(@"Keyboard is already visible. Ignoring notification.");
+		return;
+	}
+	
+	// Get the size of the keyboard.
+	NSDictionary* info = [notif userInfo];
+	NSValue* aValue = [info objectForKey:UIKeyboardBoundsUserInfoKey];
+	CGSize keyboardSize = [aValue CGRectValue].size;
+	
+	// Save the current location so we can restore
+	// when keyboard is dismissed
+	offset = scrollview.contentOffset;
+	
+	// Resize the scroll view to make room for the keyboard
+	CGRect viewFrame = scrollview.frame;
+	viewFrame.size.height -= keyboardSize.height;
+	scrollview.frame = viewFrame;
+	
+	// Keyboard is now visible
+	keyboardVisible = YES;
+}
+
+-(void) keyboardDidHide: (NSNotification *)notif
+{
+	// Is the keyboard already shown
+	if (!keyboardVisible)
+	{
+		NSLog(@"Keyboard is already hidden. Ignoring notification.");
+		return;
+	}
+	
+	// Reset the height of the scroll view to its original value
+	scrollview.frame = CGRectMake(0, 0, SCROLLVIEW_WIDTH, SCROLLVIEW_HEIGHT);
+	
+	// Reset the scrollview to previous location
+	scrollview.contentOffset = offset;
+	
+	// Keyboard is no longer visible
+	keyboardVisible = NO;
 }
 
 // Before the lobby segue is triggered, we validate the content the user submitted

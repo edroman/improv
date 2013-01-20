@@ -45,6 +45,10 @@
 //
 // TODO: need to have user be urged to accept push notifications somewhere.
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
+	// TODO: remove
+	return;
+	
 	if ([segue.identifier compare:@"RandomToPlayStorySegue"] == 0) {
 		NSArray *results = 0;
 
@@ -69,8 +73,6 @@
 		[game setObject:invitee forKey:@"invitee"];
 		[game setObject:intro forKey:@"intro"];
 		[game save];
-	
-		// TODO: Forward the player to the screen to start the game
 	}
 }
 @end

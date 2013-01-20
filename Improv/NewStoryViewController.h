@@ -9,6 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface NewStoryViewController : UIViewController
-- (IBAction)RandomButtonPress;
 
 @end

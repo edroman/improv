@@ -42,6 +42,8 @@
 		A40E9438169D11A200AB7C9B /* ViewStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A40E9437169D11A200AB7C9B /* ViewStoryViewController.m */; };
 		A40E943C16A0F5F600AB7C9B /* NewStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A40E943B16A0F5F600AB7C9B /* NewStoryViewController.m */; };
 		A479D3B1169CE60100E14D39 /* LeaderboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A479D3B0169CE60100E14D39 /* LeaderboardViewController.m */; };
+		A486C20516B1EF0E0045B273 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A486C20316B1EF0E0045B273 /* AddressBook.framework */; };
+		A486C20616B1EF0E0045B273 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A486C20416B1EF0E0045B273 /* AddressBookUI.framework */; };
 		A4F3C52316A5044600367AC6 /* NewStoryFBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F3C52216A5044600367AC6 /* NewStoryFBViewController.m */; };
 		A4F3C52F16AB58AC00367AC6 /* PlayStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F3C52E16AB58AC00367AC6 /* PlayStoryViewController.m */; };
 /* End PBXBuildFile section */
@@ -93,6 +95,8 @@
 		A40E943B16A0F5F600AB7C9B /* NewStoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewStoryViewController.m; sourceTree = "<group>"; };
 		A479D3AF169CE60100E14D39 /* LeaderboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaderboardViewController.h; sourceTree = "<group>"; };
 		A479D3B0169CE60100E14D39 /* LeaderboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaderboardViewController.m; sourceTree = "<group>"; };
+		A486C20316B1EF0E0045B273 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		A486C20416B1EF0E0045B273 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		A4F3C52116A5044600367AC6 /* NewStoryFBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewStoryFBViewController.h; sourceTree = "<group>"; };
 		A4F3C52216A5044600367AC6 /* NewStoryFBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewStoryFBViewController.m; sourceTree = "<group>"; };
 		A4F3C52D16AB58AC00367AC6 /* PlayStoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayStoryViewController.h; sourceTree = "<group>"; };
@@ -104,6 +108,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A486C20516B1EF0E0045B273 /* AddressBook.framework in Frameworks */,
+				A486C20616B1EF0E0045B273 /* AddressBookUI.framework in Frameworks */,
 				27915D57168FF31600DB32E2 /* Foundation.framework in Frameworks */,
 				27915DB7168FFBC700DB32E2 /* CFNetwork.framework in Frameworks */,
 				27915DB5168FFBC100DB32E2 /* SystemConfiguration.framework in Frameworks */,
@@ -130,6 +136,8 @@
 		27915D45168FF31600DB32E2 = {
 			isa = PBXGroup;
 			children = (
+				A486C20316B1EF0E0045B273 /* AddressBook.framework */,
+				A486C20416B1EF0E0045B273 /* AddressBookUI.framework */,
 				27915D5A168FF31600DB32E2 /* Improv */,
 				27915D53168FF31600DB32E2 /* Frameworks */,
 				27915D51168FF31600DB32E2 /* Products */,

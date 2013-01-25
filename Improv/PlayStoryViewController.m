@@ -40,7 +40,11 @@ UIScrollView  *scrollview;
     [super viewDidLoad];
 
 	// Do any additional setup after loading the view.
-	
+
+	// TODO: Modify this based on parse data
+	UILabel *partnerLabel = (UILabel *)[self.view viewWithTag:104];
+	partnerLabel.text = @"Game with Harvey Dent";
+
 	// TODO: Based on the model, populate the turn & story so far
 	int turn = 1;
 	UILabel *storyLabel = (UILabel *)[self.view viewWithTag:101];

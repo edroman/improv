@@ -75,4 +75,52 @@
 		[game save];
 	}
 }
+
+- (IBAction)showAddressBookPicker
+{
+	ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
+	picker.peoplePickerDelegate = self;
+	
+	[self presentModalViewController:picker animated:YES];
+}
+
+- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker
+{
+	[self dismissModalViewControllerAnimated:YES];
+}
+	
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
+shouldContinueAfterSelectingPerson:(ABRecordRef)person
+{
+	[self invitePerson:person];
+	[self dismissModalViewControllerAnimated:YES];
+	
+	return NO;
+}
+	
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
+shouldContinueAfterSelectingPerson:(ABRecordRef)person
+property:(ABPropertyID)property
+identifier:(ABMultiValueIdentifier)identifier
+{
+		return NO;
+}
+
+- (void)invitePerson:(ABRecordRef)person
+{
+	NSString* name = (__bridge_transfer NSString*)ABRecordCopyValue(person, kABPersonFirstNameProperty);
+		
+	NSString* phone = nil;
+	ABMultiValueRef phoneNumbers = ABRecordCopyValue(person, kABPersonPhoneProperty);
+	if (ABMultiValueGetCount(phoneNumbers) > 0) {
+		phone = (__bridge_transfer NSString*)
+		ABMultiValueCopyValueAtIndex(phoneNumbers, 0);
+	} else {
+		phone = @"[None]";
+	}
+	
+	// TODO: Use Twilio or iPhone SMS to send invite
+	// TODO: Invite via email if they don't have a phone number
+}
+	
 @end

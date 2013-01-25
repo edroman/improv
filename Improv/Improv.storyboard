@@ -23,7 +23,7 @@
         <scene sceneID="90N-k6-5A0">
             <objects>
                 <viewController id="3bZ-A8-pnT" customClass="LoginViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="TMI-fm-Aj5">
+                    <view key="view" contentMode="scaleToFill" id="TMI-fm-Aj5" customClass="UIScrollView">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -39,7 +39,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SQh-fM-j5Z">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="biF-DV-AzN"/>
-                                    <constraint firstAttribute="width" constant="159" id="k9u-if-mBG"/>
+                                    <constraint firstAttribute="width" constant="159" id="eFU-zK-e7u"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" size="button"/>
                                 <inset key="contentEdgeInsets" minX="44" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -59,15 +59,60 @@
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="8qu-8G-ixm">
                                 <color key="color" cocoaTouchSystemColor="darkTextColor"/>
                             </activityIndicatorView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Or" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txT-gj-GTP">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zZ0-8e-j4I">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="edp-lO-FUo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zcp-BR-53f">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="159" id="qoN-Ge-pMH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DBD-Y1-ucc">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qfK-qn-oc1">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="3tF-O6-FPG" firstAttribute="centerX" secondItem="TMI-fm-Aj5" secondAttribute="centerX" type="default" id="Der-sS-ZTB"/>
-                            <constraint firstItem="8qu-8G-ixm" firstAttribute="centerY" secondItem="TMI-fm-Aj5" secondAttribute="centerY" type="default" id="Nlc-oo-tgn"/>
-                            <constraint firstItem="SQh-fM-j5Z" firstAttribute="centerX" secondItem="8qu-8G-ixm" secondAttribute="centerX" type="default" id="cUU-Ne-eFM"/>
-                            <constraint firstItem="SQh-fM-j5Z" firstAttribute="leading" secondItem="TMI-fm-Aj5" secondAttribute="leading" constant="80" id="nen-VK-sUc"/>
-                            <constraint firstAttribute="bottom" secondItem="SQh-fM-j5Z" secondAttribute="bottom" constant="159" id="sjR-em-mg4"/>
-                            <constraint firstItem="3tF-O6-FPG" firstAttribute="top" secondItem="TMI-fm-Aj5" secondAttribute="top" constant="150" id="yET-Ji-8zt"/>
+                            <constraint firstItem="DBD-Y1-ucc" firstAttribute="trailing" secondItem="qfK-qn-oc1" secondAttribute="trailing" type="default" id="09s-l4-AiQ"/>
+                            <constraint firstItem="8qu-8G-ixm" firstAttribute="top" secondItem="TMI-fm-Aj5" secondAttribute="top" constant="133" id="7nw-JN-WFr"/>
+                            <constraint firstItem="zcp-BR-53f" firstAttribute="trailing" secondItem="DBD-Y1-ucc" secondAttribute="trailing" type="default" id="9nW-qA-jJX"/>
+                            <constraint firstItem="txT-gj-GTP" firstAttribute="top" secondItem="TMI-fm-Aj5" secondAttribute="top" constant="101" id="B6T-tm-h0h"/>
+                            <constraint firstItem="qfK-qn-oc1" firstAttribute="top" secondItem="TMI-fm-Aj5" secondAttribute="top" constant="206" id="JA2-fD-M37"/>
+                            <constraint firstItem="zcp-BR-53f" firstAttribute="top" secondItem="8qu-8G-ixm" secondAttribute="top" type="default" id="KTb-ET-9FY"/>
+                            <constraint firstItem="SQh-fM-j5Z" firstAttribute="leading" secondItem="TMI-fm-Aj5" secondAttribute="leading" constant="80" id="LqM-EE-ZFv"/>
+                            <constraint firstItem="qfK-qn-oc1" firstAttribute="leading" secondItem="DBD-Y1-ucc" secondAttribute="leading" type="default" id="QGa-Ea-S3P"/>
+                            <constraint firstItem="DBD-Y1-ucc" firstAttribute="top" secondItem="zcp-BR-53f" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Uhh-97-gJL"/>
+                            <constraint firstItem="zZ0-8e-j4I" firstAttribute="top" secondItem="TMI-fm-Aj5" secondAttribute="top" constant="242" id="VFh-Wm-K33"/>
+                            <constraint firstItem="zcp-BR-53f" firstAttribute="leading" secondItem="DBD-Y1-ucc" secondAttribute="leading" type="default" id="XRL-Rl-wyw"/>
+                            <constraint firstItem="zZ0-8e-j4I" firstAttribute="centerX" secondItem="TMI-fm-Aj5" secondAttribute="centerX" type="default" id="Y6J-A0-SRu"/>
+                            <constraint firstItem="qfK-qn-oc1" firstAttribute="centerX" secondItem="zZ0-8e-j4I" secondAttribute="centerX" type="default" id="Z7w-4a-qx1"/>
+                            <constraint firstItem="zcp-BR-53f" firstAttribute="centerX" secondItem="3tF-O6-FPG" secondAttribute="centerX" type="default" id="ZV2-dh-sWG"/>
+                            <constraint firstItem="txT-gj-GTP" firstAttribute="centerX" secondItem="SQh-fM-j5Z" secondAttribute="centerX" type="default" id="bnH-gz-vug"/>
+                            <constraint firstItem="SQh-fM-j5Z" firstAttribute="top" secondItem="TMI-fm-Aj5" secondAttribute="top" constant="56" id="i1X-TM-iat"/>
+                            <constraint firstItem="3tF-O6-FPG" firstAttribute="top" secondItem="TMI-fm-Aj5" secondAttribute="top" constant="10" id="u1b-VE-m50"/>
+                            <constraint firstItem="txT-gj-GTP" firstAttribute="centerX" secondItem="8qu-8G-ixm" secondAttribute="centerX" type="default" id="xw1-rg-iQT"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="SbZ-Hd-c1A"/>
@@ -84,7 +129,7 @@
             <objects>
                 <viewController storyboardIdentifier="LobbyViewController" id="j43-0E-PFo" customClass="LobbyViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AiS-Sw-BJM">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -335,13 +380,16 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b8d-3L-VHe">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="iPhone Contact">
+                                <state key="normal" title="Address Book">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="showAddressBookPicker" destination="JzD-gH-gcQ" eventType="touchUpInside" id="FLb-Lq-jSZ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -405,7 +453,7 @@
                                     <segue destination="j43-0E-PFo" kind="push" identifier="PlayStoryToLobbySegue" id="E8R-Jq-qT8"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Our story so far..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eUG-DW-gcr">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="104" contentMode="left" text="Game with NAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eUG-DW-gcr">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -576,6 +624,11 @@
         </class>
         <class className="NewStoryViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NewStoryViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="showAddressBookPicker"/>
+                <relationship kind="outlet" name="firstName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="phoneNumber" candidateClass="UILabel"/>
+            </relationships>
         </class>
         <class className="PlayStoryViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PlayStoryViewController.h"/>
@@ -585,9 +638,6 @@
         </class>
         <class className="ViewStoryViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewStoryViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="facebookPostToWall:"/>
-            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -596,7 +646,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="E8R-Jq-qT8"/>
+        <segue reference="3Kq-Ow-azm"/>
         <segue reference="kdA-vF-CqP"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -89,6 +89,7 @@ UIScrollView  *scrollview;
 	// For keyboard scrolling:
 	// Assign UIScrollView delegate
 
+	scrollview = (UIScrollView*) self.view;
 	((UIScrollView*) self.view).delegate = self;
 	[[NSNotificationCenter defaultCenter] addObserver:self
 														  selector:@selector (keyboardDidShow:)
@@ -98,6 +99,8 @@ UIScrollView  *scrollview;
 																name: UIKeyboardDidHideNotification object:nil];
 }
 
+// Callback that's invoked when the keyboard is displayed.  This is our chance to move widgets around
+// so the keyboard doesn't occlude the widgets.
 -(void) keyboardDidShow: (NSNotification *)notif
 {
 	// If keyboard is visible, return
@@ -160,9 +163,12 @@ UIScrollView  *scrollview;
 	return true;
 }
 
-// Creates a "Done" button for text editing
+// Callback that's invoked when the user presses return/done
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
+
+	// Dismiss the keyboard
 	[textField resignFirstResponder];
+
 	return YES;
 }
 

@@ -1,5 +1,6 @@
 #import <Parse/Parse.h>
 #import "ImprovAppDelegate.h"
+#import "IntroViewController.h"
 
 @implementation ImprovAppDelegate
 
@@ -20,6 +21,7 @@
 	[application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|
 													UIRemoteNotificationTypeAlert|
 													UIRemoteNotificationTypeSound];
+
 	return YES;
 }
 

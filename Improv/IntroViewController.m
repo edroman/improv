@@ -11,9 +11,21 @@
 {
 	[super viewDidLoad];
 }
-	
+
+- (id)initWithCoder:(NSCoder *)decoder
+{
+	return [self setup];
+}
+
+/*
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+	return [self setup];
+}
+*/
+
 // Initialization
-- (id) init
+- (id) setup
 {
 	id _id = [super init];
 	
@@ -25,9 +37,9 @@
 	
 	// Set us to point to that
 	[self setViewControllers:@[pageZero]
-										  direction:UIPageViewControllerNavigationDirectionForward
-											animated:NO
-										 completion:NULL];
+						direction:UIPageViewControllerNavigationDirectionForward
+						 animated:NO
+					  completion:NULL];
 	
 	return _id;
 }
@@ -46,7 +58,7 @@
 	return [IntroViewController getController:(index + 1)];
 }
 
-// Class method -- finds a IntroPageViewCntroller, creating one if needed, for the corresponding page
+// Class method -- finds a IntroPageViewController, creating one if needed, for the corresponding page
 + (IntroPageViewController *)getController:(NSUInteger)pageIndex
 {
 	if (pageIndex < [ImageScrollView imageCount])

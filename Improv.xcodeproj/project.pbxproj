@@ -50,6 +50,7 @@
 		A486C22116B488800045B273 /* ImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A486C21E16B4887F0045B273 /* ImageScrollView.m */; };
 		A486C22216B488800045B273 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A486C22016B4887F0045B273 /* IntroViewController.m */; };
 		A486C22516B627C30045B273 /* IntroPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A486C22416B627C30045B273 /* IntroPageViewController.m */; };
+		A486C22716B9E3BA0045B273 /* ImageData.plist in Resources */ = {isa = PBXBuildFile; fileRef = A486C22616B9E3BA0045B273 /* ImageData.plist */; };
 		A4F3C52316A5044600367AC6 /* NewStoryFBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F3C52216A5044600367AC6 /* NewStoryFBViewController.m */; };
 		A4F3C52F16AB58AC00367AC6 /* PlayStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F3C52E16AB58AC00367AC6 /* PlayStoryViewController.m */; };
 /* End PBXBuildFile section */
@@ -112,6 +113,7 @@
 		A486C22016B4887F0045B273 /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
 		A486C22316B627C30045B273 /* IntroPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroPageViewController.h; sourceTree = "<group>"; };
 		A486C22416B627C30045B273 /* IntroPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroPageViewController.m; sourceTree = "<group>"; };
+		A486C22616B9E3BA0045B273 /* ImageData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ImageData.plist; sourceTree = "<group>"; };
 		A4F3C52116A5044600367AC6 /* NewStoryFBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewStoryFBViewController.h; sourceTree = "<group>"; };
 		A4F3C52216A5044600367AC6 /* NewStoryFBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewStoryFBViewController.m; sourceTree = "<group>"; };
 		A4F3C52D16AB58AC00367AC6 /* PlayStoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayStoryViewController.h; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 		27915D5B168FF31600DB32E2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A486C22616B9E3BA0045B273 /* ImageData.plist */,
 				27DD8E7B169146EF0036E189 /* login-button-small-pressed.png */,
 				27DD8E7C169146EF0036E189 /* login-button-small-pressed@2x.png */,
 				27DD8E7D169146EF0036E189 /* login-button-small.png */,
@@ -318,6 +321,7 @@
 				A486C21A16B483C40045B273 /* intro1.jpg in Resources */,
 				A486C21B16B483C40045B273 /* intro2.jpg in Resources */,
 				A486C21C16B483C40045B273 /* intro3.jpg in Resources */,
+				A486C22716B9E3BA0045B273 /* ImageData.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

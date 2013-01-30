@@ -42,7 +42,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CcK-yh-9tF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-777" y="422"/>
+            <point key="canvasLocation" x="-621" y="426"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="90N-k6-5A0">
@@ -520,7 +520,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YJe-da-mQK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1990" y="-1621"/>
+            <point key="canvasLocation" x="1906" y="-1623"/>
         </scene>
         <!--View Story View Controller-->
         <scene sceneID="7up-vU-O8V">
@@ -624,57 +624,13 @@
         <image name="login-button-small-pressed.png" width="151" height="43"/>
         <image name="login-button-small.png" width="151" height="43"/>
     </resources>
-    <classes>
-        <class className="IntroViewController" superclassName="UIPageViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IntroViewController.h"/>
-        </class>
-        <class className="LeaderboardViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeaderboardViewController.h"/>
-        </class>
-        <class className="LobbyViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LobbyViewController.h"/>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="loginButtonTouchHandler:"/>
-                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
-            </relationships>
-        </class>
-        <class className="MainMenuViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuViewController.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="NewStoryFBViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewStoryFBViewController.h"/>
-        </class>
-        <class className="NewStoryViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewStoryViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="showAddressBookPicker"/>
-                <relationship kind="outlet" name="firstName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="phoneNumber" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="PlayStoryViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlayStoryViewController.h"/>
-        </class>
-        <class className="StoryTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StoryTableViewController.h"/>
-        </class>
-        <class className="ViewStoryViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewStoryViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="3Kq-Ow-azm"/>
         <segue reference="kdA-vF-CqP"/>
+        <segue reference="E8R-Jq-qT8"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -10,7 +10,9 @@
 #import <Parse/Parse.h>
 
 @interface NewStoryViewController ()
-
+	// Holds the friends retrieved from FB
+	@property (nonatomic, strong) NSMutableArray *fbFriends;
+	@property (strong, nonatomic) PF_FBFriendPickerViewController *friendPickerController;
 @end
 
 @implementation NewStoryViewController
@@ -28,6 +30,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+
+	// Allocate memory for our friend list
+	if (!self.fbFriends) self.fbFriends = [[NSMutableArray alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
@@ -76,24 +81,104 @@
 	}
 }
 
+////////////////////////////////////////////////////////
+// BEGIN FBFriendPicker Stuff
+////////////////////////////////////////////////////////
+
+@synthesize friendPickerController = _friendPickerController;
+
+- (void)dealloc
+{
+	_friendPickerController.delegate = nil;
+}
+
+- (IBAction)showFBFriendPicker {
+	// Setup the friend picker sub-view controller
+	if (!self.friendPickerController) {
+		self.friendPickerController = [[PF_FBFriendPickerViewController alloc] init];
+		self.friendPickerController.title = @"Select some friends";
+		self.friendPickerController.delegate = self;
+	}
+	
+	[self.friendPickerController loadData];
+	[self.friendPickerController clearSelection];
+	
+	[self presentViewController:self.friendPickerController animated:YES completion:nil];
+	
+//	[self.navigationController pushViewController:self.friendPickerController animated:true];
+	
+//	[self presentModalViewController:self.friendPickerController animated:YES];
+	
+//	[self addChildViewController:self.friendPickerController];
+//	[self.view addSubview:self.friendPickerController.view];
+//	[self.friendPickerController updateView];
+}
+
+// Callback invoked when the user selects a friend in the FBFriendPicker.
+- (void)friendPickerViewControllerSelectionDidChange:
+(PF_FBFriendPickerViewController *)friendPicker
+{
+	NSLog(@"friendPickerViewControllerSelectionDidChange");
+	// Note: Results are in friendPicker.selection
+}
+
+// Callback invoked when user hits "Done" when selecting FB Friends
+- (void)facebookViewControllerDoneWasPressed:(id)sender {
+	// Grab selected FB Friends and invite them
+	for (id<PF_FBGraphUser> user in self.friendPickerController.selection) {
+		// TODO: Use user for stuff
+	}
+	
+	// Dismiss the FBFriendPicker
+	[self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+// Callback invoked when user hits "Cancel" when selecting FB Friends
+- (void)facebookViewControllerCancelWasPressed:(id)sender {
+	
+	// Dismiss the FBFriendPicker
+	[self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+// Callback invoked whenever facebook data is dynamically loaded from the server periodically
+- (void)friendPickerViewControllerDataDidChange:(PF_FBFriendPickerViewController *)friendPicker
+{
+	NSLog(@"friendPickerViewControllerDataDidChange");
+}
+
+// Called if an error occurs in the FBFriendPicker
+- (void)friendPickerViewController:(PF_FBFriendPickerViewController *)friendPicker
+                       handleError:(NSError *)error;
+{
+	NSLog(@"Error");
+}
+
+////////////////////////////////////////////////////////
+// END FBFriendPicker Stuff
+////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////
+// BEGIN AddressBookPicker Stuff
+////////////////////////////////////////////////////////
+
 - (IBAction)showAddressBookPicker
 {
 	ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
 	picker.peoplePickerDelegate = self;
 	
-	[self presentModalViewController:picker animated:YES];
+	[self presentViewController:picker animated:YES completion:NULL];
 }
 
 - (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker
 {
-	[self dismissModalViewControllerAnimated:YES];
+	[self dismissViewControllerAnimated:YES completion:NULL];
 }
 	
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
 shouldContinueAfterSelectingPerson:(ABRecordRef)person
 {
 	[self invitePerson:person];
-	[self dismissModalViewControllerAnimated:YES];
+	[self dismissViewControllerAnimated:YES completion:NULL];
 	
 	return NO;
 }
@@ -122,5 +207,9 @@ identifier:(ABMultiValueIdentifier)identifier
 	// TODO: Use Twilio or iPhone SMS to send invite
 	// TODO: Invite via email if they don't have a phone number
 }
-	
+
+////////////////////////////////////////////////////////
+// END AddressBookPicker Stuff
+////////////////////////////////////////////////////////
+
 @end

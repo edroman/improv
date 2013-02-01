@@ -10,9 +10,11 @@
 #import <Parse/Parse.h>
 
 @interface NewStoryViewController ()
-	// Holds the friends retrieved from FB
-	@property (nonatomic, strong) NSMutableArray *fbFriends;
-	@property (strong, nonatomic) PF_FBFriendPickerViewController *friendPickerController;
+// Holds the friends retrieved from FB
+@property (nonatomic, strong) NSMutableArray *fbFriends;
+@property (strong, nonatomic) PF_FBFriendPickerViewController *friendPickerController;
+@property (retain, nonatomic) UISearchBar *searchBar;
+@property (retain, nonatomic) NSString *searchText;
 @end
 
 @implementation NewStoryViewController
@@ -86,10 +88,75 @@
 ////////////////////////////////////////////////////////
 
 @synthesize friendPickerController = _friendPickerController;
+@synthesize searchBar = _searchBar;
+@synthesize searchText = _searchText;
 
 - (void)dealloc
 {
 	_friendPickerController.delegate = nil;
+}
+
+- (void)addSearchBarToFriendPickerView
+{
+	if (self.searchBar == nil) {
+		CGFloat searchBarHeight = 44.0;
+		self.searchBar =
+		[[UISearchBar alloc]
+		 initWithFrame:
+		 CGRectMake(0,0,
+						self.view.bounds.size.width,
+						searchBarHeight)];
+		self.searchBar.autoresizingMask = self.searchBar.autoresizingMask |
+		UIViewAutoresizingFlexibleWidth;
+		self.searchBar.delegate = self;
+		self.searchBar.showsCancelButton = NO;
+		
+		[self.friendPickerController.canvasView addSubview:self.searchBar];
+		CGRect newFrame = self.friendPickerController.view.bounds;
+		newFrame.size.height -= searchBarHeight;
+		newFrame.origin.y = searchBarHeight;
+		self.friendPickerController.tableView.frame = newFrame;
+	}
+}
+
+// Invoked each time a user presses a key in the search bar.  Here we dynamically filter the friends down
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+	self.searchText = searchBar.text;
+	[self.friendPickerController updateView];
+}
+
+// Invoked when the user presses "Search" -- here we dismiss the keyboard
+- (void)searchBarSearchButtonClicked:(UISearchBar*)searchBar
+{
+	[searchBar resignFirstResponder];
+	self.searchText = searchBar.text;
+	[self.friendPickerController updateView];
+}
+
+// When the user presses the "cancel" button on Search -- currently unused since we don't have a button
+- (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar {
+	self.searchText = nil;
+	[searchBar resignFirstResponder];
+	[self.friendPickerController updateView];
+}
+
+- (BOOL)friendPickerViewController:(PF_FBFriendPickerViewController *)friendPicker
+                 shouldIncludeUser:(id<PF_FBGraphUser>)user
+{
+	if (self.searchText && ![self.searchText isEqualToString:@""]) {
+		NSRange result = [user.name
+								rangeOfString:self.searchText
+								options:NSCaseInsensitiveSearch];
+		if (result.location != NSNotFound) {
+			return YES;
+		} else {
+			return NO;
+		}
+	} else {
+		return YES;
+	}
+	return YES;
 }
 
 - (IBAction)showFBFriendPicker {
@@ -102,8 +169,12 @@
 	
 	[self.friendPickerController loadData];
 	[self.friendPickerController clearSelection];
-	
-	[self presentViewController:self.friendPickerController animated:YES completion:nil];
+
+	// Show the FBFriendPicker.  Upon completion of showing this view, run the "completion" block of
+	// code which shows the custom search bar for friends too.
+	[self presentViewController:self.friendPickerController animated:YES completion:^(void){
+		[self addSearchBarToFriendPickerView];
+	}];
 	
 //	[self.navigationController pushViewController:self.friendPickerController animated:true];
 	

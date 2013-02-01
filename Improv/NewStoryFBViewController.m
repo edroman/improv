@@ -47,16 +47,25 @@
 	// Allocate memory for our friend list
 	if (!self.friends) self.friends = [[NSMutableArray alloc] init];
 	
-
+	// Setup the friend picker sub-view controller
 	if (!self.friendPickerController) {
 		self.friendPickerController = [[PF_FBFriendPickerViewController alloc]
 												 initWithNibName:nil bundle:nil];
-		self.friendPickerController.title = @"Select friends";
+		self.friendPickerController.title = @"Select some friends";
+		self.friendPickerController.delegate = self;
 	}
 	
 	[self.friendPickerController loadData];
-	[self.navigationController pushViewController:self.friendPickerController
-													 animated:true];
+	[self.friendPickerController.view setBackgroundColor:[UIColor orangeColor]];
+	[self.view setBackgroundColor:[UIColor redColor]];
+	[self addChildViewController:self.friendPickerController];
+	[self.view addSubview:self.friendPickerController.view];
+	[self.friendPickerController updateView];
+}
+
+- (void)dealloc
+{
+	self.friendPickerController.delegate = nil;
 }
 
 - (void)viewDidUnload {
@@ -65,19 +74,12 @@
 	[super viewDidUnload];
 }
 
-- (IBAction)pickFriendsButtonClick:(id)sender {
-	if (self.friendPickerController == nil) {
-		// Create friend picker, and get data loaded into it.
-		self.friendPickerController = [[PF_FBFriendPickerViewController alloc] init];
-		self.friendPickerController.title = @"Pick Friends";
-		self.friendPickerController.delegate = self;
-	}
-	
-	[self.friendPickerController loadData];
-	[self.friendPickerController clearSelection];
-	
-	[self presentViewController:self.friendPickerController animated:YES completion:NULL];
-	// (iOS 4.0) [self presentModalViewController:self.friendPickerController animated:YES];
+// Callback invoked when the user clicks on one of the friends in the FBFriendPicker.
+- (void)friendPickerViewControllerSelectionDidChange:
+(PF_FBFriendPickerViewController *)friendPicker
+{
+	NSLog(@"friendPickerViewControllerSelectionDidChange");
+	// Results are in friendPicker.selection;
 }
 
 - (void)facebookViewControllerDoneWasPressed:(id)sender {
@@ -100,8 +102,18 @@
 	[self dismissModalViewControllerAnimated:YES];
 }
 
+// Callback invoked whenever facebook data is dynamically loaded from the server periodically
+- (void)friendPickerViewControllerDataDidChange:(PF_FBFriendPickerViewController *)friendPicker
+{
+	NSLog(@"friendPickerViewControllerDataDidChange");
+}
 
-
+// Called if an error occurs in the FBFriendPicker
+- (void)friendPickerViewController:(PF_FBFriendPickerViewController *)friendPicker
+                       handleError:(NSError *)error;
+{
+	NSLog(@"Error");
+}
 /*
 
 - (void)getFriendsResponse {

@@ -153,8 +153,6 @@
 		27915D45168FF31600DB32E2 = {
 			isa = PBXGroup;
 			children = (
-				A486C20316B1EF0E0045B273 /* AddressBook.framework */,
-				A486C20416B1EF0E0045B273 /* AddressBookUI.framework */,
 				27915D5A168FF31600DB32E2 /* Improv */,
 				27915D53168FF31600DB32E2 /* Frameworks */,
 				27915D51168FF31600DB32E2 /* Products */,
@@ -172,6 +170,8 @@
 		27915D53168FF31600DB32E2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A486C20316B1EF0E0045B273 /* AddressBook.framework */,
+				A486C20416B1EF0E0045B273 /* AddressBookUI.framework */,
 				27915DB6168FFBC700DB32E2 /* CFNetwork.framework */,
 				27915DB4168FFBC100DB32E2 /* SystemConfiguration.framework */,
 				27915DB2168FFBB900DB32E2 /* Accounts.framework */,

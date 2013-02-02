@@ -93,20 +93,23 @@
 											 @"Check out this tall tale!", @"name",
 											 @"Made by XYZ and ABC on http://www.aTallTale.com", @"caption",
 											 @"Once upon a time...", @"description",
+//											 @"Test Message!", @"message",
 											 nil];
 
    // Create request for user's Facebook data
 	NSString *requestPath = @"/me/feed";
 	
+	// if (![facebook isSessionValid]) { [facebook authorize:nil]; }
+	
 	// Send request to Facebook
-	PF_FBRequest *request = [PF_FBRequest requestWithGraphPath:requestPath parameters:params HTTPMethod:nil];
+	PF_FBRequest *request = [PF_FBRequest requestWithGraphPath:requestPath parameters:params HTTPMethod:@"POST"];
 	[request startWithCompletionHandler:^(PF_FBRequestConnection *connection, id result, NSError *error) {
 		if (!error) {
 			NSLog(@"Post to Facebook successful!");
 		}
 		else if ([error.userInfo[PF_FBErrorParsedJSONResponseKey][@"body"][@"error"][@"type"] isEqualToString:@"OAuthException"]) {
 			
-			NSLog(@"The facebook session was invalidated");
+			NSLog(@"OauthException: %@", error);
 			
 			// TODO: Logout, using something like [self logoutButtonTouchHandler:nil];
 		} else {

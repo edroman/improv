@@ -49,6 +49,7 @@
 	
 	[query includeKey:@"creator"];
 	[query includeKey:@"invitee"];
+	[query includeKey:@"intro"];
 	[query whereKey:@"creator" equalTo:[PFUser currentUser]];
 	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
 		if (!error) {
@@ -121,15 +122,23 @@
 	static NSString *CellIdentifier = @"Cell";
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	
-	// Set cell text
+	///////////////////////
+	// Populate cell
+	///////////////////////
+
 	PFObject *game = games[indexPath.row];
 	
+	// Partner name
 	UILabel *playerLabel = (UILabel *)[cell viewWithTag:100];
-	PFUser *obj = [game objectForKey:@"creator"];
-	NSString *str = [obj objectForKey:@"name"];
+	PFUser *creator = [game objectForKey:@"creator"];
+	PFUser *invitee = [game objectForKey:@"invitee"];
+	PFUser *partner = ([PFUser currentUser].objectId == creator.objectId) ? invitee : creator;
+	NSString *str = [partner objectForKey:@"name"];
 	playerLabel.text = [NSString stringWithFormat:@"%@%@", @"Game with ", str];
+
+	// Intro
 	UILabel *storyLabel = (UILabel *)[cell viewWithTag:101];
-	storyLabel.text = @"It was a dark and stormy night...";		 // TODO
+	storyLabel.text = [[game objectForKey:@"intro"] objectForKey:@"value"];
 	
 	return cell;
 }

@@ -164,7 +164,30 @@ UITextField   *activeField = 0;
 			}
 		} else if (user.isNew) {
 			NSLog(@"User with facebook signed up and logged in!");
-			// Create Parse User
+			// Ask Facebook for more detailed data about the user
+			// Create request for user's Facebook data
+			NSString *requestPath = @"me/?fields=name,first_name,last_name,picture,email";
+			
+			// Send request to Facebook
+			PF_FBRequest *request = [PF_FBRequest requestForGraphPath:requestPath];
+			[request startWithCompletionHandler:^(PF_FBRequestConnection *connection, id result, NSError *error) {
+				if (!error) {
+					NSDictionary *userData = (NSDictionary *)result; // The result is a dictionary
+
+					// TODO: Add images, see https://parse.com/tutorials/integrating-facebook-in-ios
+					// and https://parse.com/docs/ios_guide#files/iOS
+					// and https://developers.facebook.com/docs/tutorials/ios-sdk-tutorial/personalize/#step2
+					
+					// Update Parse with that new user data
+					[user setObject:userData[@"name"] forKey:@"name"];
+					[user setObject:userData[@"first_name"] forKey:@"first_name"];
+					[user setObject:userData[@"last_name"] forKey:@"last_name"];
+					[user setObject:userData[@"email"] forKey:@"email"];
+					[user setObject:userData[@"id"] forKey:@"fbID"];
+					[user save];
+				}
+			}];
+			
 			
 			// Load Lobby
 			[self performSegueWithIdentifier:@"LoginToLobbySegue" sender:sender];

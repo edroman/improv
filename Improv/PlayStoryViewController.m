@@ -187,15 +187,6 @@ UIScrollView  *scrollview;
 			// TODO: Show error
 			return false;
 		}
-		
-		// Create the new turn in Parse
-		int turnNum = [[self.game objectForKey:@"turn"] intValue];
-		PFObject *turn = [PFObject objectWithClassName:@"Turn"];
-		[turn setObject:self.game forKey:@"Game"];
-		[turn setObject:[PFUser currentUser] forKey:@"User"];
-		[turn setObject:[NSNumber numberWithInt:turnNum] forKey:@"turnNumber"];
-		[turn setObject:content.text forKey:@"turn"];
-		[turn save];
 	}
 
 	return true;
@@ -222,7 +213,19 @@ UIScrollView  *scrollview;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	if ([[segue identifier] isEqualToString:@"PlayStoryToLobbySegue"]) {
-		// TODO: Push data via parse.
+		// Create the new turn in Parse
+		PFObject *turn = [PFObject objectWithClassName:@"Turn"];
+		[turn setObject:self.game forKey:@"Game"];
+		[turn setObject:[PFUser currentUser] forKey:@"User"];
+		
+		int turnNum = [[self.game objectForKey:@"turn"] intValue];
+		[turn setObject:[NSNumber numberWithInt:turnNum] forKey:@"turnNumber"];
+
+		UITextField *content = (UITextField *)[self.view viewWithTag:103];
+		[turn setObject:content.text forKey:@"turn"];
+		
+		[turn save];
+
 		// Segue will automatically go to lobby.
 	}
 }

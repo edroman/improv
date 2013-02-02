@@ -53,41 +53,6 @@
 
 - (IBAction)facebookPostToWall:(id)sender
 {
-	/*
-	 NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-	 kAppId, @"app_id",
-	 @"https://developers.facebook.com/docs/reference/dialogs/", @"link",
-	 @"http://fbrell.com/f8.jpg", @"picture",
-	 @"Facebook Dialogs", @"name",
-	 @"Reference Documentation", @"caption",
-	 @"Using Dialogs to interact with users.", @"description",
-	 nil];
-	 
-	 [_facebook dialog:@"feed" andParams:params andDelegate:self];
-	 */
-
-	//	[PFFacebookUtils session]
-
-	/*
-
-		NSMutableDictionary *variables = [NSMutableDictionary dictionaryWithCapacity:4];
-
-		[variables setObject:@"http://farm6.static.flickr.com/5015/5570946750_a486e741.jpg" forKey:@"link"];
-		[variables setObject:@"http://farm6.static.flickr.com/5015/5570946750_a486e741.jpg" forKey:@"picture"];
-		[variables setObject:@"You scored 99999" forKey:@"name"];
-		[variables setObject:@" " forKey:@"caption"];
-		[variables setObject:@"Download my app for the iPhone NOW." forKey:@"description"];
-
-		FbGraphResponse *fb_graph_response = [fbGraph doGraphPost:@"me/feed" withPostVars:variables];
-		NSLog(@"postMeFeedButtonPressed:  %@", fb_graph_response.htmlResponse);
-
-		//parse our json
-		SBJSON *parser = [[SBJSON alloc] init];
-		NSDictionary *facebook_response = [parser objectWithString:fb_graph_response.htmlResponse error:nil];
-		[parser release];
-	*/
-
-	// TODO: Fix
 	NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 											 @"http://www.ATallTale.com", @"link",
 											 @"Check out this tall tale!", @"name",
@@ -98,8 +63,6 @@
 
    // Create request for user's Facebook data
 	NSString *requestPath = @"/me/feed";
-	
-	// if (![facebook isSessionValid]) { [facebook authorize:nil]; }
 	
 	// Send request to Facebook
 	PF_FBRequest *request = [PF_FBRequest requestWithGraphPath:requestPath parameters:params HTTPMethod:@"POST"];
@@ -116,8 +79,6 @@
 			NSLog(@"Some other error: %@", error);
 		}
 	}];
-
-
 }
 
 - (void)facebookGetInfo

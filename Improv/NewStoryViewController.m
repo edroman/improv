@@ -197,9 +197,34 @@
 - (void)facebookViewControllerDoneWasPressed:(id)sender {
 	// Grab selected FB Friends and invite them
 	for (id<PF_FBGraphUser> user in self.friendPickerController.selection) {
-		// TODO: Use user for stuff
+		NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+												 @"http://www.ATallTale.com", @"link",
+												 @"Come create a tall tale with me!", @"name",
+												 @"A Tall Tale -- a fun iPhone game", @"caption",
+												 @"Create fun stories together!", @"description",
+//												 @"message", @"message",
+												 nil];
+		
+		// Create request for user's Facebook data
+		NSString *requestPath = [NSString stringWithFormat:@"/%@/feed", user.id];
+		
+		// Send request to Facebook
+		PF_FBRequest *request = [PF_FBRequest requestWithGraphPath:requestPath parameters:params HTTPMethod:@"POST"];
+		[request startWithCompletionHandler:^(PF_FBRequestConnection *connection, id result, NSError *error) {
+			if (!error) {
+				NSLog(@"Post to Facebook successful!");
+			}
+			else if ([error.userInfo[PF_FBErrorParsedJSONResponseKey][@"body"][@"error"][@"type"] isEqualToString:@"OAuthException"]) {
+				
+				NSLog(@"OauthException: %@", error);
+				
+				// TODO: Logout, using something like [self logoutButtonTouchHandler:nil];
+			} else {
+				NSLog(@"Some other error: %@", error);
+			}
+		}];
 	}
-	
+
 	// Dismiss the FBFriendPicker
 	[self dismissViewControllerAnimated:YES completion:NULL];
 }

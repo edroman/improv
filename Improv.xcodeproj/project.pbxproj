@@ -16,7 +16,6 @@
 		27915D69168FF31600DB32E2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27915D68168FF31600DB32E2 /* Default@2x.png */; };
 		27915D6B168FF31600DB32E2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27915D6A168FF31600DB32E2 /* Default-568h@2x.png */; };
 		27915D7E168FF3BB00DB32E2 /* ImprovAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 27915D7B168FF3BB00DB32E2 /* ImprovAppDelegate.m */; };
-		27915D91168FF7A700DB32E2 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27915D87168FF5E500DB32E2 /* Parse.framework */; };
 		27915D97168FF91400DB32E2 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27915D96168FF91400DB32E2 /* AdSupport.framework */; };
 		27915D99168FF91B00DB32E2 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27915D98168FF91B00DB32E2 /* Social.framework */; };
 		27915DA3168FFB6000DB32E2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27915DA2168FFB6000DB32E2 /* CoreLocation.framework */; };
@@ -41,6 +40,7 @@
 		A409DE6E169CE00000C32B2D /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A409DE6D169CE00000C32B2D /* MainMenuViewController.m */; };
 		A40E9438169D11A200AB7C9B /* ViewStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A40E9437169D11A200AB7C9B /* ViewStoryViewController.m */; };
 		A40E943C16A0F5F600AB7C9B /* NewStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A40E943B16A0F5F600AB7C9B /* NewStoryViewController.m */; };
+		A46309C616BC93C2002D22E7 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46309C516BC93C2002D22E7 /* Parse.framework */; };
 		A479D3B1169CE60100E14D39 /* LeaderboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A479D3B0169CE60100E14D39 /* LeaderboardViewController.m */; };
 		A486C20516B1EF0E0045B273 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A486C20316B1EF0E0045B273 /* AddressBook.framework */; };
 		A486C20616B1EF0E0045B273 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A486C20416B1EF0E0045B273 /* AddressBookUI.framework */; };
@@ -68,7 +68,6 @@
 		27915D6A168FF31600DB32E2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		27915D7A168FF3BB00DB32E2 /* ImprovAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImprovAppDelegate.h; sourceTree = "<group>"; };
 		27915D7B168FF3BB00DB32E2 /* ImprovAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImprovAppDelegate.m; sourceTree = "<group>"; };
-		27915D87168FF5E500DB32E2 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		27915D96168FF91400DB32E2 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		27915D98168FF91B00DB32E2 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		27915DA2168FFB6000DB32E2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -99,6 +98,7 @@
 		A40E9437169D11A200AB7C9B /* ViewStoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewStoryViewController.m; sourceTree = "<group>"; };
 		A40E943A16A0F5F600AB7C9B /* NewStoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewStoryViewController.h; sourceTree = "<group>"; };
 		A40E943B16A0F5F600AB7C9B /* NewStoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewStoryViewController.m; sourceTree = "<group>"; };
+		A46309C516BC93C2002D22E7 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		A479D3AF169CE60100E14D39 /* LeaderboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaderboardViewController.h; sourceTree = "<group>"; };
 		A479D3B0169CE60100E14D39 /* LeaderboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaderboardViewController.m; sourceTree = "<group>"; };
 		A486C20316B1EF0E0045B273 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
@@ -122,6 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A46309C616BC93C2002D22E7 /* Parse.framework in Frameworks */,
 				A486C20516B1EF0E0045B273 /* AddressBook.framework in Frameworks */,
 				A486C20616B1EF0E0045B273 /* AddressBookUI.framework in Frameworks */,
 				27915D57168FF31600DB32E2 /* Foundation.framework in Frameworks */,
@@ -138,7 +139,6 @@
 				27915DA3168FFB6000DB32E2 /* CoreLocation.framework in Frameworks */,
 				27915D99168FF91B00DB32E2 /* Social.framework in Frameworks */,
 				27915D97168FF91400DB32E2 /* AdSupport.framework in Frameworks */,
-				27915D91168FF7A700DB32E2 /* Parse.framework in Frameworks */,
 				27915D55168FF31600DB32E2 /* UIKit.framework in Frameworks */,
 				27915D59168FF31600DB32E2 /* CoreGraphics.framework in Frameworks */,
 			);
@@ -167,6 +167,7 @@
 		27915D53168FF31600DB32E2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A46309C516BC93C2002D22E7 /* Parse.framework */,
 				A486C20316B1EF0E0045B273 /* AddressBook.framework */,
 				A486C20416B1EF0E0045B273 /* AddressBookUI.framework */,
 				27915DB6168FFBC700DB32E2 /* CFNetwork.framework */,
@@ -182,7 +183,6 @@
 				27915DA2168FFB6000DB32E2 /* CoreLocation.framework */,
 				27915D98168FF91B00DB32E2 /* Social.framework */,
 				27915D96168FF91400DB32E2 /* AdSupport.framework */,
-				27915D87168FF5E500DB32E2 /* Parse.framework */,
 				27915D54168FF31600DB32E2 /* UIKit.framework */,
 				27915D56168FF31600DB32E2 /* Foundation.framework */,
 				27915D58168FF31600DB32E2 /* CoreGraphics.framework */,

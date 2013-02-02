@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
 @interface PlayStoryViewController : UIViewController<UIScrollViewDelegate, UITextFieldDelegate>
 //@interface PlayStoryViewController : UIViewController<UITextFieldDelegate>
@@ -14,5 +15,8 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField;
 //- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField;
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField;
+
+
+@property (nonatomic) PFObject *game;
 
 @end

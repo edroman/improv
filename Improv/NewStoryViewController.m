@@ -8,6 +8,7 @@
 
 #import "NewStoryViewController.h"
 #import <Parse/Parse.h>
+#import "PlayStoryViewController.h"
 
 @interface NewStoryViewController ()
 // Holds the friends retrieved from FB
@@ -61,25 +62,36 @@
 		// See https://parse.com/questions/is-it-possible-to-query-for-a-random-object
 		
 		PFQuery *query;
-		
+
+		// Get a random partner
 		query = [PFUser query];
-		// [query whereKey:@"playerName" equalTo:@"Harvey Dent"];
 		results = [query findObjects];
 		PFUser *invitee = results[rand() % results.count];
 
-		// TODO: Get a random intro
+		// Get a random intro
 		query = [PFQuery queryWithClassName:@"Intro"];
 		results = [query findObjects];
 		NSObject *intro = results[rand() % results.count];
+		
+		// Get a random story spine
+		query = [PFQuery queryWithClassName:@"Spine"];
+		results = [query findObjects];
+		NSObject *spine = results[rand() % results.count];
 	
-		// TODO: Create an empty new game with the 2 players
+		// Create an empty new game with the 2 players
 		PFObject *game = [PFObject objectWithClassName:@"Game"];
 		[game setObject:[NSNumber numberWithBool:false] forKey:@"completed"];
 		[game setObject:[NSNumber numberWithInt:0] forKey:@"votes"];
+		[game setObject:[NSNumber numberWithInt:1] forKey:@"turn"];
 		[game setObject:[PFUser currentUser] forKey:@"creator"];
 		[game setObject:invitee forKey:@"invitee"];
 		[game setObject:intro forKey:@"intro"];
+		[game setObject:spine forKey:@"spine"];
 		[game save];
+		
+		// Send the resulting new game to the PlayViewController
+		PlayStoryViewController *controller = (PlayStoryViewController *)segue.destinationViewController;
+		controller.game = game;
 	}
 }
 

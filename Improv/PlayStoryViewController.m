@@ -41,44 +41,73 @@ UIScrollView  *scrollview;
 
 	// Do any additional setup after loading the view.
 
-	// TODO: Modify this based on parse data
+	// Figure out which user is our partner, then display his name
+	PFUser *creator = [self.game objectForKey:@"creator"];
+	PFUser *invitee = [self.game objectForKey:@"invitee"];
+	PFUser *partner = ([PFUser currentUser].objectId == creator.objectId) ? invitee : creator;
 	UILabel *partnerLabel = (UILabel *)[self.view viewWithTag:104];
-	partnerLabel.text = @"Game with Harvey Dent";
+	partnerLabel.text = [NSString stringWithFormat:@"Game with %@", [partner objectForKey:@"first_name"]];
 
-	// TODO: Based on the model, populate the turn & story so far
-	int turn = 1;
+	////////////////////////////////////////////
+	// BEGIN Compose the existing story so far
+	////////////////////////////////////////////
+	
+	NSMutableString *story = [[NSMutableString alloc] init];
 	UILabel *storyLabel = (UILabel *)[self.view viewWithTag:101];
-	storyLabel.text = @"Once upon a time, we were walking through the forest...";
+	NSString *intro = [[self.game objectForKey:@"intro"] objectForKey:@"value"];
+	int turn = [[self.game objectForKey:@"turn"] intValue];
 
+	if (turn >= 2) {
+		// Add the intro
+		[story appendString:intro];
+		
+		// Find all turns for this game
+		PFQuery *query = [PFQuery queryWithClassName:@"Turn"];
+		[query whereKey:@"Game" equalTo:self.game];
+		[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+			if (!error) {
+				// The find succeeded.
+				NSLog(@"Successfully retrieved %d results.", objects.count);
+				
+				// Add story spine + turn
+				for (int i=0; i < objects.count; ++i) {
+					// Add story spine (not for first, since that is the intro)
+					if (i >= 1)
+					{
+						NSString *str = [NSString stringWithFormat:@"prefix%d", i];
+						NSString *spine = [[self.game objectForKey:@"spine"] objectForKey:str];
+						[story appendString:spine];
+					}
+					
+					// Add turn
+					NSString *turn = [objects[i] objectForKey:@"turn"];
+					[story appendString:turn];
+				}
+			} else {
+				// Log details of the failure
+				NSLog(@"Error: %@ %@", error, [error userInfo]);
+			}
+		}];
+		
+		storyLabel.text = story;
+	}
+	else {
+		storyLabel.text = @"";
+	}
+	
+	////////////////////////////////////////////
+	// END Compose the existing story so far
+	////////////////////////////////////////////
+
+	// Display next story spine (if we're beyond the intro)
 	UILabel *spineLabel = (UILabel *)[self.view viewWithTag:102];
-
-	// TODO: Have story spines be driven from Parse
-	switch (turn)
-	{
-		case 1:
-			spineLabel.text = @"And every day...";
-			break;
-		case 2:
-			spineLabel.text = @"Until one day...";
-			break;
-		case 3:
-			spineLabel.text = @"And because of that...";
-			break;
-		case 4:
-			spineLabel.text = @"And because of that...";
-			break;
-		case 5:
-			spineLabel.text = @"And because of that...";
-			break;
-		case 6:
-			spineLabel.text = @"Until finally...";
-			break;
-		case 7:
-			spineLabel.text = @"And ever since that day...";
-			break;
-		case 8:
-			spineLabel.text = @"The moral of the story is...";
-			break;
+	if (turn >= 2) {
+		NSString *str = [NSString stringWithFormat:@"prefix%d", turn-1];
+		NSString *prefix = [[self.game objectForKey:@"spine"] objectForKey:str];
+		spineLabel.text = [NSString stringWithFormat:@"%@...", prefix];
+	}
+	else {
+		spineLabel.text = intro;
 	}
 	
 	// Assign the UITextFieldDelegate

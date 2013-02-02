@@ -187,6 +187,15 @@ UIScrollView  *scrollview;
 			// TODO: Show error
 			return false;
 		}
+		
+		// Create the new turn in Parse
+		int turnNum = [[self.game objectForKey:@"turn"] intValue];
+		PFObject *turn = [PFObject objectWithClassName:@"Turn"];
+		[turn setObject:self.game forKey:@"Game"];
+		[turn setObject:[PFUser currentUser] forKey:@"User"];
+		[turn setObject:[NSNumber numberWithInt:turnNum] forKey:@"turnNumber"];
+		[turn setObject:content.text forKey:@"turn"];
+		[turn save];
 	}
 
 	return true;

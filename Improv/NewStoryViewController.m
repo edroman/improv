@@ -53,29 +53,29 @@
 // TODO: need to have user be urged to accept push notifications somewhere.
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
-	// TODO: remove
-	return;
-	
 	if ([segue.identifier compare:@"RandomToPlayStorySegue"] == 0) {
 		NSArray *results = 0;
 
-		// TODO: Ask parse for a random user (not same as self)
+		// TODO: Ask parse for a random user (not same as self).
+		// The algorithm below works but it gets ALL users, so no good
+		// See https://parse.com/questions/is-it-possible-to-query-for-a-random-object
+		
 		PFQuery *query;
 		
 		query = [PFUser query];
-		[query whereKey:@"playerName" equalTo:@"Harvey Dent"];
+		// [query whereKey:@"playerName" equalTo:@"Harvey Dent"];
 		results = [query findObjects];
-		PFUser *invitee = results[(rand() % results.count) - 1];
+		PFUser *invitee = results[rand() % results.count];
 
 		// TODO: Get a random intro
 		query = [PFQuery queryWithClassName:@"Intro"];
 		results = [query findObjects];
-		NSObject *intro = results[(rand() % results.count) - 1];
+		NSObject *intro = results[rand() % results.count];
 	
 		// TODO: Create an empty new game with the 2 players
 		PFObject *game = [PFObject objectWithClassName:@"Game"];
-		[game setObject:false forKey:@"completed"];
-		[game setObject:0 forKey:@"votes"];
+		[game setObject:[NSNumber numberWithBool:false] forKey:@"completed"];
+		[game setObject:[NSNumber numberWithInt:0] forKey:@"votes"];
 		[game setObject:[PFUser currentUser] forKey:@"creator"];
 		[game setObject:invitee forKey:@"invitee"];
 		[game setObject:intro forKey:@"intro"];

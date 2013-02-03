@@ -77,37 +77,44 @@
 	}];
 }
 
+- (PFObject *)getGameForButtonClicked:(id)sender {
+	// Figure out which game we're on
+	UIButton *button = (UIButton *)sender;
+	UITableViewCell *cell = [[button superview] superview];
+	NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+	//		NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+	NSMutableArray *games = (indexPath.section == 0 ? _unfinishedGames : _finishedGames);
+	PFObject *game = games[indexPath.row];
+	return game;
+}
+
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
 	if ([identifier isEqualToString:@"StoryTableToPlayStorySegue"]) {
 		// TODO: If it's not our turn, then send a push notification and return FALSE
 		// else return TRUE
+		PFObject *game = [self getGameForButtonClicked:sender];
+		PFUser *currPlayer = [game objectForKey:@"currPlayer"];
+		if ([[PFUser currentUser].objectId isEqualToString:currPlayer.objectId]) {
+			return TRUE;
+		}
+		return FALSE;
+	}
+	else {
+		return TRUE;
 	}
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	if ([[segue identifier] isEqualToString:@"StoryTableToViewStorySegue"]) {
 		ViewStoryViewController *nextVC = (ViewStoryViewController *)[segue destinationViewController];
-		
-		UITableViewCell *clickedCell = (UITableViewCell *)[[sender superview] superview];
-		NSIndexPath *path = [self.tableView indexPathForCell:clickedCell];
-		int index = path.row;
 
-		// Determine if we're referencing finished or unfinished game data
-		NSMutableArray *games = (path.section == 0 ? _unfinishedGames : _finishedGames);
+		PFObject *game = [self getGameForButtonClicked:sender];
 
-		nextVC.game = games[index];
+		nextVC.game = game;
 	}
 	else if ([[segue identifier] isEqualToString:@"StoryTableToPlayStorySegue"]) {
 		// Figure out which game we're on
-
-		UIButton *button = (UIButton *)sender;
-		// Get the UITableViewCell which is the superview of the UITableViewCellContentView which is the superview of the UIButton
-		UITableViewCell *cell = [[button superview] superview];
-		NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-		
-//		NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-		NSMutableArray *games = (indexPath.section == 0 ? _unfinishedGames : _finishedGames);
-		PFObject *game = games[indexPath.row];
+		PFObject *game = [self getGameForButtonClicked:sender];
 		
 		// Pass story data to the PlayStoryViewController
 		PlayStoryViewController *controller = (PlayStoryViewController *)segue.destinationViewController;

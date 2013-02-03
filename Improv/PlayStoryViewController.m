@@ -44,7 +44,7 @@ UIScrollView  *scrollview;
 	// Figure out which user is our partner, then display his name
 	PFUser *creator = [self.game objectForKey:@"creator"];
 	PFUser *invitee = [self.game objectForKey:@"invitee"];
-	PFUser *partner = ([PFUser currentUser].objectId == creator.objectId) ? invitee : creator;
+	PFUser *partner = ([[PFUser currentUser].objectId isEqualToString:creator.objectId]) ? invitee : creator;
 	UILabel *partnerLabel = (UILabel *)[self.view viewWithTag:104];
 	partnerLabel.text = [NSString stringWithFormat:@"Game with %@", [partner objectForKey:@"first_name"]];
 

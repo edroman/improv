@@ -64,9 +64,13 @@
 		PFQuery *query;
 
 		// Get a random partner
-		query = [PFUser query];
-		results = [query findObjects];
-		PFUser *invitee = results[rand() % results.count];
+		PFUser *invitee;
+		do {
+			query = [PFUser query];
+			results = [query findObjects];
+			invitee = results[rand() % results.count];
+		}
+		while (invitee.objectId == [PFUser currentUser].objectId);
 
 		// Get a random intro
 		query = [PFQuery queryWithClassName:@"Intro"];
@@ -87,6 +91,7 @@
 		[game setObject:invitee forKey:@"invitee"];
 		[game setObject:intro forKey:@"intro"];
 		[game setObject:spine forKey:@"spine"];
+		[game setObject:[PFUser currentUser] forKey:@"currPlayer"];
 		[game save];
 		
 		// Send the resulting new game to the PlayViewController

@@ -213,7 +213,10 @@ UIScrollView  *scrollview;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	if ([[segue identifier] isEqualToString:@"PlayStoryToLobbySegue"]) {
+		////////////////////////////////////
 		// Create the new turn in Parse
+		////////////////////////////////////
+
 		PFObject *turn = [PFObject objectWithClassName:@"Turn"];
 		[turn setObject:self.game forKey:@"Game"];
 		[turn setObject:[PFUser currentUser] forKey:@"User"];
@@ -223,8 +226,26 @@ UIScrollView  *scrollview;
 
 		UITextField *content = (UITextField *)[self.view viewWithTag:103];
 		[turn setObject:content.text forKey:@"turn"];
-		
+
+		// Persist via Parse
 		[turn save];
+		
+		////////////////////////////////////
+		// Update main game object
+		////////////////////////////////////
+
+		// Increase turn number
+		turnNum = turnNum + 1;
+		[self.game setObject:[NSNumber numberWithInt:turn] forKey:@"turn"];
+		
+		// Flip the current player
+		PFUser *creator = [self.game objectForKey:@"creator"];
+		PFUser *invitee = [self.game objectForKey:@"invitee"];
+		PFUser *partner = ([PFUser currentUser].objectId == creator.objectId) ? invitee : creator;
+		[self.game setObject:partner forKey:@"currPlayer"];
+		
+		// Persist via Parse
+		[self.game save];
 
 		// Segue will automatically go to lobby.
 	}

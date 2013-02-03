@@ -132,13 +132,21 @@
 	UILabel *playerLabel = (UILabel *)[cell viewWithTag:100];
 	PFUser *creator = [game objectForKey:@"creator"];
 	PFUser *invitee = [game objectForKey:@"invitee"];
-	PFUser *partner = ([PFUser currentUser].objectId == creator.objectId) ? invitee : creator;
+	PFUser *partner = ([[PFUser currentUser].objectId isEqualToString:creator.objectId]) ? invitee : creator;
 	NSString *str = [partner objectForKey:@"name"];
 	playerLabel.text = [NSString stringWithFormat:@"%@%@", @"Game with ", str];
 
 	// Intro
 	UILabel *storyLabel = (UILabel *)[cell viewWithTag:101];
 	storyLabel.text = [[game objectForKey:@"intro"] objectForKey:@"value"];
+	
+	// "Play" or "Nudge" button
+	PFUser *currPlayer = [game objectForKey:@"currPlayer"];
+	UIButton *playButton = (UIButton *)[cell viewWithTag:102];
+	if (![[PFUser currentUser].objectId isEqualToString:currPlayer.objectId])
+	{
+		[playButton setTitle:@"Nudge" forState:UIControlStateNormal];
+	}
 	
 	return cell;
 }

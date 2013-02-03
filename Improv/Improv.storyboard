@@ -315,7 +315,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6tM-Bt-M7T">
+                                        <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6tM-Bt-M7T">
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                             <state key="normal" title="Play">
                                                 <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -343,7 +343,6 @@
                                 </view>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="rp9-up-eMF" secondAttribute="trailing" constant="93" id="8Uz-8c-j7o"/>
-                                    <constraint firstItem="rp9-up-eMF" firstAttribute="top" secondItem="6tM-Bt-M7T" secondAttribute="top" type="default" id="DPX-S3-ArK"/>
                                     <constraint firstItem="6tM-Bt-M7T" firstAttribute="baseline" secondItem="rp9-up-eMF" secondAttribute="baseline" type="default" id="LZT-kv-XXZ"/>
                                     <constraint firstAttribute="bottom" secondItem="6tM-Bt-M7T" secondAttribute="bottom" constant="8" id="Xrz-TQ-QmV"/>
                                     <constraint firstItem="95c-sr-eLv" firstAttribute="leading" secondItem="cEV-Ph-OUO" secondAttribute="leading" type="default" id="YuV-sT-24Y"/>
@@ -609,13 +608,55 @@
         <image name="login-button-small-pressed.png" width="151" height="43"/>
         <image name="login-button-small.png" width="151" height="43"/>
     </resources>
+    <classes>
+        <class className="IntroViewController" superclassName="UIPageViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IntroViewController.h"/>
+        </class>
+        <class className="LeaderboardViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeaderboardViewController.h"/>
+        </class>
+        <class className="LobbyViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LobbyViewController.h"/>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loginButtonTouchHandler:"/>
+                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
+            </relationships>
+        </class>
+        <class className="MainMenuViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="NewStoryViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewStoryViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="showAddressBookPicker"/>
+                <relationship kind="action" name="showFBFriendPicker"/>
+                <relationship kind="outlet" name="firstName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="phoneNumber" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PlayStoryViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlayStoryViewController.h"/>
+        </class>
+        <class className="StoryTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StoryTableViewController.h"/>
+        </class>
+        <class className="ViewStoryViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewStoryViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="kdA-vF-CqP"/>
         <segue reference="E8R-Jq-qT8"/>
+        <segue reference="uUJ-LX-V80"/>
     </inferredMetricsTieBreakers>
 </document>

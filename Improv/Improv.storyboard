@@ -324,6 +324,9 @@
                                             <state key="highlighted">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <segue destination="zbo-FS-1Th" kind="push" identifier="StoryTableToPlayStorySegue" id="OZW-hP-Xpv"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rp9-up-eMF">
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -504,7 +507,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YJe-da-mQK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1906" y="-1623"/>
+            <point key="canvasLocation" x="2546" y="-1167"/>
         </scene>
         <!--View Story View Controller-->
         <scene sceneID="7up-vU-O8V">
@@ -648,6 +651,9 @@
         </class>
         <class className="ViewStoryViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewStoryViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="facebookPostToWall:"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -656,7 +662,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="E8R-Jq-qT8"/>
         <segue reference="uUJ-LX-V80"/>
+        <segue reference="OZW-hP-Xpv"/>
+        <segue reference="E8R-Jq-qT8"/>
     </inferredMetricsTieBreakers>
 </document>

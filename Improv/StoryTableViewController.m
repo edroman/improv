@@ -9,6 +9,7 @@
 #import "StoryTableViewController.h"
 #import "ViewStoryViewController.h"
 #import <Parse/Parse.h>
+#import "PlayStoryViewController.h"
 
 @interface StoryTableViewController ()
 
@@ -50,6 +51,7 @@
 	[query includeKey:@"creator"];
 	[query includeKey:@"invitee"];
 	[query includeKey:@"intro"];
+	[query includeKey:@"spine"];
 	[query whereKey:@"creator" equalTo:[PFUser currentUser]];
 	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
 		if (!error) {
@@ -75,6 +77,13 @@
 	}];
 }
 
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+	if ([identifier isEqualToString:@"StoryTableToPlayStorySegue"]) {
+		// TODO: If it's not our turn, then send a push notification and return FALSE
+		// else return TRUE
+	}
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	if ([[segue identifier] isEqualToString:@"StoryTableToViewStorySegue"]) {
 		ViewStoryViewController *nextVC = (ViewStoryViewController *)[segue destinationViewController];
@@ -87,6 +96,22 @@
 		NSMutableArray *games = (path.section == 0 ? _unfinishedGames : _finishedGames);
 
 		nextVC.game = games[index];
+	}
+	else if ([[segue identifier] isEqualToString:@"StoryTableToPlayStorySegue"]) {
+		// Figure out which game we're on
+
+		UIButton *button = (UIButton *)sender;
+		// Get the UITableViewCell which is the superview of the UITableViewCellContentView which is the superview of the UIButton
+		UITableViewCell *cell = [[button superview] superview];
+		NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+		
+//		NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+		NSMutableArray *games = (indexPath.section == 0 ? _unfinishedGames : _finishedGames);
+		PFObject *game = games[indexPath.row];
+		
+		// Pass story data to the PlayStoryViewController
+		PlayStoryViewController *controller = (PlayStoryViewController *)segue.destinationViewController;
+		controller.game = game;
 	}
 }
 

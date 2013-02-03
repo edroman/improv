@@ -70,7 +70,7 @@
 			results = [query findObjects];
 			invitee = results[rand() % results.count];
 		}
-		while (invitee.objectId == [PFUser currentUser].objectId);
+		while ([invitee.objectId isEqualToString:[PFUser currentUser].objectId]);
 
 		// Get a random intro
 		query = [PFQuery queryWithClassName:@"Intro"];

@@ -236,12 +236,12 @@ UIScrollView  *scrollview;
 
 		// Increase turn number
 		turnNum = turnNum + 1;
-		[self.game setObject:[NSNumber numberWithInt:turn] forKey:@"turn"];
+		[self.game setObject:[NSNumber numberWithInt:turnNum] forKey:@"turn"];
 		
 		// Flip the current player
 		PFUser *creator = [self.game objectForKey:@"creator"];
 		PFUser *invitee = [self.game objectForKey:@"invitee"];
-		PFUser *partner = ([PFUser currentUser].objectId == creator.objectId) ? invitee : creator;
+		PFUser *partner = ([[PFUser currentUser].objectId isEqualToString:creator.objectId]) ? invitee : creator;
 		[self.game setObject:partner forKey:@"currPlayer"];
 		
 		// Persist via Parse

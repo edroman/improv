@@ -41,6 +41,7 @@
 		A40E9438169D11A200AB7C9B /* ViewStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A40E9437169D11A200AB7C9B /* ViewStoryViewController.m */; };
 		A40E943C16A0F5F600AB7C9B /* NewStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A40E943B16A0F5F600AB7C9B /* NewStoryViewController.m */; };
 		A46309C616BC93C2002D22E7 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46309C516BC93C2002D22E7 /* Parse.framework */; };
+		A46309C916BEE6AB002D22E7 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46309C816BEE6AA002D22E7 /* SettingsViewController.m */; };
 		A479D3B1169CE60100E14D39 /* LeaderboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A479D3B0169CE60100E14D39 /* LeaderboardViewController.m */; };
 		A486C20516B1EF0E0045B273 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A486C20316B1EF0E0045B273 /* AddressBook.framework */; };
 		A486C20616B1EF0E0045B273 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A486C20416B1EF0E0045B273 /* AddressBookUI.framework */; };
@@ -99,6 +100,8 @@
 		A40E943A16A0F5F600AB7C9B /* NewStoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewStoryViewController.h; sourceTree = "<group>"; };
 		A40E943B16A0F5F600AB7C9B /* NewStoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewStoryViewController.m; sourceTree = "<group>"; };
 		A46309C516BC93C2002D22E7 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		A46309C716BEE6AA002D22E7 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		A46309C816BEE6AA002D22E7 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		A479D3AF169CE60100E14D39 /* LeaderboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaderboardViewController.h; sourceTree = "<group>"; };
 		A479D3B0169CE60100E14D39 /* LeaderboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaderboardViewController.m; sourceTree = "<group>"; };
 		A486C20316B1EF0E0045B273 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
@@ -214,6 +217,8 @@
 				A409DE69169C9F5400C32B2D /* StoryTableViewController.m */,
 				27915DBA16909A1E00DB32E2 /* LobbyViewController.h */,
 				27915DBB16909A1E00DB32E2 /* LobbyViewController.m */,
+				A46309C716BEE6AA002D22E7 /* SettingsViewController.h */,
+				A46309C816BEE6AA002D22E7 /* SettingsViewController.m */,
 				27DD8E78169145B50036E189 /* LoginViewController.h */,
 				27DD8E79169145B50036E189 /* LoginViewController.m */,
 				27915D7A168FF3BB00DB32E2 /* ImprovAppDelegate.h */,
@@ -340,6 +345,7 @@
 				A486C22116B488800045B273 /* ImageScrollView.m in Sources */,
 				A486C22216B488800045B273 /* IntroViewController.m in Sources */,
 				A486C22516B627C30045B273 /* IntroPageViewController.m in Sources */,
+				A46309C916BEE6AB002D22E7 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

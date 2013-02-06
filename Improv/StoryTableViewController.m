@@ -205,11 +205,19 @@
 	storyLabel.text = [[game objectForKey:@"intro"] objectForKey:@"value"];
 	
 	// "Play" or "Nudge" button
-	PFUser *currPlayer = [game objectForKey:@"currPlayer"];
-	UIButton *playButton = (UIButton *)[cell viewWithTag:102];
-	if (![[PFUser currentUser].objectId isEqualToString:currPlayer.objectId])
+	if (indexPath.section == 0)
 	{
-		[playButton setTitle:@"Nudge" forState:UIControlStateNormal];
+		PFUser *currPlayer = [game objectForKey:@"currPlayer"];
+		UIButton *playButton = (UIButton *)[cell viewWithTag:102];
+		if (![[PFUser currentUser].objectId isEqualToString:currPlayer.objectId])
+		{
+			[playButton setTitle:@"Nudge" forState:UIControlStateNormal];
+		}
+	}
+	else
+	{
+		UIButton *playButton = (UIButton *)[cell viewWithTag:102];
+		playButton.hidden = YES;
 	}
 	
 	return cell;

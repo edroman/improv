@@ -258,6 +258,12 @@
 		turnNum = turnNum + 1;
 		[self.game setObject:[NSNumber numberWithInt:turnNum] forKey:@"turn"];
 		
+		// Set completed flag
+		if (turnNum > [[[Constants data] objectForKey:@"numTurns"] intValue])
+		{
+			[self.game setObject:[NSNumber numberWithBool:true] forKey:@"completed"];
+		}
+			
 		// Flip the current player
 		PFUser *creator = [self.game objectForKey:@"creator"];
 		PFUser *invitee = [self.game objectForKey:@"invitee"];

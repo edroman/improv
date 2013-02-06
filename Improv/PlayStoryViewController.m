@@ -10,20 +10,20 @@
 #import "PlayStoryViewController.h"
 
 @interface PlayStoryViewController ()
-
 @end
 
 @implementation PlayStoryViewController
+{
+	BOOL           keyboardVisible;
+	CGPoint        offset;
+	UIScrollView  *scrollView;
+}
 
 #define SCROLLVIEW_HEIGHT 460
 #define SCROLLVIEW_WIDTH  320
 
 #define SCROLLVIEW_CONTENT_HEIGHT 720
 #define SCROLLVIEW_CONTENT_WIDTH  320
-
-BOOL           keyboardVisible;
-CGPoint        offset;
-UIScrollView  *scrollview;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -40,6 +40,10 @@ UIScrollView  *scrollview;
     [super viewDidLoad];
 
 	// Do any additional setup after loading the view.
+	
+	// For keyboard scrolling
+	scrollView = (UIScrollView*) self.view;
+	keyboardVisible = NO;
 
 	// Figure out which user is our partner, then display his name
 	PFUser *creator = [self.game objectForKey:@"creator"];
@@ -64,6 +68,7 @@ UIScrollView  *scrollview;
 		// Find all turns for this game
 		PFQuery *query = [PFQuery queryWithClassName:@"Turn"];
 		[query whereKey:@"Game" equalTo:self.game];
+		[query orderByAscending:@"turnNumber"];
 		[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
 			if (!error) {
 				// The find succeeded.
@@ -77,11 +82,17 @@ UIScrollView  *scrollview;
 						NSString *str = [NSString stringWithFormat:@"prefix%d", i];
 						NSString *spine = [[self.game objectForKey:@"spine"] objectForKey:str];
 						[story appendString:spine];
+
+						// Add space after spine
+						[story appendString:@" "];
 					}
 					
 					// Add turn
 					NSString *turn = [objects[i] objectForKey:@"turn"];
 					[story appendString:turn];
+					
+					// Add space after turn
+					[story appendString:@" "];
 				}
 
 				// Update label
@@ -116,10 +127,7 @@ UIScrollView  *scrollview;
 	textField.delegate = self;
 	[textField setReturnKeyType:UIReturnKeyDone];
 
-	// For keyboard scrolling:
 	// Assign UIScrollView delegate
-
-	scrollview = (UIScrollView*) self.view;
 	((UIScrollView*) self.view).delegate = self;
 	[[NSNotificationCenter defaultCenter] addObserver:self
 														  selector:@selector (keyboardDidShow:)
@@ -147,12 +155,12 @@ UIScrollView  *scrollview;
 	
 	// Save the current location so we can restore
 	// when keyboard is dismissed
-	offset = scrollview.contentOffset;
+	offset = scrollView.contentOffset;
 	
 	// Resize the scroll view to make room for the keyboard
-	CGRect viewFrame = scrollview.frame;
+	CGRect viewFrame = scrollView.frame;
 	viewFrame.size.height -= keyboardSize.height;
-	scrollview.frame = viewFrame;
+	scrollView.frame = viewFrame;
 	
 	// Keyboard is now visible
 	keyboardVisible = YES;
@@ -168,10 +176,10 @@ UIScrollView  *scrollview;
 	}
 	
 	// Reset the height of the scroll view to its original value
-	scrollview.frame = CGRectMake(0, 0, SCROLLVIEW_WIDTH, SCROLLVIEW_HEIGHT);
+	scrollView.frame = CGRectMake(0, 0, SCROLLVIEW_WIDTH, SCROLLVIEW_HEIGHT);
 	
 	// Reset the scrollview to previous location
-	scrollview.contentOffset = offset;
+	scrollView.contentOffset = offset;
 	
 	// Keyboard is no longer visible
 	keyboardVisible = NO;
@@ -212,11 +220,23 @@ UIScrollView  *scrollview;
 	return YES;
 }
 
+// Called when the player presses "Submit".  Here we should submit the turn to the server.
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	if ([[segue identifier] isEqualToString:@"PlayStoryToLobbySegue"]) {
-		////////////////////////////////////
+		//////////////////////////////////////////////
+		// Correct punctuation at end of sentence
+		//////////////////////////////////////////////
+		
+		UITextField *content = (UITextField *)[self.view viewWithTag:103];
+		NSMutableString *str = [NSMutableString stringWithString:content.text];
+		char c = [str characterAtIndex:([str length]-1)];
+		if (c != '.' && c != '!' && c != '?') {
+			[str insertString:@"." atIndex:[str length]];
+		}
+		
+		//////////////////////////////////////////////
 		// Create the new turn in Parse
-		////////////////////////////////////
+		//////////////////////////////////////////////
 
 		PFObject *turn = [PFObject objectWithClassName:@"Turn"];
 		[turn setObject:self.game forKey:@"Game"];
@@ -225,8 +245,7 @@ UIScrollView  *scrollview;
 		int turnNum = [[self.game objectForKey:@"turn"] intValue];
 		[turn setObject:[NSNumber numberWithInt:turnNum] forKey:@"turnNumber"];
 
-		UITextField *content = (UITextField *)[self.view viewWithTag:103];
-		[turn setObject:content.text forKey:@"turn"];
+		[turn setObject:str forKey:@"turn"];
 
 		// Persist via Parse
 		[turn save];

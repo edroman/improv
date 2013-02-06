@@ -4,12 +4,16 @@
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
 
-@implementation LoginViewController
+@interface LoginViewController ()
+@end
 
-BOOL           keyboardVisible = NO;
-CGPoint        offset;
-UIScrollView  *scrollView = 0;
-UITextField   *activeField = 0;
+@implementation LoginViewController
+{
+	BOOL           keyboardVisible;
+	CGPoint        offset;
+	UIScrollView  *scrollView;
+	UITextField   *activeField;
+}
 
 #pragma mark - UIViewController
 
@@ -119,8 +123,7 @@ UITextField   *activeField = 0;
 	textField3.delegate = self;
 	[textField3 setReturnKeyType:UIReturnKeyDone];
 
-	// For keyboard scrolling:
-	
+	// For keyboard scrolling
 	scrollView = (UIScrollView*) self.view;
 	keyboardVisible = NO;
 	activeField = 0;

@@ -51,6 +51,7 @@
 		// Find all turns for this game
 		PFQuery *query = [PFQuery queryWithClassName:@"Turn"];
 		[query whereKey:@"Game" equalTo:self.game];
+		[query orderByAscending:@"turnNumber"];
 		[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
 			if (!error) {
 				// The find succeeded.
@@ -64,11 +65,17 @@
 						NSString *str = [NSString stringWithFormat:@"prefix%d", i];
 						NSString *spine = [[self.game objectForKey:@"spine"] objectForKey:str];
 						[story appendString:spine];
+
+						// Add space after spine
+						[story appendString:@" "];
 					}
 					
 					// Add turn
 					NSString *turn = [objects[i] objectForKey:@"turn"];
 					[story appendString:turn];
+
+					// Add space after turn
+					[story appendString:@" "];
 				}
 				
 				// Update label

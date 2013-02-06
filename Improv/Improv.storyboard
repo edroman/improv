@@ -540,7 +540,7 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="104" contentMode="left" text="Game with NAME" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="136" translatesAutoresizingMaskIntoConstraints="NO" id="eUG-DW-gcr">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="136" id="63a-6J-MXM"/>
-                                    <constraint firstAttribute="height" constant="21" id="FSG-46-C4j"/>
+                                    <constraint firstAttribute="height" constant="21" id="xzo-8a-9gF"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -548,10 +548,10 @@
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" text="Story placeholder blah blah blah blah blah blah blah blah blah blah blah" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="qaX-UU-mwY">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="114" type="user" id="KMW-oA-CA6"/>
-                                    <constraint firstAttribute="width" constant="300" id="TVl-cf-prU"/>
+                                    <constraint firstAttribute="width" constant="300" id="KIG-Uh-kdk"/>
+                                    <constraint firstAttribute="height" constant="232" id="x2k-aA-J4L"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -567,16 +567,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="hhc-za-omG" secondAttribute="centerX" type="user" id="63K-1k-2mg"/>
-                            <constraint firstItem="hhc-za-omG" firstAttribute="top" secondItem="yvf-qf-5PI" secondAttribute="top" constant="187" id="8Up-nW-y5r"/>
-                            <constraint firstItem="qaX-UU-mwY" firstAttribute="top" secondItem="eUG-DW-gcr" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="9my-yk-t5W"/>
-                            <constraint firstItem="qaX-UU-mwY" firstAttribute="centerX" secondItem="eUG-DW-gcr" secondAttribute="centerX" type="default" id="BEV-KD-bcN"/>
-                            <constraint firstItem="eUG-DW-gcr" firstAttribute="top" secondItem="yvf-qf-5PI" secondAttribute="top" constant="20" symbolic="YES" type="default" id="Ipg-V0-aPL"/>
-                            <constraint firstItem="FxZ-OB-ccK" firstAttribute="top" secondItem="yvf-qf-5PI" secondAttribute="top" constant="143" id="M1K-SK-Cu6"/>
+                            <constraint firstItem="FxZ-OB-ccK" firstAttribute="centerX" secondItem="hhc-za-omG" secondAttribute="centerX" type="default" id="71V-4R-uVJ"/>
+                            <constraint firstItem="qaX-UU-mwY" firstAttribute="top" secondItem="yvf-qf-5PI" secondAttribute="top" constant="20" symbolic="YES" type="default" id="CVX-0U-dnQ"/>
                             <constraint firstAttribute="centerX" secondItem="upg-cy-DmO" secondAttribute="centerX" type="user" id="Qh0-2Y-oMC"/>
-                            <constraint firstItem="upg-cy-DmO" firstAttribute="top" secondItem="hhc-za-omG" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="XQK-WD-ND2"/>
+                            <constraint firstItem="upg-cy-DmO" firstAttribute="top" secondItem="hhc-za-omG" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="V5T-XG-kjE"/>
+                            <constraint firstItem="eUG-DW-gcr" firstAttribute="top" secondItem="yvf-qf-5PI" secondAttribute="top" type="default" id="W6a-PL-kZZ"/>
+                            <constraint firstItem="hhc-za-omG" firstAttribute="top" secondItem="FxZ-OB-ccK" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="WxR-N9-8HQ"/>
                             <constraint firstAttribute="centerX" secondItem="eUG-DW-gcr" secondAttribute="centerX" type="user" id="hTT-Y5-D7a"/>
                             <constraint firstItem="FxZ-OB-ccK" firstAttribute="trailing" secondItem="qaX-UU-mwY" secondAttribute="trailing" type="default" id="kqt-EK-kJ1"/>
                             <constraint firstItem="qaX-UU-mwY" firstAttribute="leading" secondItem="FxZ-OB-ccK" secondAttribute="leading" type="default" id="veS-ne-vhW"/>
+                            <constraint firstItem="FxZ-OB-ccK" firstAttribute="top" secondItem="yvf-qf-5PI" secondAttribute="top" constant="247" id="zhw-dJ-qs6"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uLT-wP-ucw"/>
@@ -595,9 +595,9 @@
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" text="Once upon a time..." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="278" translatesAutoresizingMaskIntoConstraints="NO" id="eWA-5S-qkF">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="209" id="Fir-E2-biQ"/>
+                                    <constraint firstAttribute="height" constant="230" id="Nie-5U-nhz"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -671,12 +671,12 @@
                             <constraint firstItem="V8d-71-ZLh" firstAttribute="leading" secondItem="aIq-3l-tqF" secondAttribute="leading" type="default" id="Te9-Og-Qgo"/>
                             <constraint firstItem="V8d-71-ZLh" firstAttribute="top" secondItem="z5P-OA-L55" secondAttribute="top" type="default" id="V0R-zy-x8b"/>
                             <constraint firstItem="aIq-3l-tqF" firstAttribute="centerX" secondItem="z5P-OA-L55" secondAttribute="centerX" type="default" id="ado-lY-OGh"/>
+                            <constraint firstItem="eWA-5S-qkF" firstAttribute="top" secondItem="z5P-OA-L55" secondAttribute="top" constant="46" id="bzC-e0-9SM"/>
                             <constraint firstItem="eWA-5S-qkF" firstAttribute="trailing" secondItem="aIq-3l-tqF" secondAttribute="trailing" type="default" id="fHf-XM-D3P"/>
                             <constraint firstItem="aIq-3l-tqF" firstAttribute="centerX" secondItem="fl5-r3-W1o" secondAttribute="centerX" type="default" id="kLY-Bc-VVT"/>
                             <constraint firstItem="8RW-rH-TDu" firstAttribute="centerX" secondItem="4ml-Kl-Gdf" secondAttribute="centerX" type="default" id="qoG-tC-Dey"/>
                             <constraint firstItem="Ree-n7-vb8" firstAttribute="top" secondItem="fl5-r3-W1o" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="rQD-U9-ihX"/>
                             <constraint firstItem="4ml-Kl-Gdf" firstAttribute="top" secondItem="aIq-3l-tqF" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="u57-df-p4O"/>
-                            <constraint firstItem="eWA-5S-qkF" firstAttribute="top" secondItem="z5P-OA-L55" secondAttribute="top" constant="67" id="vXW-IA-SLf"/>
                             <constraint firstItem="Ree-n7-vb8" firstAttribute="centerX" secondItem="4ml-Kl-Gdf" secondAttribute="centerX" type="default" id="wj6-ra-SAd"/>
                         </constraints>
                     </view>

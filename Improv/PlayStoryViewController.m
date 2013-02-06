@@ -83,13 +83,14 @@ UIScrollView  *scrollview;
 					NSString *turn = [objects[i] objectForKey:@"turn"];
 					[story appendString:turn];
 				}
+
+				// Update label
+				storyLabel.text = story;
 			} else {
 				// Log details of the failure
 				NSLog(@"Error: %@ %@", error, [error userInfo]);
 			}
 		}];
-		
-		storyLabel.text = story;
 	}
 	else {
 		storyLabel.text = @"";

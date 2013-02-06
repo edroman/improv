@@ -28,18 +28,65 @@
 {
 	[super viewDidLoad];
 
-	// Do any additional setup after loading the view.
-
-	UILabel *playerLabel = (UILabel *)[self.view viewWithTag:100];
-	PFUser *obj = [_game objectForKey:@"creator"];
-	NSString *str = [obj objectForKey:@"name"];
-	PFUser *obj2 = [_game objectForKey:@"invitee"];
-	NSString *str2 = [obj2 objectForKey:@"name"];
-	playerLabel.text = [NSString stringWithFormat:@"By %@ and %@", str, str2];
-
-	UILabel *storyLabel = (UILabel *)[self.view viewWithTag:101];
-	storyLabel.text = @"It was a dark and stormy night...";		 // TODO
+	// Figure out which user is our partner, then display his name
+	PFUser *creator = [self.game objectForKey:@"creator"];
+	PFUser *invitee = [self.game objectForKey:@"invitee"];
+	PFUser *partner = ([[PFUser currentUser].objectId isEqualToString:creator.objectId]) ? invitee : creator;
+	UILabel *partnerLabel = (UILabel *)[self.view viewWithTag:100];
+	partnerLabel.text = [NSString stringWithFormat:@"Game with %@", [partner objectForKey:@"name"]];
 	
+	////////////////////////////////////////////
+	// BEGIN Compose the existing story so far
+	////////////////////////////////////////////
+	
+	NSMutableString *story = [[NSMutableString alloc] init];
+	UILabel *storyLabel = (UILabel *)[self.view viewWithTag:101];
+	NSString *intro = [[self.game objectForKey:@"intro"] objectForKey:@"value"];
+	int turn = [[self.game objectForKey:@"turn"] intValue];
+	
+	if (turn >= 2) {
+		// Add the intro
+		[story appendString:intro];
+		
+		// Find all turns for this game
+		PFQuery *query = [PFQuery queryWithClassName:@"Turn"];
+		[query whereKey:@"Game" equalTo:self.game];
+		[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+			if (!error) {
+				// The find succeeded.
+				NSLog(@"Successfully retrieved %d results.", objects.count);
+				
+				// For each turn, add that turn's story spine + turn text
+				for (int i=0; i < objects.count; ++i) {
+					// Add story spine (not for first, since that is the intro)
+					if (i >= 1)
+					{
+						NSString *str = [NSString stringWithFormat:@"prefix%d", i];
+						NSString *spine = [[self.game objectForKey:@"spine"] objectForKey:str];
+						[story appendString:spine];
+					}
+					
+					// Add turn
+					NSString *turn = [objects[i] objectForKey:@"turn"];
+					[story appendString:turn];
+				}
+				
+				// Update label
+				storyLabel.text = story;
+			} else {
+				// Log details of the failure
+				NSLog(@"Error: %@ %@", error, [error userInfo]);
+			}
+		}];
+	}
+	else {
+		storyLabel.text = @"";
+	}
+	
+	////////////////////////////////////////////
+	// END Compose the existing story so far
+	////////////////////////////////////////////
+
 	UILabel *voteLabel = (UILabel *)[self.view viewWithTag:102];
 	int votes = [[_game objectForKey:@"votes"] intValue];
 	voteLabel.text = [NSString stringWithFormat:@"%d votes", votes];

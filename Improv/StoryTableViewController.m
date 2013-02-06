@@ -45,18 +45,22 @@
 	if (!self.finishedGames) self.finishedGames = [[NSMutableArray alloc] init];
 	if (!self.unfinishedGames) self.unfinishedGames = [[NSMutableArray alloc] init];
 	
+	///////////////////////////////////
 	// Load all games
-	PFQuery *query = [PFQuery queryWithClassName:@"Game"];
-	
-	[query includeKey:@"creator"];
-	[query includeKey:@"invitee"];
-	[query includeKey:@"intro"];
-	[query includeKey:@"spine"];
-	[query whereKey:@"creator" equalTo:[PFUser currentUser]];
-	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+	///////////////////////////////////
+
+	// Find all games I created
+	PFQuery *query1 = [PFQuery queryWithClassName:@"Game"];
+	[query1 includeKey:@"creator"];
+	[query1 includeKey:@"invitee"];
+	[query1 includeKey:@"intro"];
+	[query1 includeKey:@"spine"];
+	[query1 whereKey:@"creator" equalTo:[PFUser currentUser]];
+
+	[query1 findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
 		if (!error) {
 			// The find succeeded.
-			NSLog(@"Successfully retrieved %d results.", objects.count);
+			NSLog(@"Successfully retrieved %d stories.", objects.count);
 			
 			// Store results
 			for (int i=0; i < objects.count; ++i) {
@@ -67,9 +71,37 @@
 					[_unfinishedGames addObject:objects[i]];
 				}
 			}
-			
-			// reload table data, forcing a new numberOfRowsInSection()
-			[self.tableView reloadData];
+
+			// Find all games I was invited to
+			PFQuery *query2 = [PFQuery queryWithClassName:@"Game"];
+			[query2 includeKey:@"creator"];
+			[query2 includeKey:@"invitee"];
+			[query2 includeKey:@"intro"];
+			[query2 includeKey:@"spine"];
+			[query2 whereKey:@"invitee" equalTo:[PFUser currentUser]];
+
+			[query2 findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+				if (!error) {
+					// The find succeeded.
+					NSLog(@"Successfully retrieved %d stories.", objects.count);
+					
+					// Store results
+					for (int i=0; i < objects.count; ++i) {
+						if ([[objects[i] objectForKey:@"completed"] boolValue] == true) {
+							[_finishedGames addObject:objects[i]];
+						}
+						else {
+							[_unfinishedGames addObject:objects[i]];
+						}
+					}
+					
+					// reload table data, forcing a new numberOfRowsInSection()
+					[self.tableView reloadData];
+				} else {
+					// Log details of the failure
+					NSLog(@"Error: %@ %@", error, [error userInfo]);
+				}
+			}];
 		} else {
 			// Log details of the failure
 			NSLog(@"Error: %@ %@", error, [error userInfo]);

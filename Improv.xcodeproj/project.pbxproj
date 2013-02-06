@@ -52,6 +52,8 @@
 		A486C22216B488800045B273 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A486C22016B4887F0045B273 /* IntroViewController.m */; };
 		A486C22516B627C30045B273 /* IntroPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A486C22416B627C30045B273 /* IntroPageViewController.m */; };
 		A486C22716B9E3BA0045B273 /* ImageData.plist in Resources */ = {isa = PBXBuildFile; fileRef = A486C22616B9E3BA0045B273 /* ImageData.plist */; };
+		A4DC261A16C0BF50005FD566 /* Constants.plist in Resources */ = {isa = PBXBuildFile; fileRef = A4DC261916C0BF50005FD566 /* Constants.plist */; };
+		A4DC261D16C1D34D005FD566 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DC261C16C1D34D005FD566 /* Constants.m */; };
 		A4F3C52F16AB58AC00367AC6 /* PlayStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F3C52E16AB58AC00367AC6 /* PlayStoryViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -116,6 +118,9 @@
 		A486C22316B627C30045B273 /* IntroPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroPageViewController.h; sourceTree = "<group>"; };
 		A486C22416B627C30045B273 /* IntroPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroPageViewController.m; sourceTree = "<group>"; };
 		A486C22616B9E3BA0045B273 /* ImageData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ImageData.plist; sourceTree = "<group>"; };
+		A4DC261916C0BF50005FD566 /* Constants.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Constants.plist; sourceTree = "<group>"; };
+		A4DC261B16C1D34D005FD566 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		A4DC261C16C1D34D005FD566 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		A4F3C52D16AB58AC00367AC6 /* PlayStoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayStoryViewController.h; sourceTree = "<group>"; };
 		A4F3C52E16AB58AC00367AC6 /* PlayStoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayStoryViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -196,6 +201,8 @@
 		27915D5A168FF31600DB32E2 /* Improv */ = {
 			isa = PBXGroup;
 			children = (
+				A4DC261B16C1D34D005FD566 /* Constants.h */,
+				A4DC261C16C1D34D005FD566 /* Constants.m */,
 				27915DB8168FFC9D00DB32E2 /* Improv.storyboard */,
 				A486C21D16B4887F0045B273 /* ImageScrollView.h */,
 				A486C21E16B4887F0045B273 /* ImageScrollView.m */,
@@ -244,6 +251,7 @@
 				27915D66168FF31600DB32E2 /* Default.png */,
 				27915D68168FF31600DB32E2 /* Default@2x.png */,
 				27915D6A168FF31600DB32E2 /* Default-568h@2x.png */,
+				A4DC261916C0BF50005FD566 /* Constants.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -322,6 +330,7 @@
 				A486C21B16B483C40045B273 /* intro2.jpg in Resources */,
 				A486C21C16B483C40045B273 /* intro3.jpg in Resources */,
 				A486C22716B9E3BA0045B273 /* ImageData.plist in Resources */,
+				A4DC261A16C0BF50005FD566 /* Constants.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +355,7 @@
 				A486C22216B488800045B273 /* IntroViewController.m in Sources */,
 				A486C22516B627C30045B273 /* IntroPageViewController.m in Sources */,
 				A46309C916BEE6AB002D22E7 /* SettingsViewController.m in Sources */,
+				A4DC261D16C1D34D005FD566 /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,7 +449,7 @@
 		27915D70168FF31600DB32E2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ed Roman (EKM5FTX55C)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: GHOSTFIRE GAMES LLC";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -452,7 +462,7 @@
 					"\"$(SRCROOT)/Parse.framework/Versions/1.1.24\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "F309EB5E-B97E-477E-B776-BD2A431A5F05";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

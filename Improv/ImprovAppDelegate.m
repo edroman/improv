@@ -9,6 +9,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+	// Initialize constants - load from pList file
+	[Constants loadData];
+	
 	///////////////////////////////////////
 	// Parse Initialization
 	///////////////////////////////////////
@@ -16,7 +19,8 @@
 	[Parse setApplicationId:@"WTbIj7pY3jJC3cnqxF2cidV164TOWxgTtbGfjGnF" clientKey:@"EjV6lQXjI0S35MYcaoPPkhgRXCaYvU1J9B59lvAa"];
 
 	// Setup Facebook App ID.  Also done in Project Settings.
-	[PFFacebookUtils initializeWithApplicationId:@"250634021702621"];
+	NSString *appId = [[Constants data] objectForKey:@"fbAppId"];
+	[PFFacebookUtils initializeWithApplicationId:appId];
 
 	[application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|
 													UIRemoteNotificationTypeAlert|

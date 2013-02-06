@@ -220,12 +220,20 @@
 												 @"A Tall Tale -- a fun iPhone game", @"caption",
 												 @"Create fun stories together!", @"description",
 //												 @"message", @"message",
+												 user.id, @"to",
 												 nil];
 		
 		// Create request for user's Facebook data
-		NSString *requestPath = [NSString stringWithFormat:@"/%@/feed", user.id];
+		NSString *requestPath = @"stream.publish";
 		
-		// Send request to Facebook
+		// TODO: Don't hardcode this
+		PF_Facebook *facebook = [[PF_Facebook alloc] initWithAppId:[[Constants data] objectForKey:@"fbAppId"] andDelegate:self];
+		
+		// Post to wall
+		[facebook dialog:requestPath andParams:params andDelegate:self];
+		
+/*
+ // This code doesn't work as of 2/6/13 because of facebook changing their API
 		PF_FBRequest *request = [PF_FBRequest requestWithGraphPath:requestPath parameters:params HTTPMethod:@"POST"];
 		[request startWithCompletionHandler:^(PF_FBRequestConnection *connection, id result, NSError *error) {
 			if (!error) {
@@ -240,8 +248,8 @@
 				NSLog(@"Some other error: %@", error);
 			}
 		}];
+ */
 	}
-
 	// Dismiss the FBFriendPicker
 	[self dismissViewControllerAnimated:YES completion:NULL];
 }

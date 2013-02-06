@@ -54,6 +54,7 @@
 		A486C22716B9E3BA0045B273 /* ImageData.plist in Resources */ = {isa = PBXBuildFile; fileRef = A486C22616B9E3BA0045B273 /* ImageData.plist */; };
 		A4DC261A16C0BF50005FD566 /* Constants.plist in Resources */ = {isa = PBXBuildFile; fileRef = A4DC261916C0BF50005FD566 /* Constants.plist */; };
 		A4DC261D16C1D34D005FD566 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DC261C16C1D34D005FD566 /* Constants.m */; };
+		A4DC262016C24C4A005FD566 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DC261F16C24C4A005FD566 /* TPKeyboardAvoidingScrollView.m */; };
 		A4F3C52F16AB58AC00367AC6 /* PlayStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F3C52E16AB58AC00367AC6 /* PlayStoryViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -121,6 +122,8 @@
 		A4DC261916C0BF50005FD566 /* Constants.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Constants.plist; sourceTree = "<group>"; };
 		A4DC261B16C1D34D005FD566 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		A4DC261C16C1D34D005FD566 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		A4DC261E16C24C4A005FD566 /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
+		A4DC261F16C24C4A005FD566 /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
 		A4F3C52D16AB58AC00367AC6 /* PlayStoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayStoryViewController.h; sourceTree = "<group>"; };
 		A4F3C52E16AB58AC00367AC6 /* PlayStoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayStoryViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -212,6 +215,8 @@
 				A486C22416B627C30045B273 /* IntroPageViewController.m */,
 				A4F3C52D16AB58AC00367AC6 /* PlayStoryViewController.h */,
 				A4F3C52E16AB58AC00367AC6 /* PlayStoryViewController.m */,
+				A4DC261E16C24C4A005FD566 /* TPKeyboardAvoidingScrollView.h */,
+				A4DC261F16C24C4A005FD566 /* TPKeyboardAvoidingScrollView.m */,
 				A40E943A16A0F5F600AB7C9B /* NewStoryViewController.h */,
 				A40E943B16A0F5F600AB7C9B /* NewStoryViewController.m */,
 				A479D3AF169CE60100E14D39 /* LeaderboardViewController.h */,
@@ -356,6 +361,7 @@
 				A486C22516B627C30045B273 /* IntroPageViewController.m in Sources */,
 				A46309C916BEE6AB002D22E7 /* SettingsViewController.m in Sources */,
 				A4DC261D16C1D34D005FD566 /* Constants.m in Sources */,
+				A4DC262016C24C4A005FD566 /* TPKeyboardAvoidingScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

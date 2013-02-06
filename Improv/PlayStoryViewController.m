@@ -13,18 +13,6 @@
 @end
 
 @implementation PlayStoryViewController
-{
-	BOOL           keyboardVisible;
-	CGPoint        offset;
-	UIScrollView  *scrollView;
-}
-
-#define SCROLLVIEW_HEIGHT 460
-#define SCROLLVIEW_WIDTH  320
-
-#define SCROLLVIEW_CONTENT_HEIGHT 720
-#define SCROLLVIEW_CONTENT_WIDTH  320
-
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,10 +29,6 @@
 
 	// Do any additional setup after loading the view.
 	
-	// For keyboard scrolling
-	scrollView = (UIScrollView*) self.view;
-	keyboardVisible = NO;
-
 	// Figure out which user is our partner, then display his name
 	PFUser *creator = [self.game objectForKey:@"creator"];
 	PFUser *invitee = [self.game objectForKey:@"invitee"];
@@ -126,63 +110,6 @@
 	UITextField *textField = (UITextField *)[self.view viewWithTag:103];
 	textField.delegate = self;
 	[textField setReturnKeyType:UIReturnKeyDone];
-
-	// Assign UIScrollView delegate
-	((UIScrollView*) self.view).delegate = self;
-	[[NSNotificationCenter defaultCenter] addObserver:self
-														  selector:@selector (keyboardDidShow:)
-																name: UIKeyboardDidShowNotification object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-														  selector:@selector (keyboardDidHide:)
-																name: UIKeyboardDidHideNotification object:nil];
-}
-
-// Callback that's invoked when the keyboard is displayed.  This is our chance to move widgets around
-// so the keyboard doesn't occlude the widgets.
--(void) keyboardDidShow: (NSNotification *)notif
-{
-	// If keyboard is visible, return
-	if (keyboardVisible)
-	{
-		NSLog(@"Keyboard is already visible. Ignoring notification.");
-		return;
-	}
-	
-	// Get the size of the keyboard.
-	NSDictionary* info = [notif userInfo];
-	NSValue* aValue = [info objectForKey:UIKeyboardBoundsUserInfoKey];
-	CGSize keyboardSize = [aValue CGRectValue].size;
-	
-	// Save the current location so we can restore
-	// when keyboard is dismissed
-	offset = scrollView.contentOffset;
-	
-	// Resize the scroll view to make room for the keyboard
-	CGRect viewFrame = scrollView.frame;
-	viewFrame.size.height -= keyboardSize.height;
-	scrollView.frame = viewFrame;
-	
-	// Keyboard is now visible
-	keyboardVisible = YES;
-}
-
--(void) keyboardDidHide: (NSNotification *)notif
-{
-	// Is the keyboard already shown
-	if (!keyboardVisible)
-	{
-		NSLog(@"Keyboard is already hidden. Ignoring notification.");
-		return;
-	}
-	
-	// Reset the height of the scroll view to its original value
-	scrollView.frame = CGRectMake(0, 0, SCROLLVIEW_WIDTH, SCROLLVIEW_HEIGHT);
-	
-	// Reset the scrollview to previous location
-	scrollView.contentOffset = offset;
-	
-	// Keyboard is no longer visible
-	keyboardVisible = NO;
 }
 
 // Before the lobby segue is triggered, we validate the content the user submitted
@@ -206,16 +133,6 @@
 
 	// Dismiss the keyboard
 	[textField resignFirstResponder];
-
-	return YES;
-}
-
-// Validates text field
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
-	
-	if (textField.text.length == 0) {
-		return NO;
-	}
 
 	return YES;
 }

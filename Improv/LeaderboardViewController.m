@@ -112,7 +112,7 @@
 	NSString *str = [obj objectForKey:@"name"];
 	PFUser *obj2 = [game objectForKey:@"invitee"];
 	NSString *str2 = [obj2 objectForKey:@"name"];
-	playerLabel.text = [NSString stringWithFormat:@"By %@ and %@", str, str2];
+	playerLabel.text = [NSString stringWithFormat:@"By %@and %@", str, str2];
 
 	UILabel *storyLabel = (UILabel *)[cell viewWithTag:101];
 	storyLabel.text = @"It was a dark and stormy night...";		 // TODO

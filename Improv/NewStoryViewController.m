@@ -318,9 +318,31 @@ identifier:(ABMultiValueIdentifier)identifier
 - (void)invitePerson:(ABRecordRef)person
 {
 	NSString* name = (__bridge_transfer NSString*)ABRecordCopyValue(person, kABPersonFirstNameProperty);
-		
-	NSString* phone = nil;
+
+	// Get all phone numbers for contact
 	ABMultiValueRef phoneNumbers = ABRecordCopyValue(person, kABPersonPhoneProperty);
+	
+	// If we have no phone numbers, then get all phone numbers for linked contacts
+	if (phoneNumbers == nil || ABMultiValueGetCount(phoneNumbers) == 0)
+	{
+		CFArrayRef linkedContacts = ABPersonCopyArrayOfAllLinkedPeople(person);
+		phoneNumbers = ABMultiValueCreateMutable(kABPersonPhoneProperty);
+		ABMultiValueRef linkedPhones;
+		for (int i = 0; i < CFArrayGetCount(linkedContacts); i++)
+		{
+			ABRecordRef linkedContact = CFArrayGetValueAtIndex(linkedContacts, i);
+			linkedPhones = ABRecordCopyValue(linkedContact, kABPersonPhoneProperty);
+			if (linkedPhones != nil && ABMultiValueGetCount(linkedPhones) > 0)
+			{
+            for (int j = 0; j < ABMultiValueGetCount(linkedPhones); j++)
+            {
+					ABMultiValueAddValueAndLabel(phoneNumbers, ABMultiValueCopyValueAtIndex(linkedPhones, j), NULL, NULL);
+            }
+			}
+		}
+	}
+
+	NSString* phone = nil;
 	if (ABMultiValueGetCount(phoneNumbers) > 0) {
 		phone = (__bridge_transfer NSString*)
 		ABMultiValueCopyValueAtIndex(phoneNumbers, 0);
@@ -332,7 +354,7 @@ identifier:(ABMultiValueIdentifier)identifier
 		email = (__bridge_transfer NSString*)
 		ABMultiValueCopyValueAtIndex(emailAddresses, 0);
 	}
-
+	
 	if (phone != nil)
 	{
 		// Send SMS

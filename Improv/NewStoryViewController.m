@@ -298,8 +298,11 @@
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
 shouldContinueAfterSelectingPerson:(ABRecordRef)person
 {
+	// Make the people picker go away.  Important that this is NOT animated so that a pop-up modal
+	// dialog box for sending an email or SMS doesn't interfere with this dialog box going away
+	[self dismissViewControllerAnimated:NO completion:NULL];
+	
 	[self invitePerson:person];
-	[self dismissViewControllerAnimated:YES completion:NULL];
 	
 	return NO;
 }
@@ -321,16 +324,122 @@ identifier:(ABMultiValueIdentifier)identifier
 	if (ABMultiValueGetCount(phoneNumbers) > 0) {
 		phone = (__bridge_transfer NSString*)
 		ABMultiValueCopyValueAtIndex(phoneNumbers, 0);
-	} else {
-		phone = @"[None]";
 	}
 	
-	// TODO: Use Twilio or iPhone SMS to send invite
-	// TODO: Invite via email if they don't have a phone number
+	NSString* email = nil;
+	ABMultiValueRef emailAddresses = ABRecordCopyValue(person, kABPersonEmailProperty);
+	if (ABMultiValueGetCount(emailAddresses) > 0) {
+		email = (__bridge_transfer NSString*)
+		ABMultiValueCopyValueAtIndex(emailAddresses, 0);
+	}
+
+	if (phone != nil)
+	{
+		// Send SMS
+		NSMutableArray * recipients = [[NSMutableArray alloc] init];
+		[recipients addObject:phone];
+		[self sendSMSToRecipients:recipients body:@"Let's create a tall tale together!  Download the game to play with me here: http://www.aTallTale.com"];
+	}
+	else if (email != nil)
+	{
+		// Send email
+		[self sendEmailToRecipient:email subject:@"Let's create a Tall Tale together!" body:@"Let's create a tall tale together!  Download the game to play with me here: http://www.aTallTale.com"];
+	}
+	else
+	{
+		// TODO: Some sort of error since the user doesn't have an email / phone number
+	}
 }
 
 ////////////////////////////////////////////////////////
 // END AddressBookPicker Stuff
+////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////
+// BEGIN Send SMS Stuff
+////////////////////////////////////////////////////////
+
+- (void)sendSMSToRecipients:(NSArray *)recipients body:(NSString *)body
+{
+	MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
+	if([MFMessageComposeViewController canSendText])
+	{
+		controller.body = body;
+		controller.recipients = recipients;
+		controller.messageComposeDelegate = self;
+		[self presentViewController:controller animated:YES completion:NULL];
+	}
+}
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
+	
+	switch (result) {
+		case MessageComposeResultCancelled:
+			NSLog(@"Cancelled");
+			break;
+		case MessageComposeResultFailed:
+			NSLog(@"Failed");
+			break;
+		case MessageComposeResultSent:
+			NSLog(@"Send");
+			break;
+		default:
+			break;
+	}
+	
+	[self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+////////////////////////////////////////////////////////
+// END Send SMS Stuff
+////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////
+// BEGIN Send Email Stuff
+////////////////////////////////////////////////////////
+
+- (void)sendEmailToRecipient:(NSString*)recipient subject:(NSString*)subject body:(NSString*)body
+{
+	if ([MFMailComposeViewController canSendMail])
+	{
+		MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
+		controller.mailComposeDelegate = self;
+		[controller setToRecipients:[NSArray arrayWithObjects:recipient, nil]];
+		[controller setSubject:subject];
+		[controller setMessageBody:body isHTML:NO];
+//		[self presentViewController:controller animated:YES completion:NULL];
+		[self presentModalViewController:controller animated:YES];
+	}
+	else
+	{
+		// TODO: Some sort of error telling user they can't send email
+	}
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+	switch (result) {
+		case MFMailComposeResultCancelled:
+			NSLog(@"Cancelled");
+			break;
+		case MFMailComposeResultFailed:
+			NSLog(@"Failed");
+			break;
+		case MFMailComposeResultSent:
+			NSLog(@"Send");
+			break;
+		case MFMailComposeResultSaved:
+			NSLog(@"Saved");
+			break;
+		default:
+			break;
+	}
+
+	[self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+////////////////////////////////////////////////////////
+// END Send Email Stuff
 ////////////////////////////////////////////////////////
 
 @end

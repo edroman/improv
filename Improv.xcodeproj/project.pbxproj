@@ -55,6 +55,7 @@
 		A4DC261A16C0BF50005FD566 /* Constants.plist in Resources */ = {isa = PBXBuildFile; fileRef = A4DC261916C0BF50005FD566 /* Constants.plist */; };
 		A4DC261D16C1D34D005FD566 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DC261C16C1D34D005FD566 /* Constants.m */; };
 		A4DC262016C24C4A005FD566 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DC261F16C24C4A005FD566 /* TPKeyboardAvoidingScrollView.m */; };
+		A4DC262216CAE0A0005FD566 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4DC262116CAE0A0005FD566 /* MessageUI.framework */; };
 		A4F3C52F16AB58AC00367AC6 /* PlayStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F3C52E16AB58AC00367AC6 /* PlayStoryViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -124,6 +125,7 @@
 		A4DC261C16C1D34D005FD566 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		A4DC261E16C24C4A005FD566 /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
 		A4DC261F16C24C4A005FD566 /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
+		A4DC262116CAE0A0005FD566 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		A4F3C52D16AB58AC00367AC6 /* PlayStoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayStoryViewController.h; sourceTree = "<group>"; };
 		A4F3C52E16AB58AC00367AC6 /* PlayStoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayStoryViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,6 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4DC262216CAE0A0005FD566 /* MessageUI.framework in Frameworks */,
 				A46309C616BC93C2002D22E7 /* Parse.framework in Frameworks */,
 				A486C20516B1EF0E0045B273 /* AddressBook.framework in Frameworks */,
 				A486C20616B1EF0E0045B273 /* AddressBookUI.framework in Frameworks */,
@@ -178,6 +181,7 @@
 		27915D53168FF31600DB32E2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A4DC262116CAE0A0005FD566 /* MessageUI.framework */,
 				A46309C516BC93C2002D22E7 /* Parse.framework */,
 				A486C20316B1EF0E0045B273 /* AddressBook.framework */,
 				A486C20416B1EF0E0045B273 /* AddressBookUI.framework */,

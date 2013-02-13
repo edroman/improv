@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <AddressBookUI/AddressBookUI.h>
 #import <Parse/Parse.h>
+#import <MessageUI/MFMessageComposeViewController.h>
+#import <MessageUI/MFMailComposeViewController.h>
 
-@interface NewStoryViewController : UIViewController <PF_FBFriendPickerDelegate, ABPeoplePickerNavigationControllerDelegate>
+@interface NewStoryViewController : UIViewController <PF_FBFriendPickerDelegate, ABPeoplePickerNavigationControllerDelegate, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *firstName;
 @property (weak, nonatomic) IBOutlet UILabel *phoneNumber;

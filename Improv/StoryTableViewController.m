@@ -15,7 +15,8 @@
 
 // Holds the games retrieved from Parse
 @property (nonatomic, strong) NSMutableArray *finishedGames;
-@property (nonatomic, strong) NSMutableArray *unfinishedGames;
+@property (nonatomic, strong) NSMutableArray *myTurnGames;
+@property (nonatomic, strong) NSMutableArray *theirTurnGames;
 
 @end
 
@@ -43,7 +44,8 @@
 	
 	// Allocate memory for our game arrays
 	if (!self.finishedGames) self.finishedGames = [[NSMutableArray alloc] init];
-	if (!self.unfinishedGames) self.unfinishedGames = [[NSMutableArray alloc] init];
+	if (!self.myTurnGames) self.myTurnGames = [[NSMutableArray alloc] init];
+	if (!self.theirTurnGames) self.theirTurnGames = [[NSMutableArray alloc] init];
 	
 	///////////////////////////////////
 	// Load all games
@@ -68,7 +70,15 @@
 					[_finishedGames addObject:objects[i]];
 				}
 				else {
-					[_unfinishedGames addObject:objects[i]];
+					PFUser *currPlayer = [objects[i] objectForKey:@"currPlayer"];
+					if ([currPlayer.objectId isEqualToString:[PFUser currentUser].objectId])
+					{
+						[_myTurnGames addObject:objects[i]];
+					}
+					else
+					{
+						[_theirTurnGames addObject:objects[i]];
+					}
 				}
 			}
 
@@ -91,7 +101,15 @@
 							[_finishedGames addObject:objects[i]];
 						}
 						else {
-							[_unfinishedGames addObject:objects[i]];
+							PFUser *currPlayer = [objects[i] objectForKey:@"currPlayer"];
+							if ([currPlayer.objectId isEqualToString:[PFUser currentUser].objectId])
+							{
+								[_myTurnGames addObject:objects[i]];
+							}
+							else
+							{
+								[_theirTurnGames addObject:objects[i]];
+							}
 						}
 					}
 					
@@ -115,11 +133,18 @@
 	UITableViewCell *cell = [[button superview] superview];
 	NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
 	//		NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-	NSMutableArray *games = (indexPath.section == 0 ? _unfinishedGames : _finishedGames);
+
+	NSMutableArray *games;
+	if (indexPath.section == 0) games = _myTurnGames;
+	else if (indexPath.section == 1) games = _theirTurnGames;
+	else games = _finishedGames;
+
 	PFObject *game = games[indexPath.row];
 	return game;
 }
 
+// When user clicks the Nudge/Play button, we intercept that call, and don't perform
+// a segue but rather send a push notification in case of a nudge.
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
 	if ([identifier isEqualToString:@"StoryTableToPlayStorySegue"]) {
 		// TODO: If it's not our turn, then send a push notification and return FALSE
@@ -165,13 +190,16 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 	// Return the number of sections.
-	return 2;
+	return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 	// Determine if we're referencing finished or unfinished game data
-	NSMutableArray *games = (section == 0 ? _unfinishedGames : _finishedGames);
+	NSMutableArray *games;
+	if (section == 0) games = _myTurnGames;
+	else if (section == 1) games = _theirTurnGames;
+	else games = _finishedGames;
 	
 	// Return the number of rows in the section.
 	return games.count;
@@ -180,7 +208,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	// Determine if we're referencing finished or unfinished game data
-	NSMutableArray *games = (indexPath.section == 0 ? _unfinishedGames : _finishedGames);
+	NSMutableArray *games;
+	if (indexPath.section == 0) games = _myTurnGames;
+	else if (indexPath.section == 1) games = _theirTurnGames;
+	else games = _finishedGames;
 	
 	// This string should correspond to the string set in the storyboard Table View Cell prototype
 	static NSString *CellIdentifier = @"Cell";
@@ -204,8 +235,8 @@
 	UILabel *storyLabel = (UILabel *)[cell viewWithTag:101];
 	storyLabel.text = [[game objectForKey:@"intro"] objectForKey:@"value"];
 	
-	// "Play" or "Nudge" button
-	if (indexPath.section == 0)
+	// Change "Play" into "Nudge" button for games i'm waiting on
+	if (indexPath.section == 1)
 	{
 		PFUser *currPlayer = [game objectForKey:@"currPlayer"];
 		UIButton *playButton = (UIButton *)[cell viewWithTag:102];
@@ -214,7 +245,8 @@
 			[playButton setTitle:@"Nudge" forState:UIControlStateNormal];
 		}
 	}
-	else
+	// Hide "Play" button if we're looking at completed games
+	else if (indexPath.section == 2)
 	{
 		UIButton *playButton = (UIButton *)[cell viewWithTag:102];
 		playButton.hidden = YES;
@@ -226,7 +258,10 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	// Determine if we're referencing finished or unfinished game data
-	NSMutableArray *games = (indexPath.section == 0 ? _unfinishedGames : _finishedGames);
+	NSMutableArray *games;
+	if (indexPath.section == 0) games = _myTurnGames;
+	else if (indexPath.section == 1) games = _theirTurnGames;
+	else games = _finishedGames;
 	
 	// Swipable DELETE button for games
 	if (editingStyle == UITableViewCellEditingStyleDelete)
@@ -244,7 +279,8 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-	if(section == 0) return @"Current Games";
+	if(section == 0) return @"Current Games - My Turn";
+	else if(section == 1) return @"Current Games - Their Turn";
 	else return @"Completed Games";
 }
 

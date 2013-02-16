@@ -48,6 +48,7 @@
 	[query orderByDescending:@"votes"];
 	[query includeKey:@"creator"];
 	[query includeKey:@"invitee"];
+	[query includeKey:@"intro"];	
 	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
 		if (!error) {
 			// The find succeeded.

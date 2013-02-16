@@ -41,16 +41,51 @@
 	
 	// Uncomment the following line to display an Edit button in the navigation bar for this view controller.
 	// self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
+	///////////////////////////////////
+	// Setup "Pull to Refresh" control
+	///////////////////////////////////
+
+	UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+	refreshControl.tintColor = [UIColor magentaColor];
+	refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+	[refreshControl addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
+	self.refreshControl = refreshControl;
+	
+	///////////////////////////////////
+	// Load all games
+	///////////////////////////////////
 	
 	// Allocate memory for our game arrays
 	if (!self.finishedGames) self.finishedGames = [[NSMutableArray alloc] init];
 	if (!self.myTurnGames) self.myTurnGames = [[NSMutableArray alloc] init];
 	if (!self.theirTurnGames) self.theirTurnGames = [[NSMutableArray alloc] init];
 	
-	///////////////////////////////////
-	// Load all games
-	///////////////////////////////////
+	[self loadGames];
+}
 
+// Pull to refresh functionality
+-(void)refreshView:(UIRefreshControl *)refresh {
+	refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing games..."];
+
+	// custom refresh logic would be placed here...
+	[self loadGames];
+	
+	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+	[formatter setDateFormat:@"MMM d, h:mm a"];
+	NSString *lastUpdated = [NSString stringWithFormat:@"Last updated on %@",
+									 [formatter stringFromDate:[NSDate date]]];
+	refresh.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
+	[refresh endRefreshing];
+}
+
+// Helper method, called when we first load the view, and when we refresh
+-(void)loadGames {
+	// Clear out existing data from previous loads
+	[_finishedGames removeAllObjects];
+	[_myTurnGames removeAllObjects];
+	[_theirTurnGames removeAllObjects];
+	
 	// Find all games I created
 	PFQuery *query1 = [PFQuery queryWithClassName:@"Game"];
 	[query1 includeKey:@"creator"];
@@ -58,7 +93,7 @@
 	[query1 includeKey:@"intro"];
 	[query1 includeKey:@"spine"];
 	[query1 whereKey:@"creator" equalTo:[PFUser currentUser]];
-
+	
 	[query1 findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
 		if (!error) {
 			// The find succeeded.
@@ -81,7 +116,7 @@
 					}
 				}
 			}
-
+			
 			// Find all games I was invited to
 			PFQuery *query2 = [PFQuery queryWithClassName:@"Game"];
 			[query2 includeKey:@"creator"];
@@ -89,7 +124,7 @@
 			[query2 includeKey:@"intro"];
 			[query2 includeKey:@"spine"];
 			[query2 whereKey:@"invitee" equalTo:[PFUser currentUser]];
-
+			
 			[query2 findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
 				if (!error) {
 					// The find succeeded.
@@ -124,7 +159,7 @@
 			// Log details of the failure
 			NSLog(@"Error: %@ %@", error, [error userInfo]);
 		}
-	}];
+	}];	
 }
 
 - (PFObject *)getGameForButtonClicked:(id)sender {

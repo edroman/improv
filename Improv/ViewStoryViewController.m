@@ -107,15 +107,20 @@
 
 - (IBAction)facebookPostToWall:(id)sender
 {
+	// TODO: Custom URL to ATallTale.com
 	NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-											 @"http://www.ATallTale.com", @"link",
-											 @"Check out this tall tale!", @"name",
-											 @"Made by XYZ and ABC on http://www.aTallTale.com", @"caption",
-											 @"Once upon a time...", @"description",
-//											 @"Test Message!", @"message",
+//											 @"http://www.ATallTale.com", @"link",
+//											 @"Check out this tall tale!", @"name",
+//											 @"Made by XYZ and ABC on http://www.aTallTale.com", @"caption",
+//											 @"Once upon a time...", @"description",
+											 @"I made a really entertaining story with my friend.  Check it out!  Would you please help me by voting for it?  http://www.ATallTale.com", @"message",
 											 nil];
 
-   // Create request for user's Facebook data
+   // Create request for user's Facebook data.  Does NOT use a dialog box, which is nice.
+	// Unfortuantely no way to @mention another user in these posts.
+	//
+	// Note: Can only post to your own wall using this technique.
+	// When posting to friends walls it requires a dialog box -- see NewStoryViewController.m
 	NSString *requestPath = @"/me/feed";
 	
 	// Send request to Facebook

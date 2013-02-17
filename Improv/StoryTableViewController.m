@@ -70,13 +70,16 @@
 
 	// custom refresh logic would be placed here...
 	[self loadGames];
-	
+}
+
+// We call this when we're done refreshing (since refreshing is asynchronous, we call this manually)
+-(void)endRefreshing {
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	[formatter setDateFormat:@"MMM d, h:mm a"];
 	NSString *lastUpdated = [NSString stringWithFormat:@"Last updated on %@",
 									 [formatter stringFromDate:[NSDate date]]];
-	refresh.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
-	[refresh endRefreshing];
+	self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
+	[self.refreshControl endRefreshing];
 }
 
 // Helper method, called when we first load the view, and when we refresh
@@ -150,6 +153,9 @@
 					
 					// reload table data, forcing a new numberOfRowsInSection()
 					[self.tableView reloadData];
+					
+					// Stop displaying "refreshing"
+					[self endRefreshing];
 				} else {
 					// Log details of the failure
 					NSLog(@"Error: %@ %@", error, [error userInfo]);
@@ -270,22 +276,12 @@
 	UILabel *storyLabel = (UILabel *)[cell viewWithTag:101];
 	storyLabel.text = [[game objectForKey:@"intro"] objectForKey:@"value"];
 	
-	// Change "Play" into "Nudge" button for games i'm waiting on
-	if (indexPath.section == 1)
-	{
-		PFUser *currPlayer = [game objectForKey:@"currPlayer"];
-		UIButton *playButton = (UIButton *)[cell viewWithTag:102];
-		if (![[PFUser currentUser].objectId isEqualToString:currPlayer.objectId])
-		{
-			[playButton setTitle:@"Nudge" forState:UIControlStateNormal];
-		}
-	}
-	// Hide "Play" button if we're looking at completed games
-	else if (indexPath.section == 2)
-	{
-		UIButton *playButton = (UIButton *)[cell viewWithTag:102];
-		playButton.hidden = YES;
-	}
+	// Display "Play" for games where it's my turn, "Nudge" for games where it's not my turn,
+	// and hide button otherwise
+	UIButton *playButton = (UIButton *)[cell viewWithTag:102];
+	if (indexPath.section == 0) [playButton setTitle:@"Play" forState:UIControlStateNormal];
+	else if (indexPath.section == 1) [playButton setTitle:@"Nudge" forState:UIControlStateNormal];
+	else if (indexPath.section == 2) playButton.hidden = YES;
 	
 	return cell;
 }

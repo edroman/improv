@@ -60,7 +60,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		27915D50168FF31600DB32E2 /* Improv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Improv.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		27915D50168FF31600DB32E2 /* A Tall Tale.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "A Tall Tale.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27915D54168FF31600DB32E2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		27915D56168FF31600DB32E2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		27915D58168FF31600DB32E2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -173,7 +173,7 @@
 		27915D51168FF31600DB32E2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				27915D50168FF31600DB32E2 /* Improv.app */,
+				27915D50168FF31600DB32E2 /* A Tall Tale.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -292,7 +292,7 @@
 			);
 			name = Improv;
 			productName = Improv;
-			productReference = 27915D50168FF31600DB32E2 /* Improv.app */;
+			productReference = 27915D50168FF31600DB32E2 /* A Tall Tale.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -392,7 +392,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ed Roman (EKM5FTX55C)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ed Roman (EKM5FTX55C)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -407,6 +408,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "FF8D2580-9E6C-4567-BCE4-28E1D1C80B19";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FF8D2580-9E6C-4567-BCE4-28E1D1C80B19";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -421,7 +424,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: GHOSTFIRE GAMES LLC";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: GHOSTFIRE GAMES LLC";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -429,6 +433,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "A98E8CDB-1E3B-4C1D-BA34-11225E5D4C74";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A98E8CDB-1E3B-4C1D-BA34-11225E5D4C74";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -439,6 +445,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Ed Roman (EKM5FTX55C)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ed Roman (EKM5FTX55C)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -450,8 +457,9 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Parse.framework/Versions/1.1.24\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PRODUCT_NAME = "A Tall Tale";
+				PROVISIONING_PROFILE = "FF8D2580-9E6C-4567-BCE4-28E1D1C80B19";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FF8D2580-9E6C-4567-BCE4-28E1D1C80B19";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -460,6 +468,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution: GHOSTFIRE GAMES LLC";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: GHOSTFIRE GAMES LLC";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -471,8 +480,9 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Parse.framework/Versions/1.1.24\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "F309EB5E-B97E-477E-B776-BD2A431A5F05";
+				PRODUCT_NAME = "A Tall Tale";
+				PROVISIONING_PROFILE = "A98E8CDB-1E3B-4C1D-BA34-11225E5D4C74";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A98E8CDB-1E3B-4C1D-BA34-11225E5D4C74";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

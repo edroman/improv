@@ -736,9 +736,9 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="RfL-Jt-LIX"/>
-        <segue reference="tH9-v7-xTv"/>
-        <segue reference="kdA-vF-CqP"/>
         <segue reference="pyt-G5-CGX"/>
+        <segue reference="RfL-Jt-LIX"/>
+        <segue reference="myI-hV-AYg"/>
+        <segue reference="uUJ-LX-V80"/>
     </inferredMetricsTieBreakers>
 </document>

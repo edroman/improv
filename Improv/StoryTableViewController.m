@@ -60,8 +60,28 @@
 	if (!self.finishedGames) self.finishedGames = [[NSMutableArray alloc] init];
 	if (!self.myTurnGames) self.myTurnGames = [[NSMutableArray alloc] init];
 	if (!self.theirTurnGames) self.theirTurnGames = [[NSMutableArray alloc] init];
-	
-	[self loadGames];
+}
+
+// View becomes active - refresh
+-(void)viewDidAppear:(BOOL)animated {
+	// Refresh view
+	[self refreshView:self.refreshControl];
+
+	// Register for suspend/resume msgs
+	[[NSNotificationCenter defaultCenter] addObserver:self
+														  selector:@selector(onResume:)
+																name:UIApplicationDidBecomeActiveNotification object:nil];
+}
+
+// View becomes inactive
+-(void)viewDidDisappear:(BOOL)animated {
+	// Stop listening to suspend/resume events
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+// Suspend/resume
+-(void)onResume:(NSNotification *)notification {
+	[self refreshView:self.refreshControl];
 }
 
 // Pull to refresh functionality
@@ -198,10 +218,6 @@
 		// Otherwise it's not our turn and it's a "Nudge" button, so send a push notification instead
 		else
 		{
-			PFUser *creator = [game objectForKey:@"creator"];
-			PFUser *invitee = [game objectForKey:@"invitee"];
-			PFUser *partner = ([[PFUser currentUser].objectId isEqualToString:creator.objectId]) ? invitee : creator;
-
 			// Find devices (called "installations" in parse) associated with our partner
 			PFQuery *userQuery = [PFUser query];
 			[userQuery whereKey:@"objectId" equalTo:currPlayer.objectId];
@@ -212,8 +228,8 @@
 			PFPush *push = [[PFPush alloc] init];
 			[push setQuery:pushQuery]; // Set our Installation query
 			[push setMessage:[NSString stringWithFormat:@"Hi %@!  This is %@.  I'd love to finish up this game of A Tall Tale with you.  It's your turn!",
-									[partner objectForKey:@"first_name"],
-									[[PFUser currentUser] objectForKey:@"first_name"]]];
+									[[PFUser currentUser] objectForKey:@"first_name"],
+									[currPlayer objectForKey:@"first_name"]]];
 			[push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
 				if (succeeded) {
 					UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Nudge Sent!"

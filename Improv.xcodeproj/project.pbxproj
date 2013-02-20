@@ -52,6 +52,7 @@
 		A486C22216B488800045B273 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A486C22016B4887F0045B273 /* IntroViewController.m */; };
 		A486C22516B627C30045B273 /* IntroPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A486C22416B627C30045B273 /* IntroPageViewController.m */; };
 		A486C22716B9E3BA0045B273 /* ImageData.plist in Resources */ = {isa = PBXBuildFile; fileRef = A486C22616B9E3BA0045B273 /* ImageData.plist */; };
+		A4A0078E16D5617800B5AA2E /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A0078D16D5617700B5AA2E /* Utils.m */; };
 		A4DC261A16C0BF50005FD566 /* Constants.plist in Resources */ = {isa = PBXBuildFile; fileRef = A4DC261916C0BF50005FD566 /* Constants.plist */; };
 		A4DC261D16C1D34D005FD566 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DC261C16C1D34D005FD566 /* Constants.m */; };
 		A4DC262016C24C4A005FD566 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DC261F16C24C4A005FD566 /* TPKeyboardAvoidingScrollView.m */; };
@@ -120,6 +121,8 @@
 		A486C22316B627C30045B273 /* IntroPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroPageViewController.h; sourceTree = "<group>"; };
 		A486C22416B627C30045B273 /* IntroPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroPageViewController.m; sourceTree = "<group>"; };
 		A486C22616B9E3BA0045B273 /* ImageData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ImageData.plist; sourceTree = "<group>"; };
+		A4A0078C16D5617700B5AA2E /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		A4A0078D16D5617700B5AA2E /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		A4DC261916C0BF50005FD566 /* Constants.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Constants.plist; sourceTree = "<group>"; };
 		A4DC261B16C1D34D005FD566 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		A4DC261C16C1D34D005FD566 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
@@ -209,6 +212,8 @@
 			isa = PBXGroup;
 			children = (
 				27915DB8168FFC9D00DB32E2 /* Improv.storyboard */,
+				A4A0078C16D5617700B5AA2E /* Utils.h */,
+				A4A0078D16D5617700B5AA2E /* Utils.m */,
 				A4DC261B16C1D34D005FD566 /* Constants.h */,
 				A4DC261C16C1D34D005FD566 /* Constants.m */,
 				A486C21D16B4887F0045B273 /* ImageScrollView.h */,
@@ -366,6 +371,7 @@
 				A46309C916BEE6AB002D22E7 /* SettingsViewController.m in Sources */,
 				A4DC261D16C1D34D005FD566 /* Constants.m in Sources */,
 				A4DC262016C24C4A005FD566 /* TPKeyboardAvoidingScrollView.m in Sources */,
+				A4A0078E16D5617800B5AA2E /* Utils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -215,8 +215,22 @@
 									[partner objectForKey:@"first_name"],
 									[[PFUser currentUser] objectForKey:@"first_name"]]];
 			[push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-				if (!succeeded)
-				{
+				if (succeeded) {
+					UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Nudge Sent!"
+																					message:@"A notification has been successfully sent!"
+																				  delegate:nil
+																	  cancelButtonTitle:@"OK"
+																	  otherButtonTitles:nil];
+					[alert show];
+					NSLog(@"Sent push notification!");
+				}
+				else {
+					UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Nudge Error!"
+																					message:[NSString stringWithFormat:@"Error sending a notification! %@", error]
+																				  delegate:nil
+																	  cancelButtonTitle:@"OK"
+																	  otherButtonTitles:nil];
+					[alert show];
 					NSLog(@"Error sending push: %@", error);
 				}
 			}];

@@ -188,14 +188,41 @@
 // a segue but rather send a push notification in case of a nudge.
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
 	if ([identifier isEqualToString:@"StoryTableToPlayStorySegue"]) {
-		// TODO: If it's not our turn, then send a push notification and return FALSE
-		// else return TRUE
 		PFObject *game = [self getGameForButtonClicked:sender];
 		PFUser *currPlayer = [game objectForKey:@"currPlayer"];
+
+		// If it's our turn, then it's a "Play" button, so perform the segue
 		if ([[PFUser currentUser].objectId isEqualToString:currPlayer.objectId]) {
 			return TRUE;
 		}
-		return FALSE;
+		// Otherwise it's not our turn and it's a "Nudge" button, so send a push notification instead
+		else
+		{
+			PFUser *creator = [game objectForKey:@"creator"];
+			PFUser *invitee = [game objectForKey:@"invitee"];
+			PFUser *partner = ([[PFUser currentUser].objectId isEqualToString:creator.objectId]) ? invitee : creator;
+
+			// Find devices (called "installations" in parse) associated with our partner
+			PFQuery *userQuery = [PFUser query];
+			[userQuery whereKey:@"objectId" equalTo:currPlayer.objectId];
+			PFQuery *pushQuery = [PFInstallation query];
+			[pushQuery whereKey:@"owner" matchesQuery:userQuery];
+			
+			// Send push notification to query
+			PFPush *push = [[PFPush alloc] init];
+			[push setQuery:pushQuery]; // Set our Installation query
+			[push setMessage:[NSString stringWithFormat:@"Hi %@!  This is %@.  I'd love to finish up this game of A Tall Tale with you.  It's your turn!",
+									[partner objectForKey:@"first_name"],
+									[[PFUser currentUser] objectForKey:@"first_name"]]];
+			[push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+				if (!succeeded)
+				{
+					NSLog(@"Error sending push: %@", error);
+				}
+			}];
+
+			return FALSE;
+		}
 	}
 	else {
 		return TRUE;

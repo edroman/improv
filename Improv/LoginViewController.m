@@ -87,7 +87,12 @@
 					[user setObject:userData[@"last_name"] forKey:@"last_name"];
 					[user setObject:userData[@"email"] forKey:@"email"];
 					[user setObject:userData[@"id"] forKey:@"fbID"];
-					[user save];
+					[user saveInBackground];
+					
+					// Save the device's owner
+					PFInstallation *installation = [PFInstallation currentInstallation];
+					[installation setObject:[PFUser currentUser] forKey:@"owner"];
+					[installation saveInBackground];
 				}
 			}];
 			

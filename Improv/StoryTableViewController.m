@@ -113,6 +113,7 @@
 	PFQuery *query1 = [PFQuery queryWithClassName:@"Game"];
 	[query1 includeKey:@"creator"];
 	[query1 includeKey:@"invitee"];
+	[query1 includeKey:@"currPlayer"];
 	[query1 includeKey:@"intro"];
 	[query1 includeKey:@"spine"];
 	[query1 whereKey:@"creator" equalTo:[PFUser currentUser]];
@@ -144,6 +145,7 @@
 			PFQuery *query2 = [PFQuery queryWithClassName:@"Game"];
 			[query2 includeKey:@"creator"];
 			[query2 includeKey:@"invitee"];
+			[query2 includeKey:@"currPlayer"];
 			[query2 includeKey:@"intro"];
 			[query2 includeKey:@"spine"];
 			[query2 whereKey:@"invitee" equalTo:[PFUser currentUser]];

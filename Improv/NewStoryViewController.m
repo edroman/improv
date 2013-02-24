@@ -75,12 +75,14 @@
 		// Get a random intro
 		query = [PFQuery queryWithClassName:@"Intro"];
 		results = [query findObjects];
-		NSObject *intro = results[rand() % results.count];
+		PFObject *intro = results[rand() % results.count];
 		
 		// Get a random story spine
 		query = [PFQuery queryWithClassName:@"Spine"];
+		[query whereKey:@"active" equalTo:[NSNumber numberWithBool:YES]];
 		results = [query findObjects];
-		NSObject *spine = results[rand() % results.count];
+		PFObject *spine = results[rand() % results.count];
+		int numTurns = [[spine objectForKey:@"numTurns"] intValue];
 	
 		// Create an empty new game with the 2 players
 		PFObject *game = [PFObject objectWithClassName:@"Game"];
@@ -94,6 +96,60 @@
 		[game setObject:[PFUser currentUser] forKey:@"currPlayer"];
 		[game save];
 		
+		//////////////////////////////////////////////
+		// Create the new turn in Parse w/Constraints
+		//////////////////////////////////////////////
+		
+		// Find the spine prefixes for this spine
+		PFQuery *spinePrefixQuery = [PFQuery queryWithClassName:@"SpinePrefix"];
+		[spinePrefixQuery includeKey:@"Constraint_Category"];
+		[spinePrefixQuery whereKey:@"Spine" equalTo:spine];
+		[spinePrefixQuery orderByAscending:@"turnNumber"];
+		NSArray *spinePrefixes = [spinePrefixQuery findObjects];
+		
+		PFObject *subject = 0;
+		for (int turnNum = 1; turnNum <= numTurns; ++turnNum)
+		{
+			// Create turn
+			PFObject *turn = [PFObject objectWithClassName:@"Turn"];
+			[turn setObject:game forKey:@"Game"];
+			
+			// Set which player is assigned to this turn
+			PFUser *turnUser = (turnNum % 2 == 1 ? [PFUser currentUser] : invitee);
+			[turn setObject:turnUser forKey:@"User"];
+			
+			// Set the turn number
+			[turn setObject:[NSNumber numberWithInt:turnNum] forKey:@"turnNumber"];
+
+			// Retrieve the constraint category for this spine prefix
+			NSString *category = [spinePrefixes[turnNum-1] objectForKey:@"Constraint_Category"];
+
+			// Add a constraint to the turn
+			PFObject *constraint = 0;
+			if (turnNum < numTurns)
+			{
+				// For most turns, get a random constraint matching that constraint category
+				// TODO: De-dupe
+				PFQuery *constraintQuery = [PFQuery queryWithClassName:@"Constraint"];
+				[constraintQuery whereKey:@"Category" equalTo:category];
+				results = [constraintQuery findObjects];
+				constraint = results[rand() % results.count];
+				
+				// Store the subject (first constraint)
+				if (turnNum == 1) subject = constraint;
+			}
+			else
+			{
+				// For final turn, repeat subject
+				constraint = subject;
+			}
+			// Assign constraint to turn
+			[turn setObject:constraint forKey:@"Constraint"];
+			
+			// Persist via Parse
+			[turn save];
+		}
+
 		// Send the resulting new game to the PlayViewController
 		PlayStoryViewController *controller = (PlayStoryViewController *)segue.destinationViewController;
 		controller.game = game;

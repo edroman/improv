@@ -152,21 +152,35 @@
 		}
 		
 		//////////////////////////////////////////////
-		// Create the new turn in Parse
+		// Update the turn in Parse
 		//////////////////////////////////////////////
-
-		PFObject *turn = [PFObject objectWithClassName:@"Turn"];
-		[turn setObject:self.game forKey:@"Game"];
-		[turn setObject:[PFUser currentUser] forKey:@"User"];
 		
+		// Find the matching turn for this game
+		PFQuery *query = [PFQuery queryWithClassName:@"Turn"];
+		[query whereKey:@"Game" equalTo:self.game];
 		int turnNum = [[self.game objectForKey:@"turn"] intValue];
-		[turn setObject:[NSNumber numberWithInt:turnNum] forKey:@"turnNumber"];
-
-		[turn setObject:str forKey:@"turn"];
-
-		// Persist via Parse
-		[turn save];
+		[query whereKey:@"turnNumber" equalTo:[NSString stringWithFormat:@"%d",turnNum]];
 		
+		// Execute query
+		[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+			if (!error) {
+				// The find succeeded.
+				if (objects.count != 1) NSLog(@"Error - should have found exactly 1 result!!!");
+				else NSLog(@"Successfully retrieved %d results.", objects.count);
+
+				// Set the value of the turn
+				PFObject *turn = objects[0];
+				[turn setObject:str forKey:@"turn"];
+				
+				// Persist via Parse
+				[turn save];
+				
+			} else {
+				// Log details of the failure
+				NSLog(@"Error: %@ %@", error, [error userInfo]);
+			}
+		}];
+
 		////////////////////////////////////
 		// Update main game object
 		////////////////////////////////////

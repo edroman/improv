@@ -356,9 +356,20 @@
 	// Swipable DELETE button for games
 	if (editingStyle == UITableViewCellEditingStyleDelete)
 	{
+		// Remove turns via Parse
+		PFQuery *query = [PFQuery queryWithClassName:@"Turn"];
+		[query whereKey:@"Game" equalTo:games[indexPath.row]];
+		[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+			for (int i=0; i < objects.count; ++i)
+			{
+				PFObject *turn = objects[i];
+				[turn deleteInBackground];
+			}
+		}];
+		
 		// Remove game via Parse
 		[games[indexPath.row] deleteInBackground];
-		
+
 		// Remove game from array
 		[games removeObjectAtIndex:indexPath.row];
 		

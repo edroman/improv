@@ -74,22 +74,29 @@
                                     <segue destination="j43-0E-PFo" kind="push" identifier="PlayStoryToLobbySegue" id="RfL-Jt-LIX"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="105" contentMode="left" text="You must use the word FOO!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vfn-3I-EWS">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="oz8-3B-X0h" secondAttribute="trailing" constant="10" id="4bQ-oW-7Xg"/>
                             <constraint firstItem="YhV-in-E5c" firstAttribute="top" secondItem="hGv-9f-SV5" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="6Ke-Tw-n14"/>
+                            <constraint firstItem="Vfn-3I-EWS" firstAttribute="top" secondItem="YhV-in-E5c" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="9JM-sx-1x0"/>
+                            <constraint firstItem="iqu-Pk-71c" firstAttribute="centerX" secondItem="n2o-2e-sTC" secondAttribute="centerX" type="default" id="COs-cp-eYc"/>
+                            <constraint firstItem="Vfn-3I-EWS" firstAttribute="centerX" secondItem="YhV-in-E5c" secondAttribute="centerX" type="default" id="Eht-RU-eRY"/>
                             <constraint firstItem="oz8-3B-X0h" firstAttribute="top" secondItem="93O-gN-uNc" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Qxs-QT-xth"/>
-                            <constraint firstAttribute="bottom" secondItem="iqu-Pk-71c" secondAttribute="bottom" constant="47" id="aJV-Jt-NxQ"/>
                             <constraint firstItem="YhV-in-E5c" firstAttribute="centerX" secondItem="hGv-9f-SV5" secondAttribute="centerX" type="default" id="aR8-KI-kNU"/>
                             <constraint firstItem="oz8-3B-X0h" firstAttribute="leading" secondItem="hGv-9f-SV5" secondAttribute="leading" type="default" id="ciP-OF-vaT"/>
                             <constraint firstItem="93O-gN-uNc" firstAttribute="top" secondItem="n2o-2e-sTC" secondAttribute="top" type="default" id="erd-1r-h61"/>
+                            <constraint firstItem="Vfn-3I-EWS" firstAttribute="centerX" secondItem="iqu-Pk-71c" secondAttribute="centerX" type="default" id="k7e-Nq-mvQ"/>
+                            <constraint firstAttribute="bottom" secondItem="iqu-Pk-71c" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="oUh-dn-xN3"/>
                             <constraint firstItem="hGv-9f-SV5" firstAttribute="trailing" secondItem="oz8-3B-X0h" secondAttribute="trailing" type="default" id="oqi-7t-exq"/>
                             <constraint firstItem="hGv-9f-SV5" firstAttribute="top" secondItem="oz8-3B-X0h" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="ry2-Nx-GYy"/>
-                            <constraint firstItem="iqu-Pk-71c" firstAttribute="top" secondItem="YhV-in-E5c" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="vpG-Ao-oo9"/>
-                            <constraint firstItem="iqu-Pk-71c" firstAttribute="centerX" secondItem="YhV-in-E5c" secondAttribute="centerX" type="default" id="wX2-ID-v4p"/>
                             <constraint firstItem="oz8-3B-X0h" firstAttribute="centerX" secondItem="93O-gN-uNc" secondAttribute="centerX" type="default" id="xvk-iM-smn"/>
-                            <constraint firstItem="oz8-3B-X0h" firstAttribute="centerX" secondItem="n2o-2e-sTC" secondAttribute="centerX" type="default" id="zQH-H5-da2"/>
+                            <constraint firstItem="iqu-Pk-71c" firstAttribute="top" secondItem="n2o-2e-sTC" secondAttribute="top" constant="397" id="zVx-jC-ktt"/>
                         </constraints>
                     </scrollView>
                     <navigationItem key="navigationItem" id="qIN-xc-rpB"/>
@@ -682,54 +689,6 @@
         <image name="login-button-small-pressed.png" width="151" height="43"/>
         <image name="login-button-small.png" width="151" height="43"/>
     </resources>
-    <classes>
-        <class className="IntroViewController" superclassName="UIPageViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IntroViewController.h"/>
-        </class>
-        <class className="LeaderboardViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeaderboardViewController.h"/>
-        </class>
-        <class className="LobbyViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LobbyViewController.h"/>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="loginButtonTouchHandler:"/>
-                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
-            </relationships>
-        </class>
-        <class className="MainMenuViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuViewController.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="NewStoryViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewStoryViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="showAddressBookPicker"/>
-                <relationship kind="action" name="showFBFriendPicker"/>
-                <relationship kind="outlet" name="firstName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="phoneNumber" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="PlayStoryViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlayStoryViewController.h"/>
-        </class>
-        <class className="SettingsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
-        </class>
-        <class className="StoryTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StoryTableViewController.h"/>
-        </class>
-        <class className="TPKeyboardAvoidingScrollView" superclassName="UIScrollView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TPKeyboardAvoidingScrollView.h"/>
-        </class>
-        <class className="ViewStoryViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewStoryViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

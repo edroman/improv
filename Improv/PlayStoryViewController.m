@@ -37,75 +37,86 @@
 	partnerLabel.text = [NSString stringWithFormat:@"Game with %@", [partner objectForKey:@"first_name"]];
 
 	////////////////////////////////////////////
-	// BEGIN Compose the existing story so far
+	// BEGIN Compose the existing story so far plus constraints
 	////////////////////////////////////////////
 	
 	NSMutableString *story = [[NSMutableString alloc] init];
 	UILabel *storyLabel = (UILabel *)[self.view viewWithTag:101];
 	NSString *intro = [[self.game objectForKey:@"intro"] objectForKey:@"value"];
-	int turn = [[self.game objectForKey:@"turn"] intValue];
+	int playerTurn = [[self.game objectForKey:@"turn"] intValue];
 
-	if (turn >= 2) {
-		// Add the intro
-		[story appendString:intro];
-		
-		// Find all turns for this game
-		PFQuery *query = [PFQuery queryWithClassName:@"Turn"];
-		[query whereKey:@"Game" equalTo:self.game];
-		[query orderByAscending:@"turnNumber"];
-		[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-			if (!error) {
-				// The find succeeded.
-				NSLog(@"Successfully retrieved %d results.", objects.count);
+	// Add the intro to the historical story so far if we've progressed that far...
+	if (playerTurn >= 2) [story appendString:intro];
+
+	// Find all turns for this game
+	PFQuery *query = [PFQuery queryWithClassName:@"Turn"];
+	[query includeKey:@"Constraint"];
+	[query whereKey:@"Game" equalTo:self.game];
+	[query orderByAscending:@"turnNumber"];
+	[query findObjectsInBackgroundWithBlock:^(NSArray *turns, NSError *error) {
+		if (!error) {
+			NSLog(@"Successfully retrieved %d results.", turns.count);
+			
+			// For each turn...
+			for (int i=0; i < turns.count; ++i) {
+				PFObject *turn = turns[i];
+				int turnNumber = [[turn objectForKey:@"turnNumber"] intValue];
 				
-				// Add story spine + turn
-				for (int i=0; i < objects.count; ++i) {
+				// If we're on the player's turn number..
+				if (turnNumber == playerTurn)
+				{
+					// Display next story spine or intro in the "player instructions" for this turn
+					UILabel *spineLabel = (UILabel *)[self.view viewWithTag:102];
+					if (playerTurn >= 2) {
+						NSString *str = [NSString stringWithFormat:@"prefix%d", playerTurn-1];
+						NSString *prefix = [[self.game objectForKey:@"spine"] objectForKey:str];
+						spineLabel.text = [NSString stringWithFormat:@"%@...", prefix];
+					}
+					else {
+						spineLabel.text = intro;
+					}
+					
+					// Display current constraint
+					UILabel *constraintLabel = (UILabel *)[self.view viewWithTag:105];
+					NSString *constraint = [[turn objectForKey:@"Constraint"] objectForKey:@"phrase"];
+					constraintLabel.text = [NSString stringWithFormat:@"You must use the word '%@'!", constraint];
+				}
+				
+				// Otherwise, if we're on a previous turn from the current turn, construct the story so far..
+				else if (turnNumber < playerTurn)
+				{
 					// Add story spine (not for first, since that is the intro)
-					if (i >= 1)
+					if (turnNumber > 1)
 					{
-						NSString *str = [NSString stringWithFormat:@"prefix%d", i];
+						NSString *str = [NSString stringWithFormat:@"prefix%d", turnNumber];
 						NSString *spine = [[self.game objectForKey:@"spine"] objectForKey:str];
 						[story appendString:spine];
-
+						
 						// Add space after spine
 						[story appendString:@" "];
 					}
 					
-					// Add turn
-					NSString *turn = [objects[i] objectForKey:@"turn"];
-					[story appendString:turn];
+					// Add turn text
+					NSString *turnStr = [turn objectForKey:@"turn"];
+					[story appendString:turnStr];
 					
 					// Add space after turn
 					[story appendString:@" "];
 				}
-
-				// Update label
-				storyLabel.text = story;
-			} else {
-				// Log details of the failure
-				NSLog(@"Error: %@ %@", error, [error userInfo]);
 			}
-		}];
-	}
-	else {
-		storyLabel.text = @"";
-	}
-	
+			
+			// Update label
+			storyLabel.text = story;
+		} else {
+			// Log details of the failure
+			NSLog(@"Error: %@ %@", error, [error userInfo]);
+		}
+	}];
+
 	////////////////////////////////////////////
 	// END Compose the existing story so far
 	////////////////////////////////////////////
 
-	// Display next story spine (if we're beyond the intro)
-	UILabel *spineLabel = (UILabel *)[self.view viewWithTag:102];
-	if (turn >= 2) {
-		NSString *str = [NSString stringWithFormat:@"prefix%d", turn-1];
-		NSString *prefix = [[self.game objectForKey:@"spine"] objectForKey:str];
-		spineLabel.text = [NSString stringWithFormat:@"%@...", prefix];
-	}
-	else {
-		spineLabel.text = intro;
-	}
-	
 	// Assign the UITextFieldDelegate
 	UITextField *textField = (UITextField *)[self.view viewWithTag:103];
 	textField.delegate = self;
@@ -123,6 +134,8 @@
 			// TODO: Show error
 			return false;
 		}
+		
+		// TODO: Validate that constraint was used
 	}
 
 	return true;
@@ -159,7 +172,7 @@
 		PFQuery *query = [PFQuery queryWithClassName:@"Turn"];
 		[query whereKey:@"Game" equalTo:self.game];
 		int turnNum = [[self.game objectForKey:@"turn"] intValue];
-		[query whereKey:@"turnNumber" equalTo:[NSString stringWithFormat:@"%d",turnNum]];
+		[query whereKey:@"turnNumber" equalTo:[NSNumber numberWithInt:turnNum]];
 		
 		// Execute query
 		[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {

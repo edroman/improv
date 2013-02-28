@@ -57,6 +57,12 @@
 		if (!error) {
 			NSLog(@"Successfully retrieved %d results.", turns.count);
 			
+			// Find the spine prefixes for this spine
+			PFQuery *spinePrefixQuery = [PFQuery queryWithClassName:@"SpinePrefix"];
+			[spinePrefixQuery whereKey:@"Spine" equalTo:[self.game objectForKey:@"spine"]];
+			[spinePrefixQuery orderByAscending:@"turnNumber"];
+			NSArray *spinePrefixes = [spinePrefixQuery findObjects];
+
 			// For each turn...
 			for (int i=0; i < turns.count; ++i) {
 				PFObject *turn = turns[i];
@@ -68,13 +74,14 @@
 					// Assign to local storage so we can manipulate later
 					self.currTurn = turn;
 
-					// Display next story spine or intro in the "player instructions" for this turn
+					// Display next story spine prefix for this turn
 					UILabel *spineLabel = (UILabel *)[self.view viewWithTag:102];
 					if (playerTurn >= 2) {
-						NSString *str = [NSString stringWithFormat:@"prefix%d", playerTurn-1];
-						NSString *prefix = [[self.game objectForKey:@"spine"] objectForKey:str];
-						spineLabel.text = [NSString stringWithFormat:@"%@...", prefix];
+						PFObject *spinePrefix = spinePrefixes[i];
+						NSString *spinePrefixStr = [spinePrefix objectForKey:@"prefix"];
+						spineLabel.text = [NSString stringWithFormat:@"%@...", spinePrefixStr];
 					}
+					// Display the intro if the turn is #1
 					else {
 						spineLabel.text = intro;
 					}
@@ -91,9 +98,9 @@
 					// Add story spine (not for first, since that is the intro)
 					if (turnNumber > 1)
 					{
-						NSString *str = [NSString stringWithFormat:@"prefix%d", turnNumber];
-						NSString *spine = [[self.game objectForKey:@"spine"] objectForKey:str];
-						[story appendString:spine];
+						PFObject *spinePrefix = spinePrefixes[i];
+						NSString *spinePrefixStr = [spinePrefix objectForKey:@"prefix"];
+						[story appendString:[NSString stringWithFormat:@"%@...", spinePrefixStr]];
 						
 						// Add space after spine
 						[story appendString:@" "];

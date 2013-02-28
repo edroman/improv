@@ -68,10 +68,10 @@
 						[spinePrefixQuery whereKey:@"Spine" equalTo:[self.game objectForKey:@"spine"]];
 						[spinePrefixQuery orderByAscending:@"turnNumber"];
 						NSArray *spinePrefixes = [spinePrefixQuery findObjects];
+
+						// Set spine prefix
 						PFObject *spinePrefix = spinePrefixes[i];
 						NSString *spinePrefixStr = [spinePrefix objectForKey:@"prefix"];
-
-						// TODO: Retrieve spine prefix
 						[story appendString:spinePrefixStr];
 
 						// Add space after spine

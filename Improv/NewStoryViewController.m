@@ -88,16 +88,18 @@
 		PFObject *game = [PFObject objectWithClassName:@"Game"];
 		[game setObject:[NSNumber numberWithBool:false] forKey:@"completed"];
 		[game setObject:[NSNumber numberWithInt:0] forKey:@"votes"];
-		[game setObject:[NSNumber numberWithInt:1] forKey:@"turn"];
+		[game setObject:[NSNumber numberWithInt:1] forKey:@"currTurnNumber"];
 		[game setObject:[PFUser currentUser] forKey:@"creator"];
 		[game setObject:invitee forKey:@"invitee"];
 		[game setObject:intro forKey:@"intro"];
 		[game setObject:spine forKey:@"spine"];
 		[game setObject:[PFUser currentUser] forKey:@"currPlayer"];
+		
+		// Persist game via Parse
 		[game save];
 		
 		//////////////////////////////////////////////
-		// Create the new turn in Parse w/Constraints
+		// Create turns in Parse w/Constraints
 		//////////////////////////////////////////////
 		
 		// Find the spine prefixes for this spine
@@ -146,7 +148,7 @@
 			// Assign constraint to turn
 			[turn setObject:constraint forKey:@"Constraint"];
 			
-			// Persist via Parse
+			// Persist turn via Parse
 			[turn save];
 		}
 

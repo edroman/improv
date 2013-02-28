@@ -42,7 +42,7 @@
 	NSMutableString *story = [[NSMutableString alloc] init];
 	UILabel *storyLabel = (UILabel *)[self.view viewWithTag:101];
 	NSString *intro = [[self.game objectForKey:@"intro"] objectForKey:@"value"];
-	int turn = [[self.game objectForKey:@"turn"] intValue];
+	int turn = [[self.game objectForKey:@"currTurnNumber"] intValue];
 	
 	if (turn >= 2) {
 		// Add the intro
@@ -58,13 +58,21 @@
 				NSLog(@"Successfully retrieved %d results.", objects.count);
 				
 				// For each turn, add that turn's story spine + turn text
-				for (int i=0; i < objects.count; ++i) {
+				int currTurnNumber = [[self.game objectForKey:@"currTurnNumber"] intValue];
+				for (int i=0; i < currTurnNumber-1; ++i) {
 					// Add story spine (not for first, since that is the intro)
 					if (i >= 1)
 					{
-						NSString *str = [NSString stringWithFormat:@"prefix%d", i];
-						NSString *spine = [[self.game objectForKey:@"spine"] objectForKey:str];
-						[story appendString:spine];
+						// Find the spine prefixes for this spine
+						PFQuery *spinePrefixQuery = [PFQuery queryWithClassName:@"SpinePrefix"];
+						[spinePrefixQuery whereKey:@"Spine" equalTo:[self.game objectForKey:@"spine"]];
+						[spinePrefixQuery orderByAscending:@"turnNumber"];
+						NSArray *spinePrefixes = [spinePrefixQuery findObjects];
+						PFObject *spinePrefix = spinePrefixes[i];
+						NSString *spinePrefixStr = [spinePrefix objectForKey:@"prefix"];
+
+						// TODO: Retrieve spine prefix
+						[story appendString:spinePrefixStr];
 
 						// Add space after spine
 						[story appendString:@" "];

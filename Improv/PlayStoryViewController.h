@@ -18,5 +18,6 @@
 
 
 @property (nonatomic) PFObject *game;
+@property (nonatomic) PFObject *currTurn;
 
 @end

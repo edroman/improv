@@ -43,8 +43,8 @@
 	NSMutableString *story = [[NSMutableString alloc] init];
 	UILabel *storyLabel = (UILabel *)[self.view viewWithTag:101];
 	NSString *intro = [[self.game objectForKey:@"intro"] objectForKey:@"value"];
-	int playerTurn = [[self.game objectForKey:@"turn"] intValue];
-
+	int playerTurn = [[self.game objectForKey:@"currTurnNumber"] intValue];
+	
 	// Add the intro to the historical story so far if we've progressed that far...
 	if (playerTurn >= 2) [story appendString:intro];
 
@@ -65,6 +65,9 @@
 				// If we're on the player's turn number..
 				if (turnNumber == playerTurn)
 				{
+					// Assign to local storage so we can manipulate later
+					self.currTurn = turn;
+
 					// Display next story spine or intro in the "player instructions" for this turn
 					UILabel *spineLabel = (UILabel *)[self.view viewWithTag:102];
 					if (playerTurn >= 2) {
@@ -135,7 +138,25 @@
 			return false;
 		}
 		
-		// TODO: Validate that constraint was used
+		// Validate that constraint was used
+		NSString *constraint = [[self.currTurn objectForKey:@"Constraint"] objectForKey:@"phrase"];
+		if ([content.text rangeOfString:constraint options:NSCaseInsensitiveSearch].location == NSNotFound)
+		{
+			NSLog(@"String does NOT contain constraint");
+			UIAlertView *alert = [[UIAlertView alloc]
+										 initWithTitle:@"Nice try!"
+										 message:[NSString stringWithFormat:@"You must use the phrase '%@' somewhere!", constraint]
+										 delegate:nil
+										 cancelButtonTitle:@"OK"
+										 otherButtonTitles:nil];
+			[alert show];
+			return false;
+		}
+		else
+		{
+			NSLog(@"String contains constraint!");
+			return true;
+		}
 	}
 
 	return true;
@@ -165,13 +186,13 @@
 		}
 		
 		//////////////////////////////////////////////
-		// Update the turn in Parse
+		// Update our game/turn in Parse
 		//////////////////////////////////////////////
 		
 		// Find the matching turn for this game
 		PFQuery *query = [PFQuery queryWithClassName:@"Turn"];
 		[query whereKey:@"Game" equalTo:self.game];
-		int turnNum = [[self.game objectForKey:@"turn"] intValue];
+		int turnNum = [[self.game objectForKey:@"currTurnNumber"] intValue];
 		[query whereKey:@"turnNumber" equalTo:[NSNumber numberWithInt:turnNum]];
 		
 		// Execute query
@@ -180,7 +201,11 @@
 				// The find succeeded.
 				if (objects.count != 1) NSLog(@"Error - should have found exactly 1 result!!!");
 				else NSLog(@"Successfully retrieved %d results.", objects.count);
-
+				
+				////////////////////////////////////
+				// Update current turn
+				////////////////////////////////////
+				
 				// Set the value of the turn
 				PFObject *turn = objects[0];
 				[turn setObject:str forKey:@"turn"];
@@ -188,66 +213,68 @@
 				// Persist via Parse
 				[turn save];
 				
+				////////////////////////////////////
+				// Update main game object
+				// (necessary in here since turnNum could be updated prior to previous query finishing)
+				////////////////////////////////////
+				
+				// Increase turn number
+				int turnNum = [[self.game objectForKey:@"currTurnNumber"] intValue];
+				turnNum = turnNum + 1;
+				[self.game setObject:[NSNumber numberWithInt:turnNum] forKey:@"currTurnNumber"];
+				
+				// Set completed flag
+				if (turnNum > [[[Constants data] objectForKey:@"numTurns"] intValue])
+				{
+					[self.game setObject:[NSNumber numberWithBool:true] forKey:@"completed"];
+				}
+				
+				// Flip the current player
+				PFUser *creator = [self.game objectForKey:@"creator"];
+				PFUser *invitee = [self.game objectForKey:@"invitee"];
+				PFUser *partner = ([[PFUser currentUser].objectId isEqualToString:creator.objectId]) ? invitee : creator;
+				[self.game setObject:partner forKey:@"currPlayer"];
+				
+				// Persist game via Parse
+				[self.game save];
+				
+				////////////////////////////////////
+				// Send Push Notification to partner
+				////////////////////////////////////
+				
+				// Find devices (called "installations" in parse) associated with our partner
+				PFQuery *userQuery = [PFUser query];
+				[userQuery whereKey:@"objectId" equalTo:partner.objectId];
+				PFQuery *pushQuery = [PFInstallation query];
+				[pushQuery whereKey:@"owner" matchesQuery:userQuery];
+				
+				// Send push notification to query
+				PFPush *push = [[PFPush alloc] init];
+				[push setQuery:pushQuery]; // Set our Installation query
+				[push setMessage:[NSString stringWithFormat:@"Hi %@!  %@ just completed their turn in A Tall Tale and is waiting on you.  It's now your turn!",
+										[[PFUser currentUser] objectForKey:@"first_name"],
+										[partner objectForKey:@"first_name"]]];
+				[push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+					if (succeeded) {
+						NSLog(@"Sent push notification!");
+					}
+					else {
+						UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Push Notification Error!"
+																						message:[NSString stringWithFormat:@"Error sending a notification! %@", error]
+																					  delegate:nil
+																		  cancelButtonTitle:@"OK"
+																		  otherButtonTitles:nil];
+						[alert show];
+						NSLog(@"Error sending push: %@", error);
+					}
+				}];
+				
 			} else {
 				// Log details of the failure
 				NSLog(@"Error: %@ %@", error, [error userInfo]);
 			}
 		}];
-
-		////////////////////////////////////
-		// Update main game object
-		////////////////////////////////////
-
-		// Increase turn number
-		turnNum = turnNum + 1;
-		[self.game setObject:[NSNumber numberWithInt:turnNum] forKey:@"turn"];
 		
-		// Set completed flag
-		if (turnNum > [[[Constants data] objectForKey:@"numTurns"] intValue])
-		{
-			[self.game setObject:[NSNumber numberWithBool:true] forKey:@"completed"];
-		}
-			
-		// Flip the current player
-		PFUser *creator = [self.game objectForKey:@"creator"];
-		PFUser *invitee = [self.game objectForKey:@"invitee"];
-		PFUser *partner = ([[PFUser currentUser].objectId isEqualToString:creator.objectId]) ? invitee : creator;
-		[self.game setObject:partner forKey:@"currPlayer"];
-		
-		// Persist via Parse
-		[self.game save];
-		
-		////////////////////////////////////
-		// Send Push Notification to partner
-		////////////////////////////////////
-		
-		// Find devices (called "installations" in parse) associated with our partner
-		PFQuery *userQuery = [PFUser query];
-		[userQuery whereKey:@"objectId" equalTo:partner.objectId];
-		PFQuery *pushQuery = [PFInstallation query];
-		[pushQuery whereKey:@"owner" matchesQuery:userQuery];
-		
-		// Send push notification to query
-		PFPush *push = [[PFPush alloc] init];
-		[push setQuery:pushQuery]; // Set our Installation query
-		[push setMessage:[NSString stringWithFormat:@"Hi %@!  %@ just completed their turn in A Tall Tale and is waiting on you.  It's now your turn!",
-								[[PFUser currentUser] objectForKey:@"first_name"],
-								[partner objectForKey:@"first_name"]]];
-		[push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-			if (succeeded) {
-				NSLog(@"Sent push notification!");
-			}
-			else {
-				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Push Notification Error!"
-																				message:[NSString stringWithFormat:@"Error sending a notification! %@", error]
-																			  delegate:nil
-																  cancelButtonTitle:@"OK"
-																  otherButtonTitles:nil];
-				[alert show];
-				NSLog(@"Error sending push: %@", error);
-			}
-		}];
-
 		// Segue will automatically go to lobby.
 	}
 }

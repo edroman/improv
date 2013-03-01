@@ -36,6 +36,9 @@
 	storyLabel.text = @"";
 	UILabel *voteLabel = (UILabel *)[self.view viewWithTag:102];
 	voteLabel.text = @"";
+	UIButton *voteButton = (UIButton *)[self.view viewWithTag:103];
+	voteButton.hidden = YES;
+
 }
 
 - (void)viewDidLoad
@@ -136,10 +139,9 @@
 		[query whereKey:@"Game" equalTo:self.game];
 		[query whereKey:@"User" equalTo:[PFUser currentUser]];
 		NSArray *votes = [query findObjects];
-		if (votes.count != 0) {
-			UIButton *voteButton = (UIButton *)[self.view viewWithTag:103];
-			voteButton.hidden = YES;
-		}
+		UIButton *voteButton = (UIButton *)[self.view viewWithTag:103];
+		if (votes.count != 0) voteButton.hidden = YES;
+		else voteButton.hidden = NO;
 	});
 	
 	//////////////////////////////////////////
@@ -277,9 +279,5 @@
 			voteLabel.text = [NSString stringWithFormat:(votes == 1 ? @"%d vote" : @"%d votes"), votes];
 		}
 	}];
-
-	
-	// TODO: Refresh view so we see updated vote count
-	
 }
 @end

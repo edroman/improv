@@ -13,6 +13,5 @@
 
 @property (nonatomic, strong) PFObject *game;
 - (IBAction)VoteAction:(id)sender;
-@property (nonatomic, strong) UIAlertView *waitingIcon;
 
 @end

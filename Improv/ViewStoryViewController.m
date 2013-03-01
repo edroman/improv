@@ -8,6 +8,7 @@
 
 #import "ViewStoryViewController.h"
 #import <Parse/Parse.h>
+#import "Utils.h"
 
 @interface ViewStoryViewController ()
 @end
@@ -37,36 +38,13 @@
 	voteLabel.text = @"";
 }
 
-- (void)showIcon
-{
-	////////////////////////////////////////////
-	// Show "Waiting" icon
-	////////////////////////////////////////////
-	
-	self.waitingIcon = [[UIAlertView alloc] initWithTitle:@"Please Wait..." message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles: nil];
-	[self.waitingIcon show];
-	
-	UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-	
-	// Adjust the indicator so it is up a few pixels from the bottom of the alert
-	indicator.center = CGPointMake(self.waitingIcon.bounds.size.width / 2,
-											 self.waitingIcon.bounds.size.height - 50);
-	[indicator startAnimating];
-	[self.waitingIcon addSubview:indicator];
-}
-
-- (void)hideIcon
-{
-	[self.waitingIcon dismissWithClickedButtonIndex:0 animated:YES];
-}
-
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
 
 	[self clearView];
 	
-	[self showIcon];
+	[Utils showIcon];
 	
 	// Get the main thread task queue.  More useful than a custom queue since we will
 	// perform dialog box dismissal which can't be done unless you're on the main queue.
@@ -172,7 +150,7 @@
 	//////////////////////////////////////////
 	
 	dispatch_async(queue, ^{
-		[self hideIcon];
+		[Utils hideIcon];
 	});
 }
 

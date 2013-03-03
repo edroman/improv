@@ -140,7 +140,9 @@
 		[query whereKey:@"User" equalTo:[PFUser currentUser]];
 		NSArray *votes = [query findObjects];
 		UIButton *voteButton = (UIButton *)[self.view viewWithTag:103];
-		if (votes.count != 0) voteButton.hidden = YES;
+		bool completed = [[self.game objectForKey:@"completed"] boolValue];
+		if (completed == false) voteButton.hidden = YES;
+		else if (votes.count != 0) voteButton.hidden = YES;
 		else voteButton.hidden = NO;
 	});
 	

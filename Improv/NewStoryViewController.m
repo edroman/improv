@@ -110,6 +110,7 @@
 		NSArray *spinePrefixes = [spinePrefixQuery findObjects];
 		
 		PFObject *subject = 0;
+		NSMutableArray *turns = [[NSMutableArray alloc] init];
 		for (int turnNum = 1; turnNum <= numTurns; ++turnNum)
 		{
 			// Create turn
@@ -131,12 +132,23 @@
 			if (turnNum < numTurns)
 			{
 				// For most turns, get a random constraint matching that constraint category
-				// TODO: De-dupe
 				PFQuery *constraintQuery = [PFQuery queryWithClassName:@"Constraint"];
 				[constraintQuery whereKey:@"Category" equalTo:category];
 				results = [constraintQuery findObjects];
-				constraint = results[rand() % results.count];
-				
+
+				// De-dupe
+				bool duplicate = false;
+				do {
+					constraint = results[rand() % results.count];
+					duplicate = false;
+					for (int i=0; i < turns.count; ++i)
+					{
+						PFObject *prevConstraint = [((PFObject*)turns[i]) objectForKey:@"Constraint"];
+						if ([prevConstraint.objectId isEqualToString:constraint.objectId]) duplicate = true;
+					}
+				} while (duplicate == true);
+				turns[turnNum-1] = turn;
+
 				// Store the subject (first constraint)
 				if (turnNum == 1) subject = constraint;
 			}

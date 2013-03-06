@@ -40,7 +40,9 @@
 	UITextField *textField3 = (UITextField *)[self.view viewWithTag:102];
 	textField3.delegate = self;
 	[textField3 setReturnKeyType:UIReturnKeyDone];
-
+	
+	// Hide the back button (in case we arrived from Settings page)
+	self.navigationItem.hidesBackButton = YES;
 }
 
 // Login to facebook method

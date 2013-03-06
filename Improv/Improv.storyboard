@@ -281,11 +281,36 @@
                                     <segue destination="1MR-ac-fqq" kind="push" identifier="SettingsToLoginSegue" id="pyt-G5-CGX"/>
                                 </connections>
                             </button>
+                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iHw-Aw-dHi"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Sound Effects" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGX-OQ-lIB">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kn3-qc-9vG">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Feedback">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="FeedbackAction:" destination="nbI-Np-I2V" eventType="touchUpInside" id="XEz-L3-9Ed"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="XuL-bb-kWe" firstAttribute="top" secondItem="bxv-cA-iZW" secondAttribute="top" constant="174" id="KWB-P0-A30"/>
-                            <constraint firstItem="XuL-bb-kWe" firstAttribute="leading" secondItem="bxv-cA-iZW" secondAttribute="leading" constant="129" id="gSq-Jy-Jvm"/>
+                            <constraint firstItem="iHw-Aw-dHi" firstAttribute="centerY" secondItem="DGX-OQ-lIB" secondAttribute="centerY" type="default" id="4yz-n3-B3M"/>
+                            <constraint firstItem="Kn3-qc-9vG" firstAttribute="top" secondItem="bxv-cA-iZW" secondAttribute="top" constant="190" id="B9c-Qe-2h8"/>
+                            <constraint firstItem="XuL-bb-kWe" firstAttribute="centerX" secondItem="bxv-cA-iZW" secondAttribute="centerX" type="default" id="Hcr-9n-epl"/>
+                            <constraint firstAttribute="trailing" secondItem="iHw-Aw-dHi" secondAttribute="trailing" constant="47" id="R4G-KK-2af"/>
+                            <constraint firstItem="Kn3-qc-9vG" firstAttribute="centerX" secondItem="XuL-bb-kWe" secondAttribute="centerX" type="default" id="UGg-Ou-o7Y"/>
+                            <constraint firstItem="DGX-OQ-lIB" firstAttribute="leading" secondItem="bxv-cA-iZW" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="c9C-W0-C02"/>
+                            <constraint firstAttribute="bottom" secondItem="XuL-bb-kWe" secondAttribute="bottom" constant="127" id="hCX-vw-ZQ1"/>
+                            <constraint firstItem="iHw-Aw-dHi" firstAttribute="top" secondItem="bxv-cA-iZW" secondAttribute="top" constant="118" id="olF-hN-xxp"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="tYT-L2-wIf"/>
@@ -713,58 +738,6 @@
         <image name="login-button-small-pressed.png" width="151" height="43"/>
         <image name="login-button-small.png" width="151" height="43"/>
     </resources>
-    <classes>
-        <class className="IntroViewController" superclassName="UIPageViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IntroViewController.h"/>
-        </class>
-        <class className="LeaderboardViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeaderboardViewController.h"/>
-        </class>
-        <class className="LobbyViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LobbyViewController.h"/>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="loginButtonTouchHandler:"/>
-                <relationship kind="action" name="submitButtonTouchHandler:"/>
-                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
-            </relationships>
-        </class>
-        <class className="MainMenuViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuViewController.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="NewStoryViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewStoryViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="showAddressBookPicker"/>
-                <relationship kind="action" name="showFBFriendPicker"/>
-                <relationship kind="outlet" name="firstName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="phoneNumber" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="PlayStoryViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlayStoryViewController.h"/>
-        </class>
-        <class className="SettingsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
-        </class>
-        <class className="StoryTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StoryTableViewController.h"/>
-        </class>
-        <class className="TPKeyboardAvoidingScrollView" superclassName="UIScrollView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TPKeyboardAvoidingScrollView.h"/>
-        </class>
-        <class className="ViewStoryViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewStoryViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="VoteAction:"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

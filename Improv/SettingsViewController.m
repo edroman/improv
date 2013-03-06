@@ -42,4 +42,48 @@
 	}
 }
 
+- (IBAction)FeedbackAction:(id)sender {
+	[self sendEmailToRecipient:@"feedback@atalltale.com" subject:@"A Tall Tale feedback" body:@""];
+}
+
+- (void)sendEmailToRecipient:(NSString*)recipient subject:(NSString*)subject body:(NSString*)body
+{
+	if ([MFMailComposeViewController canSendMail])
+	{
+		MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
+		controller.mailComposeDelegate = self;
+		[controller setToRecipients:[NSArray arrayWithObjects:recipient, nil]];
+		[controller setSubject:subject];
+		[controller setMessageBody:body isHTML:NO];
+		//		[self presentViewController:controller animated:YES completion:NULL];
+		[self presentModalViewController:controller animated:YES];
+	}
+	else
+	{
+		// TODO: Some sort of error telling user they can't send email
+	}
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+	switch (result) {
+		case MFMailComposeResultCancelled:
+			NSLog(@"Cancelled");
+			break;
+		case MFMailComposeResultFailed:
+			NSLog(@"Failed");
+			break;
+		case MFMailComposeResultSent:
+			NSLog(@"Send");
+			break;
+		case MFMailComposeResultSaved:
+			NSLog(@"Saved");
+			break;
+		default:
+			break;
+	}
+	
+	[self dismissViewControllerAnimated:YES completion:NULL];
+}
+
 @end

@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MFMailComposeViewController.h>
 
-@interface SettingsViewController : UIViewController
+@interface SettingsViewController : UIViewController <MFMailComposeViewControllerDelegate>
+- (IBAction)FeedbackAction:(id)sender;
 
 @end

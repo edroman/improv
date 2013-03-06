@@ -13,5 +13,6 @@
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 - (IBAction)loginButtonTouchHandler:(id)sender;
+- (IBAction)submitButtonTouchHandler:(id)sender;
 
 @end

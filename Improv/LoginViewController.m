@@ -43,14 +43,12 @@
 
 }
 
-#pragma mark - Login mehtods
-
-/* Login to facebook method */
-- (IBAction)loginButtonTouchHandler:(id)sender  {
+// Login to facebook method
+- (IBAction)loginButtonTouchHandler:(id)sender
+{
 	// Set permissions required from the facebook user account
 	NSArray *permissionsArray = @[@"email",@"publish_stream"];
 	
-
 	// Login PFUser using facebook
 	[PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
 		[_activityIndicator stopAnimating]; // Hide loading indicator
@@ -108,6 +106,12 @@
 	}];
 	
 	[_activityIndicator startAnimating]; // Show loading indicator until login is finished
+}
+
+// When user submits Name/Email fields (logs in without facebook)
+- (IBAction)submitButtonTouchHandler:(id)sender {
+	int i;
+	i = 5;
 }
 
 @end

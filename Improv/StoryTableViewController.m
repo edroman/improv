@@ -197,11 +197,7 @@
 	NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
 	//		NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
 
-	NSMutableArray *games;
-	if (indexPath.section == 0) games = _myTurnGames;
-	else if (indexPath.section == 1) games = _theirTurnGames;
-	else games = _finishedGames;
-
+	NSMutableArray *games = [self sectionToGamesArray:indexPath.section];
 	PFObject *game = games[indexPath.row];
 	return game;
 }
@@ -290,28 +286,51 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 	// Return the number of sections.
-	return 3;
+	int numSections = 0;
+	if (self.finishedGames.count > 0) ++numSections;
+	if (self.myTurnGames.count > 0) ++numSections;
+	if (self.theirTurnGames.count > 0) ++numSections;
+	return numSections;
+}
+
+// Transforms a section number into the corresponding array of games.  The section number may not
+// always map to the same array since we don't include sections for empty game arrays.
+-(NSMutableArray *)sectionToGamesArray:(NSInteger)section
+{
+	if (section == 0)
+	{
+		if (_myTurnGames.count > 0) return _myTurnGames;
+		else if (_theirTurnGames.count > 0) return _theirTurnGames;
+		else return _finishedGames;
+	}
+	else if (section == 1)
+	{
+		if (_myTurnGames.count > 0)
+		{
+			if (_theirTurnGames.count > 0) return _theirTurnGames;
+			else if (_finishedGames.count > 0) return _finishedGames;
+			else
+			{
+				// TODO: ERROR
+				return 0;
+			}
+		}
+		else return _finishedGames;
+	}
+	else return _finishedGames;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	// Determine if we're referencing finished or unfinished game data
-	NSMutableArray *games;
-	if (section == 0) games = _myTurnGames;
-	else if (section == 1) games = _theirTurnGames;
-	else games = _finishedGames;
-	
 	// Return the number of rows in the section.
+	NSMutableArray *games = [self sectionToGamesArray:section];
 	return games.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	// Determine if we're referencing finished or unfinished game data
-	NSMutableArray *games;
-	if (indexPath.section == 0) games = _myTurnGames;
-	else if (indexPath.section == 1) games = _theirTurnGames;
-	else games = _finishedGames;
+	// Get the game array for this section
+	NSMutableArray *games = [self sectionToGamesArray:indexPath.section];
 	
 	// This string should correspond to the string set in the storyboard Table View Cell prototype
 	static NSString *CellIdentifier = @"Cell";
@@ -338,20 +357,17 @@
 	// Display "Play" for games where it's my turn, "Nudge" for games where it's not my turn,
 	// and hide button otherwise
 	UIButton *playButton = (UIButton *)[cell viewWithTag:102];
-	if (indexPath.section == 0) [playButton setTitle:@"Play" forState:UIControlStateNormal];
-	else if (indexPath.section == 1) [playButton setTitle:@"Nudge" forState:UIControlStateNormal];
-	else if (indexPath.section == 2) playButton.hidden = YES;
+	if (games == _myTurnGames) [playButton setTitle:@"Play" forState:UIControlStateNormal];
+	else if (games == _theirTurnGames) [playButton setTitle:@"Nudge" forState:UIControlStateNormal];
+	else playButton.hidden = YES;
 	
 	return cell;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	// Determine if we're referencing finished or unfinished game data
-	NSMutableArray *games;
-	if (indexPath.section == 0) games = _myTurnGames;
-	else if (indexPath.section == 1) games = _theirTurnGames;
-	else games = _finishedGames;
+	// Get the game array for this section
+	NSMutableArray *games = [self sectionToGamesArray:indexPath.section];
 	
 	// Swipable DELETE button for games
 	if (editingStyle == UITableViewCellEditingStyleDelete)
@@ -380,8 +396,11 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-	if(section == 0) return @"Current Games - My Turn";
-	else if(section == 1) return @"Current Games - Their Turn";
+	// Get the game array for this section
+	NSMutableArray *games = [self sectionToGamesArray:section];
+
+	if (games == _myTurnGames) return @"Current Games - My Turn";
+	else if(games == _theirTurnGames) return @"Current Games - Their Turn";
 	else return @"Completed Games";
 }
 

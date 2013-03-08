@@ -23,9 +23,28 @@
     return self;
 }
 
+- (void)clearView
+{
+	////////////////////////////////////////////
+	// Clear the view, so user isn't presented with stand-in text
+	////////////////////////////////////////////
+	
+	UILabel *storyLabel = (UILabel *)[self.view viewWithTag:101];
+	storyLabel.text = @"";
+	UILabel *prefixLabel = (UILabel *)[self.view viewWithTag:102];
+	prefixLabel.text = @"";
+	UILabel *partnerLabel = (UILabel *)[self.view viewWithTag:104];
+	partnerLabel.text = @"";
+	UILabel *constraintLabel = (UILabel *)[self.view viewWithTag:105];
+	constraintLabel.text = @"";
+	
+}
+
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+	[super viewDidLoad];
+	
+	[self clearView];
 
 	// Do any additional setup after loading the view.
 	

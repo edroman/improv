@@ -1,5 +1,5 @@
 //
-//  NewStoryViewController.h
+//  InviteFriendsViewController.h
 //  Improv
 //
 //  Created by Ed Roman on 1/11/13.
@@ -12,7 +12,7 @@
 #import <MessageUI/MFMessageComposeViewController.h>
 #import <MessageUI/MFMailComposeViewController.h>
 
-@interface NewStoryViewController : UIViewController <PF_FBFriendPickerDelegate, PF_FBDialogDelegate, ABPeoplePickerNavigationControllerDelegate, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate>
+@interface InviteFriendsViewController : UIViewController <PF_FBFriendPickerDelegate, PF_FBDialogDelegate, ABPeoplePickerNavigationControllerDelegate, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *firstName;
 @property (weak, nonatomic) IBOutlet UILabel *phoneNumber;

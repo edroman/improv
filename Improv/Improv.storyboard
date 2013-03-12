@@ -260,6 +260,48 @@
             </objects>
             <point key="canvasLocation" x="476" y="-887"/>
         </scene>
+        <!--Find Partner View Controller-->
+        <scene sceneID="swt-3U-eUg">
+            <objects>
+                <viewController id="Nxo-sL-Jea" customClass="FindPartnerViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7Bh-yB-0qN">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YMK-j7-naU">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Random Player">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJh-lc-vSl">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Search Registered Players">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YMK-j7-naU" firstAttribute="top" secondItem="7Bh-yB-0qN" secondAttribute="top" constant="208" id="93m-ac-XyJ"/>
+                            <constraint firstAttribute="bottom" secondItem="xJh-lc-vSl" secondAttribute="bottom" constant="142" id="NI1-46-mnW"/>
+                            <constraint firstItem="YMK-j7-naU" firstAttribute="centerX" secondItem="7Bh-yB-0qN" secondAttribute="centerX" type="default" id="SBV-M4-W5d"/>
+                            <constraint firstItem="xJh-lc-vSl" firstAttribute="centerX" secondItem="YMK-j7-naU" secondAttribute="centerX" type="default" id="nRL-S0-BEz"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SH5-bA-JAH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="767" y="190"/>
+        </scene>
         <!--Settings View Controller-->
         <scene sceneID="IVP-2w-2RT">
             <objects>
@@ -329,7 +371,8 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OGq-lh-3rO">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="92" id="VrB-eJ-agW"/>
+                                    <constraint firstAttribute="width" constant="122" id="4ne-0Y-MN6"/>
+                                    <constraint firstAttribute="height" constant="43" id="7G0-Vf-Voe"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="New Game">
@@ -340,7 +383,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="JzD-gH-gcQ" kind="push" id="G5D-0b-DtF"/>
+                                    <segue destination="rYU-4f-TgL" kind="push" identifier="LobbyToNewStorySegue" id="ZwD-T2-MCc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lng-eX-87E">
@@ -353,12 +396,12 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="nbI-Np-I2V" kind="push" id="jp5-J4-fgu"/>
+                                    <segue destination="nbI-Np-I2V" kind="push" identifier="LobbyToSettingsSegue" id="jp5-J4-fgu"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qcj-aZ-bi8">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="103" id="AQp-xA-jsa"/>
+                                    <constraint firstAttribute="height" constant="43" id="sxl-jp-GIr"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Leaderboard">
@@ -372,21 +415,53 @@
                                     <segue destination="8YH-x4-e0f" kind="push" identifier="LobbyToLeaderboardSegue" id="3Bf-Il-nUL"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rvs-L5-CUf">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Invite Friends">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="81Q-iv-D2L">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="73" id="7X4-yg-G53"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Buggy Storyboard Required Button">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="qcj-aZ-bi8" firstAttribute="leading" secondItem="OGq-lh-3rO" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="1aG-cv-Gnm"/>
-                            <constraint firstItem="qcj-aZ-bi8" firstAttribute="top" secondItem="iI8-f5-BUg" secondAttribute="top" constant="20" symbolic="YES" type="default" id="B9o-sQ-QM9"/>
-                            <constraint firstAttribute="trailing" secondItem="lng-eX-87E" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="WGE-yw-Rnb"/>
-                            <constraint firstItem="lng-eX-87E" firstAttribute="top" secondItem="iI8-f5-BUg" secondAttribute="top" constant="20" symbolic="YES" type="default" id="hI6-cH-eMu"/>
-                            <constraint firstItem="OGq-lh-3rO" firstAttribute="top" secondItem="iI8-f5-BUg" secondAttribute="top" constant="20" symbolic="YES" type="default" id="wJH-ZH-JwC"/>
-                            <constraint firstItem="lng-eX-87E" firstAttribute="leading" secondItem="qcj-aZ-bi8" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="xAe-Xm-lkG"/>
+                            <constraint firstAttribute="trailing" secondItem="rvs-L5-CUf" secondAttribute="trailing" constant="26" id="0nc-Qb-Va3"/>
+                            <constraint firstItem="lng-eX-87E" firstAttribute="trailing" secondItem="rvs-L5-CUf" secondAttribute="trailing" type="default" id="5tb-6t-KGk"/>
+                            <constraint firstItem="OGq-lh-3rO" firstAttribute="leading" secondItem="iI8-f5-BUg" secondAttribute="leading" constant="25" id="9NL-cb-nrf"/>
+                            <constraint firstItem="lng-eX-87E" firstAttribute="top" secondItem="rvs-L5-CUf" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="BGo-XD-Eth"/>
+                            <constraint firstItem="OGq-lh-3rO" firstAttribute="top" secondItem="iI8-f5-BUg" secondAttribute="top" constant="11" id="Bmh-m8-yjf"/>
+                            <constraint firstItem="qcj-aZ-bi8" firstAttribute="leading" secondItem="OGq-lh-3rO" secondAttribute="leading" type="default" id="C18-M6-ihx"/>
+                            <constraint firstItem="81Q-iv-D2L" firstAttribute="top" secondItem="iI8-f5-BUg" secondAttribute="top" constant="71" id="DFO-0s-M9y"/>
+                            <constraint firstItem="qcj-aZ-bi8" firstAttribute="trailing" secondItem="OGq-lh-3rO" secondAttribute="trailing" type="default" id="EP8-Ko-Yf1"/>
+                            <constraint firstItem="lng-eX-87E" firstAttribute="leading" secondItem="rvs-L5-CUf" secondAttribute="leading" type="default" id="YNL-Mg-wR2"/>
+                            <constraint firstItem="qcj-aZ-bi8" firstAttribute="top" secondItem="OGq-lh-3rO" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Yn9-dw-IOo"/>
+                            <constraint firstItem="rvs-L5-CUf" firstAttribute="baseline" secondItem="lng-eX-87E" secondAttribute="baseline" type="default" id="cyd-MB-Ldh"/>
+                            <constraint firstItem="lng-eX-87E" firstAttribute="bottom" secondItem="qcj-aZ-bi8" secondAttribute="bottom" type="default" id="hus-zZ-E8C"/>
+                            <constraint firstItem="81Q-iv-D2L" firstAttribute="centerX" secondItem="iI8-f5-BUg" secondAttribute="centerX" type="default" id="hwZ-p6-Tcl"/>
+                            <constraint firstItem="rvs-L5-CUf" firstAttribute="baseline" secondItem="OGq-lh-3rO" secondAttribute="baseline" type="default" id="jEM-3J-DJc"/>
+                            <constraint firstItem="lng-eX-87E" firstAttribute="baseline" secondItem="81Q-iv-D2L" secondAttribute="baseline" type="default" id="qzf-o4-RVr"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ujo-uk-KG3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="828" y="-495"/>
+            <point key="canvasLocation" x="820" y="-1063"/>
         </scene>
         <!--Leaderboard View Controller-->
         <scene sceneID="zYY-Eg-OcC">
@@ -559,7 +634,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j31-Lq-5oQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="828" y="-1099"/>
+            <point key="canvasLocation" x="820" y="-487"/>
         </scene>
         <!--New Story View Controller-->
         <scene sceneID="igM-RL-vbr">
@@ -569,23 +644,10 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YMK-j7-naU">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="134" id="xjg-Jn-rRb"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Random Player">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="rYU-4f-TgL" kind="push" identifier="RandomToPlayStorySegue" id="tH9-v7-xTv"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Lw-wM-Qjg">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="134" id="2Ku-o4-Gc6"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Facebook Friend">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -611,15 +673,42 @@
                                     <action selector="showAddressBookPicker" destination="JzD-gH-gcQ" eventType="touchUpInside" id="FLb-Lq-jSZ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jli-Ho-jDc">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Twitter">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showAddressBookPicker" destination="JzD-gH-gcQ" eventType="touchUpInside" id="JPz-4Y-uGq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cCE-mg-tio">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Continue">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showAddressBookPicker" destination="JzD-gH-gcQ" eventType="touchUpInside" id="mpD-eS-uCK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="YMK-j7-naU" firstAttribute="top" secondItem="Oxl-5I-TTA" secondAttribute="top" constant="259" id="KLR-MZ-ycA"/>
-                            <constraint firstItem="3Lw-wM-Qjg" firstAttribute="leading" secondItem="YMK-j7-naU" secondAttribute="leading" type="default" id="Y7S-wH-c86"/>
-                            <constraint firstItem="YMK-j7-naU" firstAttribute="centerX" secondItem="Oxl-5I-TTA" secondAttribute="centerX" type="default" id="e08-xM-M4A"/>
+                            <constraint firstAttribute="bottom" secondItem="jli-Ho-jDc" secondAttribute="bottom" constant="156" id="ZFG-q5-5YO"/>
+                            <constraint firstItem="cCE-mg-tio" firstAttribute="centerX" secondItem="b8d-3L-VHe" secondAttribute="centerX" type="default" id="bGX-UE-I33"/>
                             <constraint firstItem="b8d-3L-VHe" firstAttribute="leading" secondItem="3Lw-wM-Qjg" secondAttribute="leading" type="default" id="f2z-qy-hfF"/>
-                            <constraint firstItem="3Lw-wM-Qjg" firstAttribute="centerX" secondItem="YMK-j7-naU" secondAttribute="centerX" type="default" id="f5k-P8-C2x"/>
+                            <constraint firstItem="3Lw-wM-Qjg" firstAttribute="centerX" secondItem="Oxl-5I-TTA" secondAttribute="centerX" type="default" id="n3t-bl-ig7"/>
                             <constraint firstItem="b8d-3L-VHe" firstAttribute="top" secondItem="Oxl-5I-TTA" secondAttribute="top" constant="144" id="oNN-9w-nh6"/>
+                            <constraint firstAttribute="bottom" secondItem="cCE-mg-tio" secondAttribute="bottom" constant="55" id="vA6-di-KVZ"/>
+                            <constraint firstItem="jli-Ho-jDc" firstAttribute="centerX" secondItem="3Lw-wM-Qjg" secondAttribute="centerX" type="default" id="wVq-A0-pUX"/>
                             <constraint firstItem="3Lw-wM-Qjg" firstAttribute="top" secondItem="Oxl-5I-TTA" secondAttribute="top" constant="201" id="xii-hk-6Ft"/>
                         </constraints>
                     </view>
@@ -739,6 +828,9 @@
         <image name="login-button-small.png" width="151" height="43"/>
     </resources>
     <classes>
+        <class className="FindPartnerViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FindPartnerViewController.h"/>
+        </class>
         <class className="IntroViewController" superclassName="UIPageViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IntroViewController.h"/>
         </class>
@@ -761,15 +853,6 @@
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="NewStoryViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewStoryViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="showAddressBookPicker"/>
-                <relationship kind="action" name="showFBFriendPicker"/>
-                <relationship kind="outlet" name="firstName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="phoneNumber" candidateClass="UILabel"/>
-            </relationships>
         </class>
         <class className="PlayStoryViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PlayStoryViewController.h"/>
@@ -800,9 +883,9 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="tH9-v7-xTv"/>
+        <segue reference="ZwD-T2-MCc"/>
         <segue reference="pyt-G5-CGX"/>
-        <segue reference="1vj-iW-FQz"/>
+        <segue reference="RfL-Jt-LIX"/>
         <segue reference="uUJ-LX-V80"/>
     </inferredMetricsTieBreakers>
 </document>

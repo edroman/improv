@@ -39,7 +39,8 @@
 		A409DE6A169C9F5400C32B2D /* StoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A409DE69169C9F5400C32B2D /* StoryTableViewController.m */; };
 		A409DE6E169CE00000C32B2D /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A409DE6D169CE00000C32B2D /* MainMenuViewController.m */; };
 		A40E9438169D11A200AB7C9B /* ViewStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A40E9437169D11A200AB7C9B /* ViewStoryViewController.m */; };
-		A40E943C16A0F5F600AB7C9B /* NewStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A40E943B16A0F5F600AB7C9B /* NewStoryViewController.m */; };
+		A40E943C16A0F5F600AB7C9B /* InviteFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A40E943B16A0F5F600AB7C9B /* InviteFriendsViewController.m */; };
+		A4318F0616EA542F008663BC /* FindPartnerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4318F0516EA542F008663BC /* FindPartnerViewController.m */; };
 		A46309C616BC93C2002D22E7 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46309C516BC93C2002D22E7 /* Parse.framework */; };
 		A46309C916BEE6AB002D22E7 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46309C816BEE6AA002D22E7 /* SettingsViewController.m */; };
 		A479D3B1169CE60100E14D39 /* LeaderboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A479D3B0169CE60100E14D39 /* LeaderboardViewController.m */; };
@@ -102,8 +103,10 @@
 		A409DE6D169CE00000C32B2D /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
 		A40E9436169D11A200AB7C9B /* ViewStoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewStoryViewController.h; sourceTree = "<group>"; };
 		A40E9437169D11A200AB7C9B /* ViewStoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewStoryViewController.m; sourceTree = "<group>"; };
-		A40E943A16A0F5F600AB7C9B /* NewStoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewStoryViewController.h; sourceTree = "<group>"; };
-		A40E943B16A0F5F600AB7C9B /* NewStoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewStoryViewController.m; sourceTree = "<group>"; };
+		A40E943A16A0F5F600AB7C9B /* InviteFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteFriendsViewController.h; sourceTree = "<group>"; };
+		A40E943B16A0F5F600AB7C9B /* InviteFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteFriendsViewController.m; sourceTree = "<group>"; };
+		A4318F0416EA542F008663BC /* FindPartnerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindPartnerViewController.h; sourceTree = "<group>"; };
+		A4318F0516EA542F008663BC /* FindPartnerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindPartnerViewController.m; sourceTree = "<group>"; };
 		A46309C516BC93C2002D22E7 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		A46309C716BEE6AA002D22E7 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		A46309C816BEE6AA002D22E7 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
@@ -220,14 +223,16 @@
 				A486C21E16B4887F0045B273 /* ImageScrollView.m */,
 				A486C21F16B4887F0045B273 /* IntroViewController.h */,
 				A486C22016B4887F0045B273 /* IntroViewController.m */,
+				A4318F0416EA542F008663BC /* FindPartnerViewController.h */,
+				A4318F0516EA542F008663BC /* FindPartnerViewController.m */,
 				A486C22316B627C30045B273 /* IntroPageViewController.h */,
 				A486C22416B627C30045B273 /* IntroPageViewController.m */,
 				A4F3C52D16AB58AC00367AC6 /* PlayStoryViewController.h */,
 				A4F3C52E16AB58AC00367AC6 /* PlayStoryViewController.m */,
 				A4DC261E16C24C4A005FD566 /* TPKeyboardAvoidingScrollView.h */,
 				A4DC261F16C24C4A005FD566 /* TPKeyboardAvoidingScrollView.m */,
-				A40E943A16A0F5F600AB7C9B /* NewStoryViewController.h */,
-				A40E943B16A0F5F600AB7C9B /* NewStoryViewController.m */,
+				A40E943A16A0F5F600AB7C9B /* InviteFriendsViewController.h */,
+				A40E943B16A0F5F600AB7C9B /* InviteFriendsViewController.m */,
 				A479D3AF169CE60100E14D39 /* LeaderboardViewController.h */,
 				A479D3B0169CE60100E14D39 /* LeaderboardViewController.m */,
 				A40E9436169D11A200AB7C9B /* ViewStoryViewController.h */,
@@ -363,7 +368,7 @@
 				A409DE6E169CE00000C32B2D /* MainMenuViewController.m in Sources */,
 				A479D3B1169CE60100E14D39 /* LeaderboardViewController.m in Sources */,
 				A40E9438169D11A200AB7C9B /* ViewStoryViewController.m in Sources */,
-				A40E943C16A0F5F600AB7C9B /* NewStoryViewController.m in Sources */,
+				A40E943C16A0F5F600AB7C9B /* InviteFriendsViewController.m in Sources */,
 				A4F3C52F16AB58AC00367AC6 /* PlayStoryViewController.m in Sources */,
 				A486C22116B488800045B273 /* ImageScrollView.m in Sources */,
 				A486C22216B488800045B273 /* IntroViewController.m in Sources */,
@@ -372,6 +377,7 @@
 				A4DC261D16C1D34D005FD566 /* Constants.m in Sources */,
 				A4DC262016C24C4A005FD566 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				A4A0078E16D5617800B5AA2E /* Utils.m in Sources */,
+				A4318F0616EA542F008663BC /* FindPartnerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

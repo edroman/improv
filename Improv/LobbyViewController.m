@@ -44,7 +44,7 @@
 
 	// configure chld view controller view's frame
 	self.menuVC.view.frame=CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-	self.tableVC.view.frame=CGRectMake(0, 75, self.view.bounds.size.width, self.view.bounds.size.height-75);
+	self.tableVC.view.frame=CGRectMake(0, 125, self.view.bounds.size.width, self.view.bounds.size.height-125);
 
 	// add child's view to view hierarchy
 	[self.view addSubview:self.menuVC.view];

@@ -14,6 +14,5 @@
     CGRect          _keyboardRect;
     CGSize          _originalContentSize;
 }
-
 - (void)adjustOffsetToIdealIfNeeded;
 @end

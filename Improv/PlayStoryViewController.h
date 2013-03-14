@@ -16,6 +16,8 @@
 //- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField;
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField;
 
+- (IBAction)submitButtonAction:(id)sender;
+
 
 @property (nonatomic) PFObject *game;
 @property (nonatomic) PFObject *currTurn;

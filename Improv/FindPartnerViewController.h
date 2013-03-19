@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
 @interface FindPartnerViewController : UIViewController
-
+@property (nonatomic) PFObject *game;
 @end

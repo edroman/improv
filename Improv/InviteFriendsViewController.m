@@ -9,6 +9,7 @@
 #import "InviteFriendsViewController.h"
 #import <Parse/Parse.h>
 #import "PlayStoryViewController.h"
+#import "FindPartnerViewController.h"
 
 @interface InviteFriendsViewController ()
 // Holds the friends retrieved from FB
@@ -36,6 +37,15 @@
 
 	// Allocate memory for our friend list
 	if (!self.fbFriends) self.fbFriends = [[NSMutableArray alloc] init];
+}
+
+// Pass data to the FindPartner view controller so that we can then find a partner after
+// we invite friends
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	if ([segue.identifier isEqualToString:@"InviteFriendsToFindPartnerSegue"]) {
+		FindPartnerViewController *dest = segue.destinationViewController;
+		dest.game = self.game;
+	}
 }
 
 - (void)didReceiveMemoryWarning

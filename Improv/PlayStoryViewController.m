@@ -8,6 +8,7 @@
 // TODO: Figure out how to have "Done" button in nav bar
 
 #import "PlayStoryViewController.h"
+#import "InviteFriendsViewController.h";
 
 @interface PlayStoryViewController ()
 @end
@@ -318,6 +319,14 @@
 	}
 }
 
+// Pass data to the InviteFriends view controller so that we can then find a partner after
+// we invite friends
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	if ([segue.identifier isEqualToString:@"PlayStoryToInviteFriendsSegue"]) {
+		InviteFriendsViewController *dest = segue.destinationViewController;
+		dest.game = self.game;
+	}
+}
 
 - (void)didReceiveMemoryWarning
 {

@@ -340,6 +340,13 @@
 	// Populate cell
 	///////////////////////
 
+	// Error check
+	if (indexPath.row >= games.count)
+	{
+		NSLog(@"Warning: cellForRowAtIndexPath called with an invalid range");
+		return cell;
+	}
+	
 	PFObject *game = games[indexPath.row];
 	
 	// Partner name

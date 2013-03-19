@@ -14,6 +14,7 @@
 
 @interface InviteFriendsViewController : UIViewController <PF_FBFriendPickerDelegate, PF_FBDialogDelegate, ABPeoplePickerNavigationControllerDelegate, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate>
 
+@property (nonatomic) PFObject *game;
 @property (weak, nonatomic) IBOutlet UILabel *firstName;
 @property (weak, nonatomic) IBOutlet UILabel *phoneNumber;
 - (IBAction)showFBFriendPicker;

@@ -34,6 +34,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+	
+	UIButton *button = (UIButton*) [self.view viewWithTag:100];
+	
+	button.hidden = (self.game == nil);
 
 	// Allocate memory for our friend list
 	if (!self.fbFriends) self.fbFriends = [[NSMutableArray alloc] init];
@@ -52,6 +56,9 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)continueButtonPressed:(id)sender {
 }
 
 ////////////////////////////////////////////////////////

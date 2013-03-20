@@ -20,5 +20,6 @@
 - (IBAction)showFBFriendPicker;
 
 - (IBAction)showAddressBookPicker;
+- (IBAction)continueButtonPressed:(id)sender;
 
 @end

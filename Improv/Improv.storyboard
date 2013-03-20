@@ -301,10 +301,11 @@
                             <constraint firstItem="xJh-lc-vSl" firstAttribute="centerX" secondItem="YMK-j7-naU" secondAttribute="centerX" type="default" id="nRL-S0-BEz"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="pou-8U-aoj"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SH5-bA-JAH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="767" y="190"/>
+            <point key="canvasLocation" x="1958" y="162"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="IVP-2w-2RT">
@@ -690,7 +691,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button hidden="YES" opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cCE-mg-tio">
+                            <button hidden="YES" opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="biO-5E-7HG">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Continue">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -700,18 +701,18 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="showAddressBookPicker" destination="JzD-gH-gcQ" eventType="touchUpInside" id="mpD-eS-uCK"/>
+                                    <segue destination="Nxo-sL-Jea" kind="push" identifier="InviteFriendsToFindPartnerSegue" id="bxP-ZU-8IA"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="biO-5E-7HG" secondAttribute="bottom" constant="37" id="Sz6-11-lZb"/>
                             <constraint firstAttribute="bottom" secondItem="jli-Ho-jDc" secondAttribute="bottom" constant="156" id="ZFG-q5-5YO"/>
-                            <constraint firstItem="cCE-mg-tio" firstAttribute="centerX" secondItem="b8d-3L-VHe" secondAttribute="centerX" type="default" id="bGX-UE-I33"/>
+                            <constraint firstItem="biO-5E-7HG" firstAttribute="centerX" secondItem="Oxl-5I-TTA" secondAttribute="centerX" type="default" id="bhE-nI-fIU"/>
                             <constraint firstItem="b8d-3L-VHe" firstAttribute="leading" secondItem="3Lw-wM-Qjg" secondAttribute="leading" type="default" id="f2z-qy-hfF"/>
-                            <constraint firstItem="3Lw-wM-Qjg" firstAttribute="centerX" secondItem="Oxl-5I-TTA" secondAttribute="centerX" type="default" id="n3t-bl-ig7"/>
+                            <constraint firstItem="biO-5E-7HG" firstAttribute="centerX" secondItem="jli-Ho-jDc" secondAttribute="centerX" type="default" id="nbz-NJ-VnH"/>
                             <constraint firstItem="b8d-3L-VHe" firstAttribute="top" secondItem="Oxl-5I-TTA" secondAttribute="top" constant="144" id="oNN-9w-nh6"/>
-                            <constraint firstAttribute="bottom" secondItem="cCE-mg-tio" secondAttribute="bottom" constant="55" id="vA6-di-KVZ"/>
                             <constraint firstItem="jli-Ho-jDc" firstAttribute="centerX" secondItem="3Lw-wM-Qjg" secondAttribute="centerX" type="default" id="wVq-A0-pUX"/>
                             <constraint firstItem="3Lw-wM-Qjg" firstAttribute="top" secondItem="Oxl-5I-TTA" secondAttribute="top" constant="201" id="xii-hk-6Ft"/>
                         </constraints>
@@ -824,13 +825,76 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bj6-GD-ufI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1958" y="-199"/>
+            <point key="canvasLocation" x="1958" y="-487"/>
         </scene>
     </scenes>
     <resources>
         <image name="login-button-small-pressed.png" width="151" height="43"/>
         <image name="login-button-small.png" width="151" height="43"/>
     </resources>
+    <classes>
+        <class className="FindPartnerViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FindPartnerViewController.h"/>
+        </class>
+        <class className="IntroViewController" superclassName="UIPageViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IntroViewController.h"/>
+        </class>
+        <class className="InviteFriendsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InviteFriendsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="continueButtonPressed:"/>
+                <relationship kind="action" name="showAddressBookPicker"/>
+                <relationship kind="action" name="showFBFriendPicker"/>
+                <relationship kind="outlet" name="firstName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="phoneNumber" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="LeaderboardViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeaderboardViewController.h"/>
+        </class>
+        <class className="LobbyViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LobbyViewController.h"/>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loginButtonTouchHandler:"/>
+                <relationship kind="action" name="submitButtonTouchHandler:"/>
+                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
+            </relationships>
+        </class>
+        <class className="MainMenuViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PlayStoryViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlayStoryViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="submitButtonAction:"/>
+            </relationships>
+        </class>
+        <class className="SettingsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="FeedbackAction:"/>
+            </relationships>
+        </class>
+        <class className="StoryTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StoryTableViewController.h"/>
+        </class>
+        <class className="TPKeyboardAvoidingScrollView" superclassName="UIScrollView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TPKeyboardAvoidingScrollView.h"/>
+        </class>
+        <class className="ViewStoryViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewStoryViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="VoteAction:"/>
+                <relationship kind="action" name="facebookPostToWall:"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

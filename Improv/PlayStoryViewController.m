@@ -222,7 +222,10 @@
 			PFUser *creator = [self.game objectForKey:@"creator"];
 			PFUser *invitee = [self.game objectForKey:@"invitee"];
 			PFUser *partner = ([[PFUser currentUser].objectId isEqualToString:creator.objectId]) ? invitee : creator;
-			[self.game setObject:partner forKey:@"currPlayer"];
+			if (invitee.objectId != nil)
+			{
+				[self.game setObject:partner forKey:@"currPlayer"];
+			}
 			
 			// Persist game via Parse
 			[self.game save];
@@ -231,33 +234,35 @@
 			// Send Push Notification to partner
 			////////////////////////////////////
 			
-			// Find devices (called "installations" in parse) associated with our partner
-			PFQuery *userQuery = [PFUser query];
-			[userQuery whereKey:@"objectId" equalTo:partner.objectId];
-			PFQuery *pushQuery = [PFInstallation query];
-			[pushQuery whereKey:@"owner" matchesQuery:userQuery];
-			
-			// Send push notification to query
-			PFPush *push = [[PFPush alloc] init];
-			[push setQuery:pushQuery]; // Set our Installation query
-			[push setMessage:[NSString stringWithFormat:@"Hi %@!  %@ just completed their turn in A Tall Tale and is waiting on you.  It's now your turn!",
-									[[PFUser currentUser] objectForKey:@"first_name"],
-									[partner objectForKey:@"first_name"]]];
-			[push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-				if (succeeded) {
-					NSLog(@"Sent push notification!");
-				}
-				else {
-					UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Push Notification Error!"
-																					message:[NSString stringWithFormat:@"Error sending a notification! %@", error]
-																				  delegate:nil
-																	  cancelButtonTitle:@"OK"
-																	  otherButtonTitles:nil];
-					[alert show];
-					NSLog(@"Error sending push: %@", error);
-				}
-			}];
-			
+			if (invitee.objectId != nil)
+			{
+				// Find devices (called "installations" in parse) associated with our partner
+				PFQuery *userQuery = [PFUser query];
+				[userQuery whereKey:@"objectId" equalTo:partner.objectId];
+				PFQuery *pushQuery = [PFInstallation query];
+				[pushQuery whereKey:@"owner" matchesQuery:userQuery];
+				
+				// Send push notification to query
+				PFPush *push = [[PFPush alloc] init];
+				[push setQuery:pushQuery]; // Set our Installation query
+				[push setMessage:[NSString stringWithFormat:@"Hi %@!  %@ just completed their turn in A Tall Tale and is waiting on you.  It's now your turn!",
+										[[PFUser currentUser] objectForKey:@"first_name"],
+										[partner objectForKey:@"first_name"]]];
+				[push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+					if (succeeded) {
+						NSLog(@"Sent push notification!");
+					}
+					else {
+						UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Push Notification Error!"
+																						message:[NSString stringWithFormat:@"Error sending a notification! %@", error]
+																					  delegate:nil
+																		  cancelButtonTitle:@"OK"
+																		  otherButtonTitles:nil];
+						[alert show];
+						NSLog(@"Error sending push: %@", error);
+					}
+				}];
+			}
 		} else {
 			// Log details of the failure
 			NSLog(@"Error: %@ %@", error, [error userInfo]);

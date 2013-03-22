@@ -10,5 +10,7 @@
 #import <Parse/Parse.h>
 
 @interface FindPartnerViewController : UIViewController
+- (IBAction)searchButtonPressed:(id)sender;
+- (IBAction)randomButtonPressed:(id)sender;
 @property (nonatomic) PFObject *game;
 @end

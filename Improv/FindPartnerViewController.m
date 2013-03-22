@@ -36,4 +36,54 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)searchButtonPressed:(id)sender {
+}
+
+- (IBAction)randomButtonPressed:(id)sender {
+	// Get a random partner
+	PFUser *invitee;
+	PFQuery *query;
+	NSArray *results = 0;
+	do {
+		query = [PFUser query];
+		results = [query findObjects];
+		invitee = results[rand() % results.count];
+	} while ([invitee.objectId isEqualToString:[PFUser currentUser].objectId]);
+	[self.game setObject:invitee forKey:@"invitee"];
+
+	// Flip the current player
+	PFUser *creator = [self.game objectForKey:@"creator"];
+	PFUser *partner = ([[PFUser currentUser].objectId isEqualToString:creator.objectId]) ? invitee : creator;
+	[self.game setObject:partner forKey:@"currPlayer"];
+
+	[self.game save];
+
+	// Set all turns' partners
+	query = [PFQuery queryWithClassName:@"Turn"];
+	[query includeKey:@"Constraint"];
+	[query whereKey:@"Game" equalTo:self.game];
+	[query orderByAscending:@"turnNumber"];
+	[query findObjectsInBackgroundWithBlock:^(NSArray *turns, NSError *error) {
+		if (!error)
+		{
+			NSLog(@"Successfully retrieved %d results.", turns.count);
+			
+			// For each turn...
+			for (int i=0; i < turns.count; ++i)
+			{
+				PFObject *turn = turns[i];
+				PFObject *user = [turn objectForKey:@"User"];
+				// Set which player is assigned to this turn
+				if (user.objectId == nil)
+				{
+					PFUser *turnUser = invitee;
+					[turn setObject:turnUser forKey:@"User"];
+					[turn saveInBackground];
+				}
+			}
+		}
+	}];
+
+	[self performSegueWithIdentifier:@"FindPartnerToLobbyViewSegue" sender:sender];
+}
 @end

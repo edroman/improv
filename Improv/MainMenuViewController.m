@@ -59,15 +59,6 @@
 		
 		PFQuery *query;
 		
-		// Get a random partner
-		PFUser *invitee;
-		do {
-			query = [PFUser query];
-			results = [query findObjects];
-			invitee = results[rand() % results.count];
-		}
-		while ([invitee.objectId isEqualToString:[PFUser currentUser].objectId]);
-		
 		// Get a random intro
 		query = [PFQuery queryWithClassName:@"Intro"];
 		results = [query findObjects];
@@ -80,13 +71,12 @@
 		PFObject *spine = results[rand() % results.count];
 		int numTurns = [[spine objectForKey:@"numTurns"] intValue];
 		
-		// Create an empty new game with the 2 players
+		// Create an empty new game
 		PFObject *game = [PFObject objectWithClassName:@"Game"];
 		[game setObject:[NSNumber numberWithBool:false] forKey:@"completed"];
 		[game setObject:[NSNumber numberWithInt:0] forKey:@"votes"];
 		[game setObject:[NSNumber numberWithInt:1] forKey:@"currTurnNumber"];
 		[game setObject:[PFUser currentUser] forKey:@"creator"];
-		[game setObject:invitee forKey:@"invitee"];
 		[game setObject:intro forKey:@"intro"];
 		[game setObject:spine forKey:@"spine"];
 		[game setObject:[PFUser currentUser] forKey:@"currPlayer"];
@@ -97,7 +87,7 @@
 		//////////////////////////////////////////////
 		// Create turns in Parse w/Constraints
 		//////////////////////////////////////////////
-		
+
 		// Find the spine prefixes for this spine
 		PFQuery *spinePrefixQuery = [PFQuery queryWithClassName:@"SpinePrefix"];
 		[spinePrefixQuery includeKey:@"Constraint_Category"];
@@ -114,8 +104,11 @@
 			[turn setObject:game forKey:@"Game"];
 			
 			// Set which player is assigned to this turn
-			PFUser *turnUser = (turnNum % 2 == 1 ? [PFUser currentUser] : invitee);
-			[turn setObject:turnUser forKey:@"User"];
+			if (turnNum % 2 == 1)
+			{
+				PFUser *turnUser = [PFUser currentUser];
+				[turn setObject:turnUser forKey:@"User"];
+			}
 			
 			// Set the turn number
 			[turn setObject:[NSNumber numberWithInt:turnNum] forKey:@"turnNumber"];

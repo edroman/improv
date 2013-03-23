@@ -54,7 +54,8 @@
 	PFUser *invitee = [self.game objectForKey:@"invitee"];
 	PFUser *partner = ([[PFUser currentUser].objectId isEqualToString:creator.objectId]) ? invitee : creator;
 	UILabel *partnerLabel = (UILabel *)[self.view viewWithTag:104];
-	partnerLabel.text = [NSString stringWithFormat:@"Game with %@", [partner objectForKey:@"first_name"]];
+	NSString *partnerName = [partner objectForKey:@"first_name"];
+	if (partnerName != NULL) partnerLabel.text = [NSString stringWithFormat:@"Game with %@", partnerName];
 
 	////////////////////////////////////////////
 	// BEGIN Compose the existing story so far plus constraints

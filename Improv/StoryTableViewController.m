@@ -10,6 +10,7 @@
 #import "ViewStoryViewController.h"
 #import <Parse/Parse.h>
 #import "PlayStoryViewController.h"
+#import "InviteFriendsViewController.h"
 
 @interface StoryTableViewController ()
 
@@ -259,19 +260,45 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	if ([[segue identifier] isEqualToString:@"StoryTableToViewStorySegue"]) {
-		ViewStoryViewController *nextVC = (ViewStoryViewController *)[segue destinationViewController];
-
+		// Figure out which game we're on
 		PFObject *game = [self getGameForButtonClicked:sender];
-
-		nextVC.game = game;
+		
+		// Pass story data to the next view controller
+		ViewStoryViewController *dest = (ViewStoryViewController *)segue.destinationViewController;
+		dest.game = game;
 	}
 	else if ([[segue identifier] isEqualToString:@"StoryTableToPlayStorySegue"]) {
 		// Figure out which game we're on
 		PFObject *game = [self getGameForButtonClicked:sender];
 		
-		// Pass story data to the PlayStoryViewController
-		PlayStoryViewController *controller = (PlayStoryViewController *)segue.destinationViewController;
-		controller.game = game;
+		// Pass story data to the next view controller
+		PlayStoryViewController *dest = (PlayStoryViewController *)segue.destinationViewController;
+		dest.game = game;
+	}
+	else if ([[segue identifier] isEqualToString:@"StoryTableToInviteFriendsSegue"]) {
+		// Figure out which game we're on
+		PFObject *game = [self getGameForButtonClicked:sender];
+
+		// Pass story data to the next view controller
+		InviteFriendsViewController *dest = (InviteFriendsViewController *)segue.destinationViewController;
+		dest.game = game;
+	}
+}
+
+- (IBAction)playButtonPressed:(id)sender {
+	// Get the partner for this game
+	PFObject *game = [self getGameForButtonClicked:sender];
+	PFObject *invitee = [game objectForKey:@"invitee"];
+	
+	// Segue to invite friends if we don't have a partner
+	if (invitee.objectId == nil)
+	{
+		[self performSegueWithIdentifier:@"StoryTableToInviteFriendsSegue" sender:sender];
+	}
+	// Otherwise segue to play the game
+	else
+	{
+		[self performSegueWithIdentifier:@"StoryTableToPlayStorySegue" sender:sender];
 	}
 }
 
@@ -355,7 +382,8 @@
 	PFUser *invitee = [game objectForKey:@"invitee"];
 	PFUser *partner = ([[PFUser currentUser].objectId isEqualToString:creator.objectId]) ? invitee : creator;
 	NSString *str = [partner objectForKey:@"name"];
-	playerLabel.text = [NSString stringWithFormat:@"%@%@", @"Game with ", str];
+	if (str == NULL) playerLabel.text = @"No partner chosen yet";
+	else playerLabel.text = [NSString stringWithFormat:@"%@%@", @"Game with ", str];
 
 	// Intro
 	UILabel *storyLabel = (UILabel *)[cell viewWithTag:101];

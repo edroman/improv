@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface StoryTableViewController : UITableViewController
+- (IBAction)playButtonPressed:(id)sender;
 
 @end

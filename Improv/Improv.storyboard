@@ -618,7 +618,7 @@
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
-                                                <segue destination="rYU-4f-TgL" kind="push" identifier="StoryTableToPlayStorySegue" id="myI-hV-AYg"/>
+                                                <action selector="playButtonPressed:" destination="SNw-85-AYE" eventType="touchUpInside" id="YM3-bI-Qns"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rp9-up-eMF">
@@ -656,6 +656,10 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="wwn-Xc-yFd"/>
+                    <connections>
+                        <segue destination="rYU-4f-TgL" kind="push" identifier="StoryTableToPlayStorySegue" id="1Y2-iy-dEb"/>
+                        <segue destination="JzD-gH-gcQ" kind="push" identifier="StoryTableToInviteFriendsSegue" id="A8F-Is-rDU"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j31-Lq-5oQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -911,6 +915,9 @@
         </class>
         <class className="StoryTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/StoryTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="playButtonPressed:"/>
+            </relationships>
         </class>
         <class className="TPKeyboardAvoidingScrollView" superclassName="UIScrollView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TPKeyboardAvoidingScrollView.h"/>
@@ -929,10 +936,10 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ZwD-T2-MCc"/>
-        <segue reference="HnZ-7l-fLn"/>
-        <segue reference="Nbg-hX-QPV"/>
         <segue reference="pyt-G5-CGX"/>
-        <segue reference="kdA-vF-CqP"/>
+        <segue reference="uUJ-LX-V80"/>
+        <segue reference="1Y2-iy-dEb"/>
+        <segue reference="A8F-Is-rDU"/>
+        <segue reference="Nbg-hX-QPV"/>
     </inferredMetricsTieBreakers>
 </document>

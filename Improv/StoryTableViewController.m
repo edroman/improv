@@ -203,61 +203,6 @@
 	return game;
 }
 
-// When user clicks the Nudge/Play button, we intercept that call, and don't perform
-// a segue but rather send a push notification in case of a nudge.
-- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
-	if ([identifier isEqualToString:@"StoryTableToPlayStorySegue"]) {
-		PFObject *game = [self getGameForButtonClicked:sender];
-		PFUser *currPlayer = [game objectForKey:@"currPlayer"];
-
-		// If it's our turn, then it's a "Play" button, so perform the segue
-		if ([[PFUser currentUser].objectId isEqualToString:currPlayer.objectId]) {
-			return TRUE;
-		}
-		// Otherwise it's not our turn and it's a "Nudge" button, so send a push notification instead
-		else
-		{
-			// Find devices (called "installations" in parse) associated with our partner
-			PFQuery *userQuery = [PFUser query];
-			[userQuery whereKey:@"objectId" equalTo:currPlayer.objectId];
-			PFQuery *pushQuery = [PFInstallation query];
-			[pushQuery whereKey:@"owner" matchesQuery:userQuery];
-			
-			// Send push notification to query
-			PFPush *push = [[PFPush alloc] init];
-			[push setQuery:pushQuery]; // Set our Installation query
-			[push setMessage:[NSString stringWithFormat:@"Hi %@!  This is %@.  I'd love to finish up this game of A Tall Tale with you.  It's your turn!",
-									[[PFUser currentUser] objectForKey:@"first_name"],
-									[currPlayer objectForKey:@"first_name"]]];
-			[push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-				if (succeeded) {
-					UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Nudge Sent!"
-																					message:@"A notification has been successfully sent!"
-																				  delegate:nil
-																	  cancelButtonTitle:@"OK"
-																	  otherButtonTitles:nil];
-					[alert show];
-					NSLog(@"Sent push notification!");
-				}
-				else {
-					UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Nudge Error!"
-																					message:[NSString stringWithFormat:@"Error sending a notification! %@", error]
-																				  delegate:nil
-																	  cancelButtonTitle:@"OK"
-																	  otherButtonTitles:nil];
-					[alert show];
-					NSLog(@"Error sending push: %@", error);
-				}
-			}];
-
-			return FALSE;
-		}
-	}
-	else {
-		return TRUE;
-	}
-}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	if ([[segue identifier] isEqualToString:@"StoryTableToViewStorySegue"]) {
 		// Figure out which game we're on
@@ -288,17 +233,57 @@
 - (IBAction)playButtonPressed:(id)sender {
 	// Get the partner for this game
 	PFObject *game = [self getGameForButtonClicked:sender];
+	PFUser *currPlayer = [game objectForKey:@"currPlayer"];
 	PFObject *invitee = [game objectForKey:@"invitee"];
 	
-	// Segue to invite friends if we don't have a partner
-	if (invitee.objectId == nil)
-	{
-		[self performSegueWithIdentifier:@"StoryTableToInviteFriendsSegue" sender:sender];
+	// If it's our turn, then it's a "Play" button, so perform the segue
+	if ([[PFUser currentUser].objectId isEqualToString:currPlayer.objectId]) {
+		// Segue to invite friends if we don't have a partner
+		if (invitee.objectId == nil)
+		{
+			[self performSegueWithIdentifier:@"StoryTableToInviteFriendsSegue" sender:sender];
+		}
+		// Otherwise segue to play the game
+		else
+		{
+			[self performSegueWithIdentifier:@"StoryTableToPlayStorySegue" sender:sender];
+		}
 	}
-	// Otherwise segue to play the game
+	// Otherwise it's not our turn and it's a "Nudge" button, so send a push notification instead
 	else
 	{
-		[self performSegueWithIdentifier:@"StoryTableToPlayStorySegue" sender:sender];
+		// Find devices (called "installations" in parse) associated with our partner
+		PFQuery *userQuery = [PFUser query];
+		[userQuery whereKey:@"objectId" equalTo:currPlayer.objectId];
+		PFQuery *pushQuery = [PFInstallation query];
+		[pushQuery whereKey:@"owner" matchesQuery:userQuery];
+		
+		// Send push notification to query
+		PFPush *push = [[PFPush alloc] init];
+		[push setQuery:pushQuery]; // Set our Installation query
+		[push setMessage:[NSString stringWithFormat:@"Hi %@!  This is %@.  I'd love to finish up this game of A Tall Tale with you.  It's your turn!",
+								[[PFUser currentUser] objectForKey:@"first_name"],
+								[currPlayer objectForKey:@"first_name"]]];
+		[push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+			if (succeeded) {
+				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Nudge Sent!"
+																				message:@"A notification has been successfully sent!"
+																			  delegate:nil
+																  cancelButtonTitle:@"OK"
+																  otherButtonTitles:nil];
+				[alert show];
+				NSLog(@"Sent push notification!");
+			}
+			else {
+				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Nudge Error!"
+																				message:[NSString stringWithFormat:@"Error sending a notification! %@", error]
+																			  delegate:nil
+																  cancelButtonTitle:@"OK"
+																  otherButtonTitles:nil];
+				[alert show];
+				NSLog(@"Error sending push: %@", error);
+			}
+		}];
 	}
 }
 

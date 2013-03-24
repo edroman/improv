@@ -214,19 +214,14 @@
 		27915D5A168FF31600DB32E2 /* Improv */ = {
 			isa = PBXGroup;
 			children = (
+				A4318F0716FFB8BE008663BC /* intro */,
 				27915DB8168FFC9D00DB32E2 /* Improv.storyboard */,
 				A4A0078C16D5617700B5AA2E /* Utils.h */,
 				A4A0078D16D5617700B5AA2E /* Utils.m */,
 				A4DC261B16C1D34D005FD566 /* Constants.h */,
 				A4DC261C16C1D34D005FD566 /* Constants.m */,
-				A486C21D16B4887F0045B273 /* ImageScrollView.h */,
-				A486C21E16B4887F0045B273 /* ImageScrollView.m */,
-				A486C21F16B4887F0045B273 /* IntroViewController.h */,
-				A486C22016B4887F0045B273 /* IntroViewController.m */,
 				A4318F0416EA542F008663BC /* FindPartnerViewController.h */,
 				A4318F0516EA542F008663BC /* FindPartnerViewController.m */,
-				A486C22316B627C30045B273 /* IntroPageViewController.h */,
-				A486C22416B627C30045B273 /* IntroPageViewController.m */,
 				A4F3C52D16AB58AC00367AC6 /* PlayStoryViewController.h */,
 				A4F3C52E16AB58AC00367AC6 /* PlayStoryViewController.m */,
 				A4DC261E16C24C4A005FD566 /* TPKeyboardAvoidingScrollView.h */,
@@ -273,6 +268,19 @@
 				A4DC261916C0BF50005FD566 /* Constants.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A4318F0716FFB8BE008663BC /* intro */ = {
+			isa = PBXGroup;
+			children = (
+				A486C21D16B4887F0045B273 /* ImageScrollView.h */,
+				A486C21E16B4887F0045B273 /* ImageScrollView.m */,
+				A486C22316B627C30045B273 /* IntroPageViewController.h */,
+				A486C22416B627C30045B273 /* IntroPageViewController.m */,
+				A486C21F16B4887F0045B273 /* IntroViewController.h */,
+				A486C22016B4887F0045B273 /* IntroViewController.m */,
+			);
+			name = intro;
 			sourceTree = "<group>";
 		};
 		A486C21616B483B20045B273 /* images */ = {

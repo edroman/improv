@@ -12,7 +12,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="1MR-ac-fqq" kind="relationship" relationship="rootViewController" id="Vyx-93-jqZ"/>
+                        <segue destination="Iae-Lg-5g6" kind="relationship" relationship="rootViewController" id="33C-Y4-zZK"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QwE-ZD-HUi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -114,11 +114,14 @@
             <objects>
                 <viewController id="Iae-Lg-5g6" customClass="IntroViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xZP-Vb-TyL">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="377-d2-T83"/>
+                    <connections>
+                        <segue destination="1MR-ac-fqq" kind="push" id="5Dq-GY-GIz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CcK-yh-9tF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -129,7 +132,7 @@
             <objects>
                 <viewController id="1MR-ac-fqq" customClass="LoginViewController" sceneMemberID="viewController">
                     <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Kzp-AH-GTY">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="orh-cW-e4n">
@@ -674,11 +677,8 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Lw-wM-Qjg">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="134" id="2Ku-o4-Gc6"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Facebook Friend">
+                                <state key="normal" title="Message a Facebook Friend">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -704,7 +704,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jli-Ho-jDc">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Twitter">
+                                <state key="normal" title="Ask for help on Twitter">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -730,18 +730,30 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eKL-s3-mQC">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Ask for help on Facebook wall">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Xxz-ab-QoB" firstAttribute="centerX" secondItem="3Lw-wM-Qjg" secondAttribute="centerX" type="default" id="4XE-Cx-S3J"/>
+                            <constraint firstItem="eKL-s3-mQC" firstAttribute="centerX" secondItem="3Lw-wM-Qjg" secondAttribute="centerX" type="default" id="1gv-AT-7SB"/>
                             <constraint firstItem="Xxz-ab-QoB" firstAttribute="top" secondItem="Oxl-5I-TTA" secondAttribute="top" constant="56" id="A3A-Y9-4kL"/>
+                            <constraint firstItem="jli-Ho-jDc" firstAttribute="centerX" secondItem="Oxl-5I-TTA" secondAttribute="centerX" type="default" id="Hf0-j3-wdi"/>
                             <constraint firstAttribute="bottom" secondItem="biO-5E-7HG" secondAttribute="bottom" constant="37" id="Sz6-11-lZb"/>
-                            <constraint firstAttribute="bottom" secondItem="jli-Ho-jDc" secondAttribute="bottom" constant="156" id="ZFG-q5-5YO"/>
-                            <constraint firstItem="biO-5E-7HG" firstAttribute="centerX" secondItem="Oxl-5I-TTA" secondAttribute="centerX" type="default" id="bhE-nI-fIU"/>
-                            <constraint firstItem="b8d-3L-VHe" firstAttribute="leading" secondItem="3Lw-wM-Qjg" secondAttribute="leading" type="default" id="f2z-qy-hfF"/>
+                            <constraint firstAttribute="bottom" secondItem="jli-Ho-jDc" secondAttribute="bottom" constant="99" id="WXz-4g-R0M"/>
+                            <constraint firstItem="eKL-s3-mQC" firstAttribute="centerX" secondItem="jli-Ho-jDc" secondAttribute="centerX" type="default" id="Xxg-EE-ROS"/>
+                            <constraint firstItem="eKL-s3-mQC" firstAttribute="top" secondItem="Oxl-5I-TTA" secondAttribute="top" constant="260" id="agS-68-wfc"/>
+                            <constraint firstItem="b8d-3L-VHe" firstAttribute="centerX" secondItem="Xxz-ab-QoB" secondAttribute="centerX" type="default" id="enk-u3-EIQ"/>
                             <constraint firstItem="biO-5E-7HG" firstAttribute="centerX" secondItem="jli-Ho-jDc" secondAttribute="centerX" type="default" id="nbz-NJ-VnH"/>
-                            <constraint firstItem="b8d-3L-VHe" firstAttribute="top" secondItem="Oxl-5I-TTA" secondAttribute="top" constant="144" id="oNN-9w-nh6"/>
-                            <constraint firstItem="jli-Ho-jDc" firstAttribute="centerX" secondItem="3Lw-wM-Qjg" secondAttribute="centerX" type="default" id="wVq-A0-pUX"/>
+                            <constraint firstItem="3Lw-wM-Qjg" firstAttribute="centerX" secondItem="b8d-3L-VHe" secondAttribute="centerX" type="default" id="pHo-Cx-ayh"/>
+                            <constraint firstItem="b8d-3L-VHe" firstAttribute="top" secondItem="Oxl-5I-TTA" secondAttribute="top" constant="143" id="u1h-ax-3gP"/>
                             <constraint firstItem="3Lw-wM-Qjg" firstAttribute="top" secondItem="Oxl-5I-TTA" secondAttribute="top" constant="201" id="xii-hk-6Ft"/>
                         </constraints>
                     </view>
@@ -860,86 +872,16 @@
         <image name="login-button-small-pressed.png" width="151" height="43"/>
         <image name="login-button-small.png" width="151" height="43"/>
     </resources>
-    <classes>
-        <class className="FindPartnerViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FindPartnerViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="randomButtonPressed:"/>
-                <relationship kind="action" name="searchButtonPressed:"/>
-            </relationships>
-        </class>
-        <class className="IntroViewController" superclassName="UIPageViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IntroViewController.h"/>
-        </class>
-        <class className="InviteFriendsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/InviteFriendsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="continueButtonPressed:"/>
-                <relationship kind="action" name="showAddressBookPicker"/>
-                <relationship kind="action" name="showFBFriendPicker"/>
-                <relationship kind="outlet" name="firstName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="phoneNumber" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="LeaderboardViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LeaderboardViewController.h"/>
-        </class>
-        <class className="LobbyViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LobbyViewController.h"/>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="loginButtonTouchHandler:"/>
-                <relationship kind="action" name="submitButtonTouchHandler:"/>
-                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
-            </relationships>
-        </class>
-        <class className="MainMenuViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuViewController.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="PlayStoryViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlayStoryViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="submitButtonAction:"/>
-            </relationships>
-        </class>
-        <class className="SettingsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="FeedbackAction:"/>
-            </relationships>
-        </class>
-        <class className="StoryTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StoryTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="playButtonPressed:"/>
-            </relationships>
-        </class>
-        <class className="TPKeyboardAvoidingScrollView" superclassName="UIScrollView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TPKeyboardAvoidingScrollView.h"/>
-        </class>
-        <class className="ViewStoryViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewStoryViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="VoteAction:"/>
-                <relationship kind="action" name="facebookPostToWall:"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="pyt-G5-CGX"/>
         <segue reference="uUJ-LX-V80"/>
         <segue reference="1Y2-iy-dEb"/>
         <segue reference="A8F-Is-rDU"/>
         <segue reference="Nbg-hX-QPV"/>
+        <segue reference="5Dq-GY-GIz"/>
     </inferredMetricsTieBreakers>
 </document>

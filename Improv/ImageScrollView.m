@@ -1,9 +1,7 @@
 #import <Foundation/Foundation.h>
 #import "ImageScrollView.h"
-// #import "TilingView.h"
 
-// #define TILE_IMAGES
-
+// Prototypes (forward declarations of static methods)
 static NSUInteger _ImageCount(void);
 static UIImage   *_ImageAtIndex(NSUInteger index);
 static NSString  *_ImageNameAtIndex(NSUInteger index);
@@ -11,15 +9,14 @@ static CGSize     _ImageSizeAtIndex(NSUInteger index);
 static UIImage   *_PlaceholderImageNamed(NSString *name);
 
 @interface ImageScrollView () <UIScrollViewDelegate> {
-    UIImageView *_zoomView;  // if tiling, this contains a very low-res placeholder image. otherwise it contains the full image.
-    CGSize       _imageSize;
+	// contains the image to be displayed
+	UIImageView *_zoomView;
+	
+	CGSize       _imageSize;
 
-#if TILE_IMAGES
-    TilingView  *_tilingView;
-#endif
-        
-    CGPoint  _pointToCenterAfterResize;
-    CGFloat  _scaleToRestoreAfterResize;
+	CGPoint  _pointToCenterAfterResize;
+	
+	CGFloat  _scaleToRestoreAfterResize;
 }
 
 @end
@@ -44,11 +41,7 @@ static UIImage   *_PlaceholderImageNamed(NSString *name);
 {
     _index = index;
     
-#if TILE_IMAGES
-    [self displayTiledImageNamed:_ImageNameAtIndex(index) size:_ImageSizeAtIndex(index)];
-#else
     [self displayImage:_ImageAtIndex(index)];
-#endif
 }
 
 + (NSUInteger)imageCount
@@ -103,32 +96,6 @@ static UIImage   *_PlaceholderImageNamed(NSString *name);
 
 #pragma mark - Configure scrollView to display new image (tiled or not)
 
-#if TILE_IMAGES
-
-- (void)displayTiledImageNamed:(NSString *)imageName size:(CGSize)imageSize
-{
-    // clear views for the previous image
-    [_zoomView removeFromSuperview];
-    _zoomView = nil;
-    _tilingView = nil;
-        
-    // reset our zoomScale to 1.0 before doing any further calculations
-    self.zoomScale = 1.0;
-    
-    // make views to display the new image
-    _zoomView = [[UIImageView alloc] initWithFrame:(CGRect){ CGPointZero, imageSize }];
-    [_zoomView setImage:_PlaceholderImageNamed(imageName)];
-    [self addSubview:_zoomView];
-    
-    _tilingView = [[TilingView alloc] initWithImageName:imageName size:imageSize];
-    _tilingView.frame = _zoomView.bounds;
-    [_zoomView addSubview:_tilingView];
-    
-    [self configureForImageSize:imageSize];
-}
-
-#else
-
 - (void)displayImage:(UIImage *)image
 {
     // clear the previous image
@@ -144,8 +111,6 @@ static UIImage   *_PlaceholderImageNamed(NSString *name);
     
     [self configureForImageSize:image.size];
 }
-
-#endif
 
 - (void)configureForImageSize:(CGSize)imageSize
 {
@@ -243,6 +208,7 @@ static UIImage   *_PlaceholderImageNamed(NSString *name);
 
 @end
 
+// Static method - gets the bytes of image data
 static NSArray *_ImageData(void)
 {
     static NSArray *data = nil;
@@ -264,6 +230,7 @@ static NSArray *_ImageData(void)
     return data;
 }
 
+// Static method - gets the image size
 static NSUInteger _ImageCount(void)
 {
     static NSUInteger count = 0;
@@ -274,6 +241,8 @@ static NSUInteger _ImageCount(void)
     return count;
 }
 
+// Static method - gets the image for a given page (index)
+//
 // we use "imageWithContentsOfFile:" instead of "imageNamed:" here to avoid caching
 static UIImage *_ImageAtIndex(NSUInteger index)
 {
@@ -282,12 +251,14 @@ static UIImage *_ImageAtIndex(NSUInteger index)
     return [UIImage imageWithContentsOfFile:path];
 }
 
+// Static method - gets the image name for a given page (index)
 static NSString *_ImageNameAtIndex(NSUInteger index)
 {
     NSDictionary *info = [_ImageData() objectAtIndex:index];
     return [info valueForKey:@"name"];
 }
 
+// Static method - gets the image length+width for a given page (index)
 static CGSize _ImageSizeAtIndex(NSUInteger index)
 {
     NSDictionary *info = [_ImageData() objectAtIndex:index];
@@ -295,6 +266,7 @@ static CGSize _ImageSizeAtIndex(NSUInteger index)
                       [[info valueForKey:@"height"] floatValue]);
 }
 
+// Static method - gets the image from a given name
 static UIImage *_PlaceholderImageNamed(NSString *name)
 {
     return [UIImage imageNamed:[NSString stringWithFormat:@"%@_Placeholder", name]];

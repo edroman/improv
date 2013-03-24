@@ -83,6 +83,40 @@
 			}
 		}
 	}];
+	
+	////////////////////////////////////
+	// Send Push Notification to partner
+	////////////////////////////////////
+	
+	if (invitee.objectId != nil)
+	{
+		// Find devices (called "installations" in parse) associated with our partner
+		PFQuery *userQuery = [PFUser query];
+		[userQuery whereKey:@"objectId" equalTo:partner.objectId];
+		PFQuery *pushQuery = [PFInstallation query];
+		[pushQuery whereKey:@"owner" matchesQuery:userQuery];
+		
+		// Send push notification to query
+		PFPush *push = [[PFPush alloc] init];
+		[push setQuery:pushQuery]; // Set our Installation query
+		[push setMessage:[NSString stringWithFormat:@"Hi %@!  %@ just started a story in A Tall Tale and would like to play with you!",
+								[[PFUser currentUser] objectForKey:@"first_name"],
+								[partner objectForKey:@"first_name"]]];
+		[push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+			if (succeeded) {
+				NSLog(@"Sent push notification!");
+			}
+			else {
+				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Push Notification Error!"
+																				message:[NSString stringWithFormat:@"Error sending a notification! %@", error]
+																			  delegate:nil
+																  cancelButtonTitle:@"OK"
+																  otherButtonTitles:nil];
+				[alert show];
+				NSLog(@"Error sending push: %@", error);
+			}
+		}];
+	}
 
 	[self performSegueWithIdentifier:@"FindPartnerToLobbyViewSegue" sender:sender];
 }

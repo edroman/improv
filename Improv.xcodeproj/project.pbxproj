@@ -244,7 +244,6 @@
 				27DD8E79169145B50036E189 /* LoginViewController.m */,
 				27915D7A168FF3BB00DB32E2 /* ImprovAppDelegate.h */,
 				27915D7B168FF3BB00DB32E2 /* ImprovAppDelegate.m */,
-				A486C21616B483B20045B273 /* images */,
 				27915D5B168FF31600DB32E2 /* Supporting Files */,
 			);
 			path = Improv;
@@ -253,7 +252,6 @@
 		27915D5B168FF31600DB32E2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				A486C22616B9E3BA0045B273 /* ImageData.plist */,
 				27DD8E7B169146EF0036E189 /* login-button-small-pressed.png */,
 				27DD8E7C169146EF0036E189 /* login-button-small-pressed@2x.png */,
 				27DD8E7D169146EF0036E189 /* login-button-small.png */,
@@ -273,6 +271,8 @@
 		A4318F0716FFB8BE008663BC /* intro */ = {
 			isa = PBXGroup;
 			children = (
+				A486C21616B483B20045B273 /* images */,
+				A486C22616B9E3BA0045B273 /* ImageData.plist */,
 				A486C21D16B4887F0045B273 /* ImageScrollView.h */,
 				A486C21E16B4887F0045B273 /* ImageScrollView.m */,
 				A486C22316B627C30045B273 /* IntroPageViewController.h */,

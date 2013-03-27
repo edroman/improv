@@ -4,27 +4,27 @@
 <array>
 	<dict>
 		<key>height</key>
-		<real>2736</real>
+		<integer>2400</integer>
 		<key>name</key>
-		<string>Lake</string>
+		<string>intro1</string>
 		<key>width</key>
-		<real>3648</real>
+		<real>3</real>
 	</dict>
 	<dict>
 		<key>height</key>
-		<real>3648</real>
+		<integer>3840</integer>
 		<key>name</key>
-		<string>Shed</string>
+		<string>intro2</string>
 		<key>width</key>
-		<real>2736</real>
+		<real>2</real>
 	</dict>
 	<dict>
 		<key>height</key>
-		<real>4752</real>
+		<integer>3840</integer>
 		<key>name</key>
-		<string>Tree</string>
+		<string>intro3</string>
 		<key>width</key>
-		<real>3168</real>
+		<real>2</real>
 	</dict>
 </array>
 </plist>

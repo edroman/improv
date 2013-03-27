@@ -13,5 +13,6 @@
 
 - (id)initWithPageIndex:(NSUInteger)index;
 - (NSInteger)pageIndex;
+- (IBAction)pressedButton:(id)sender;
 
 @end

@@ -120,7 +120,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="377-d2-T83"/>
                     <connections>
-                        <segue destination="1MR-ac-fqq" kind="push" id="5Dq-GY-GIz"/>
+                        <segue destination="1MR-ac-fqq" kind="push" identifier="IntroToLoginSegue" id="5Dq-GY-GIz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CcK-yh-9tF" userLabel="First Responder" sceneMemberID="firstResponder"/>

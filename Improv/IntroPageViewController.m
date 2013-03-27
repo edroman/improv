@@ -60,7 +60,7 @@
 		button.frame = CGRectMake(screenWidth/2.0f - 25.0f, screenHeight/2.0f - 25.0f, 50.0f, 50.0f);
 		button.tag = 101;
 		[button setTitle:@"Begin" forState:UIControlStateNormal];
-		[button addTarget:self action:@selector(didTapButton:) forControlEvents:UIControlEventTouchUpInside];
+		[button addTarget:self action:@selector(pressedButton:) forControlEvents:UIControlEventTouchUpInside];
 		
 		[self.view addSubview:button];
 	}
@@ -77,6 +77,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)pressedButton:(id)sender
+{
+	[self performSegueWithIdentifier:@"IntroToLoginSegue" sender:sender];
 }
 
 @end

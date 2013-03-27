@@ -49,12 +49,28 @@
 	scrollView.index = _pageIndex;
 	scrollView.autoresizingMask =  UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	self.view = scrollView;
+
+	if (_pageIndex == 2)
+	{
+		CGRect screenRect = [[UIScreen mainScreen] bounds];
+		CGFloat screenWidth = screenRect.size.width;
+		CGFloat screenHeight = screenRect.size.height;
+		
+		UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+		button.frame = CGRectMake(screenWidth/2.0f - 25.0f, screenHeight/2.0f - 25.0f, 50.0f, 50.0f);
+		button.tag = 101;
+		[button setTitle:@"Begin" forState:UIControlStateNormal];
+		[button addTarget:self action:@selector(didTapButton:) forControlEvents:UIControlEventTouchUpInside];
+		
+		[self.view addSubview:button];
+	}
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+
 }
 
 - (void)didReceiveMemoryWarning

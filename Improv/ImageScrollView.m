@@ -49,10 +49,10 @@ static UIImage   *_PlaceholderImageNamed(NSString *name);
     return _ImageCount();
 }
 
-- (void)layoutSubviews 
+- (void)layoutSubviews
 {
     [super layoutSubviews];
-    
+
     // center the zoom view as it becomes smaller than the size of the screen
     CGSize boundsSize = self.bounds.size;
     CGRect frameToCenter = _zoomView.frame;

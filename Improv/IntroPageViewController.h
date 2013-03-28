@@ -12,6 +12,7 @@
 @interface IntroPageViewController : UIViewController
 
 - (id)initWithPageIndex:(NSUInteger)index;
+- (void) setIndex:(NSUInteger)index;
 - (NSInteger)pageIndex;
 - (IBAction)pressedButton:(id)sender;
 

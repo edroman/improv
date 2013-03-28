@@ -6,6 +6,6 @@
 // This uses N IntroPageViewControllers (each representing 1 page)
 @interface IntroViewController : UIPageViewController <UIPageViewControllerDelegate, UIPageViewControllerDataSource>
 
-+ (IntroPageViewController *)getController:(NSUInteger)pageIndex;
+- (IntroPageViewController *)getController:(NSUInteger)pageIndex;
 
 @end

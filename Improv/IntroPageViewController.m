@@ -8,6 +8,9 @@
 
 #import "IntroPageViewController.h"
 #import "ImageScrollView.h"
+#import "LoginViewController.h"
+#import "ImprovAppDelegate.h"
+#import "IntroViewController.h"
 
 @interface IntroPageViewController ()
 {
@@ -22,12 +25,17 @@
 	return _pageIndex;
 }
 
+- (void) setIndex:(NSUInteger)index
+{
+	_pageIndex = index;
+}
+
 - (id)initWithPageIndex:(NSUInteger)index
 {
 	self = [super initWithNibName:nil bundle:nil];
 
 	if (self) {
-		_pageIndex = index;
+		[self setIndex:index];
 		
 		// Custom initialization
 	}
@@ -45,6 +53,12 @@
 
 - (void)loadView
 {
+	[super loadView];
+	
+	ImageScrollView *view = self.view;
+	view.index = _pageIndex;
+
+/*
 	ImageScrollView *scrollView = [[ImageScrollView alloc] init];
 	scrollView.index = _pageIndex;
 	scrollView.autoresizingMask =  UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -64,11 +78,13 @@
 		
 		[self.view addSubview:button];
 	}
+*/
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
 	// Do any additional setup after loading the view.
 
 }
@@ -81,6 +97,22 @@
 
 - (IBAction)pressedButton:(id)sender
 {
+//	UINavigationController *nav = self.navigationController;
+//	UIViewController *vc =  [nav visibleViewController];
+// [vc performSegueWithIdentifier:@"IntroToLoginSegue" sender:sender];
+
+	// Get the nav controller
+	// ImprovAppDelegate *del = (ImprovAppDelegate *)[UIApplication sharedApplication].delegate;
+	// UINavigationController *nav = del.navController;
+	
+	// Use the nav controller's storyboard to instantiate the view controller so that we'll get its segues
+	// Then present the new view controller -- use our parent since that's where the segue comes from
+	// LoginViewController *myNewVC = [nav.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+	// [self presentViewController:myNewVC animated:YES completion:nil];
+
+	// IntroViewController *vc = (IntroViewController*) [nav topViewController];
+	// [vc performSegueWithIdentifier:@"IntroToLoginSegue" sender:sender];
+	
 	[self performSegueWithIdentifier:@"IntroToLoginSegue" sender:sender];
 }
 

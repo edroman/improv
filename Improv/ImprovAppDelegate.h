@@ -8,4 +8,6 @@
 
 @property (nonatomic, strong) IBOutlet ImprovViewController *viewController;
 
+@property (retain, nonatomic) UINavigationController *navController;
+
 @end

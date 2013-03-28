@@ -4,11 +4,20 @@
 
 @implementation ImprovAppDelegate
 
+@synthesize navController;
 
 #pragma mark - UIApplicationDelegate
 
+- (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+	return TRUE;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+	// Set nav controller
+	self.navController = (UINavigationController*) self.window.rootViewController;
+	
 	// Initialize constants - load from pList file
 	[Constants loadData];
 	

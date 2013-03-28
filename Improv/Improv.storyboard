@@ -112,27 +112,36 @@
         <!--Intro View Controller-->
         <scene sceneID="iHV-wg-zKO">
             <objects>
-                <viewController id="Iae-Lg-5g6" customClass="IntroViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="xZP-Vb-TyL">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
+                <viewController storyboardIdentifier="IntroViewController" id="Iae-Lg-5g6" customClass="IntroViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="377-d2-T83"/>
-                    <connections>
-                        <segue destination="1MR-ac-fqq" kind="push" identifier="IntroToLoginSegue" id="5Dq-GY-GIz"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CcK-yh-9tF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-621" y="426"/>
         </scene>
+        <!--Intro Page View Controller-->
+        <scene sceneID="C7x-4L-qBs">
+            <objects>
+                <viewController storyboardIdentifier="IntroPageViewController" id="7mJ-gC-hWx" customClass="IntroPageViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9uF-sM-wah" customClass="ImageScrollView">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="1MR-ac-fqq" kind="push" identifier="IntroToLoginSegue" id="A6K-Vf-CgV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="98e-u9-DVY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-165" y="426"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="sOS-i4-aEa">
             <objects>
-                <viewController id="1MR-ac-fqq" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="1MR-ac-fqq" customClass="LoginViewController" sceneMemberID="viewController">
                     <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Kzp-AH-GTY">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="orh-cW-e4n">
@@ -881,7 +890,7 @@
         <segue reference="uUJ-LX-V80"/>
         <segue reference="1Y2-iy-dEb"/>
         <segue reference="A8F-Is-rDU"/>
-        <segue reference="Nbg-hX-QPV"/>
-        <segue reference="5Dq-GY-GIz"/>
+        <segue reference="1vj-iW-FQz"/>
+        <segue reference="A6K-Vf-CgV"/>
     </inferredMetricsTieBreakers>
 </document>
